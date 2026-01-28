@@ -1,0 +1,136 @@
+<nav class="side-nav">
+  <span data-section="intro"></span>
+    <div class="line"></div>
+  <span data-section="competences"></span>
+    <div class="line"></div> 
+    <span data-section="concept"></span>     
+</nav>
+
+ 
+
+<section id="intro" class="bg-black relative min-h-screen text-slate-100 overflow-hidden">
+
+    <!-- Canvas background -->
+    <canvas id="vortex-canvas"
+            class="absolute inset-0 w-full h-full"></canvas>
+
+    <!-- Logo : centre ABSOLU -->
+    <div class="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+        <img
+            src="/assets/img/logo_150.webp"
+            alt="Logo MinusVortex"
+            width="150"
+            height="150"
+            class="opacity-90"
+        />
+    </div>
+
+    <!-- Contenu texte : flux normal -->
+    <div class="relative z-10 flex flex-col items-center text-center px-6 pt-[65vh] pb-12">
+
+        <h1 class="text-2xl sm:text-5xl md:text-6xl font-bold tracking-tight">
+            <?= __('home.title_h1') ?>
+        </h1>
+
+        <p class="text-lg md:text-2xl text-slate-300 mt-6 leading-relaxed max-w-xl">
+            <?= __('home.text_1') ?>
+        </p>
+
+        <a href="<?= __('home.link_portfolio') ?>"
+           class="inline-block mt-8 px-8 py-4 rounded-lg font-semibold
+                  text-black bg-white hover:bg-white-300 transition">
+            <?= __('home.link_portfolio_text') ?>
+        </a>
+    </div>
+
+</section>
+
+
+
+<!-- Section compétences -->
+<section id="competences"
+         class="w-full min-h-screen py-24 flex flex-col items-center justify-center  text-slate-100">
+
+    <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-12">
+
+        <!-- Card 1 -->
+        <div class="p-6 bg-black rounded-xl shadow transition flex flex-col items-center">
+            <canvas class="skill-canvas"
+                    data-shape="cube"
+                    width="160"
+                    height="160"></canvas>
+
+            <h2 class="text-xl font-bold mt-6 mb-2">Sobriété & performance</h2>
+            <p class="text-slate-300 text-sm text-center">
+                Code clair, rapide et économe en ressources.
+            </p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="p-6 bg-black rounded-xl shadow transition flex flex-col items-center">
+            <canvas class="skill-canvas"
+                    data-shape="bar"
+                    width="160"
+                    height="160"></canvas>
+
+            <h2 class="text-xl font-bold mt-6 mb-2">Pédagogie & clarté</h2>
+            <p class="text-slate-300 text-sm text-center">
+                Systèmes compréhensibles même pour non-experts.
+            </p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="p-6 bg-black rounded-xl shadow transition flex flex-col items-center">
+            <canvas class="skill-canvas"
+                    data-shape="ring"
+                    width="160"
+                    height="160"></canvas>
+
+            <h2 class="text-xl font-bold mt-6 mb-2">Éco-conception</h2>
+            <p class="text-slate-300 text-sm text-center">
+                Optimisation des ressources et performance durable.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+ 
+
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <video autoplay muted loop playsinline  class="absolute inset-0 w-full h-full">
+        <source src="assets/video/cube_beat_3_web.webm" type="video/webm">
+        <!-- Optionnel : fallback MP4 -->
+        <source src="assets/video/cube_beat_3.mp4" type="video/mp4">
+    </video>
+    <div class="relative z-10 text-center text-white px-8 z-50 max-w-2xl mx-auto">
+        <h2 class="text-3xl font-semibold mb-4">Le cœur du projet</h2>
+        <p class="text-lg leading-relaxed">
+            Notre philosophie va au-delà du minimalisme technique. 
+            Elle s’exprime dans le rapport humain : nous choisissons de faire moins, 
+            mais de le faire mieux, avec du temps et de l’attention pour chaque détail.
+        </p>
+    </div> 
+</section>
+
+
+<section id="concept" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <canvas id="scene-3d" class="absolute inset-0 w-full h-full"></canvas>
+
+    <div class="relative z-10 text-center text-white px-8 z-50">
+        <h1 class="text-2xl sm:text-5xl font-bold mb-4">Développement sobre et performant</h1>
+        <p class="text-lg text-slate-300">Cube 3D poétique, animé par le scroll</p>
+    </div>
+</section>
+ 
+<script src="/assets/js/minus-vortex.js"></script> 
+<script>
+  if (window.innerWidth >= 768) {  // Desktop ≥ 768px
+    const script = document.createElement('script');
+    script.src = '/assets/js/side-nav.js';
+    script.defer = true;
+    document.body.appendChild(script);
+  }
+</script>
+
+<script type="module" src="/assets/js/skills-3d.js"></script>

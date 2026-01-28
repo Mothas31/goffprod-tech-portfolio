@@ -1,0 +1,31 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "*Performance · Clarté · Éco-conception*",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx tailwindcss -i public/assets/css/input.css -o public/assets/css/output.css --watch",
+    "build": "npx tailwindcss -i public/assets/css/input.css -o public/assets/css/output.css --minify"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.18",
+    "daisyui": "^5.5.14",
+    "three": "^0.182.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mothas31/goffprod-tech-portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mothas31/goffprod-tech-portfolio/issues"
+  },
+  "homepage": "https://github.com/Mothas31/goffprod-tech-portfolio#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.4.23",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.18"
+  }
+}
