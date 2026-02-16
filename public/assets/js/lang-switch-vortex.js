@@ -1,6 +1,7 @@
 (() => {
   const switchers = document.querySelectorAll('.lang-switch');
   const logo = document.getElementById('logo-center') || document.getElementById('site-logo-anchor');
+  const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   if (!switchers.length || !logo) {
     return;
@@ -18,6 +19,9 @@
     let height = 0;
     let dpr = 1;
     let lastLineSpawn = 0;
+    let running = false;
+    let rafId = 0;
+    let lastFrameTime = 0;
 
     function resize() {
       const rect = switcher.getBoundingClientRect();
@@ -67,24 +71,40 @@
       lines.push({
         x,
         y,
-        speed: 0.5 + Math.random() * 0.5,
+        speed: 0.45 + Math.random() * 0.35,
         life: 0,
-        maxLife: 64 + Math.random() * 52,
+        maxLife: 58 + Math.random() * 40,
         length: 11 + Math.random() * 13,
-        alpha: 0.22 + Math.random() * 0.14,
+        alpha: 0.2 + Math.random() * 0.12,
         thickness: 0.75 + Math.random() * 0.45,
       });
     }
 
+    function shouldRun() {
+      return !document.hidden && !reducedMotionQuery.matches;
+    }
+
+    function drawStatic() {
+      ctx.clearRect(0, 0, width, height);
+    }
+
     function animate(ts) {
+      if (!running) return;
+
+      if (ts - lastFrameTime < 33) {
+        rafId = requestAnimationFrame(animate);
+        return;
+      }
+      lastFrameTime = ts;
+
       ctx.clearRect(0, 0, width, height);
       ctx.globalCompositeOperation = 'lighter';
       const rect = switcherRect();
       const target = logoCenter();
 
-      if (ts - lastLineSpawn > 90) {
+      if (ts - lastLineSpawn > 110 && lines.length < 36) {
         spawnLine();
-        if (Math.random() > 0.9) spawnLine();
+        if (Math.random() > 0.93) spawnLine();
         lastLineSpawn = ts;
       }
 
@@ -92,8 +112,8 @@
         const p = lines[i];
         const globalX = rect.left + p.x;
         const globalY = rect.top + p.y;
-        const jitterX = (Math.random() - 0.5) * 70;
-        const jitterY = (Math.random() - 0.5) * 70;
+        const jitterX = (Math.random() - 0.5) * 45;
+        const jitterY = (Math.random() - 0.5) * 45;
         const dx = (target.x + jitterX) - globalX;
         const dy = (target.y + jitterY) - globalY;
         const dist = Math.hypot(dx, dy) || 1;
@@ -117,11 +137,36 @@
         if (outside || p.life > p.maxLife) lines.splice(i, 1);
       }
 
-      requestAnimationFrame(animate);
+      rafId = requestAnimationFrame(animate);
+    }
+
+    function start() {
+      if (running || !shouldRun()) return;
+      running = true;
+      rafId = requestAnimationFrame(animate);
+    }
+
+    function stop() {
+      if (!running) return;
+      running = false;
+      cancelAnimationFrame(rafId);
+      rafId = 0;
+    }
+
+    function syncState() {
+      if (shouldRun()) start();
+      else stop();
+      if (reducedMotionQuery.matches) drawStatic();
     }
 
     resize();
     window.addEventListener('resize', resize, { passive: true });
-    requestAnimationFrame(animate);
+    document.addEventListener('visibilitychange', syncState);
+    if (typeof reducedMotionQuery.addEventListener === 'function') {
+      reducedMotionQuery.addEventListener('change', syncState);
+    } else if (typeof reducedMotionQuery.addListener === 'function') {
+      reducedMotionQuery.addListener(syncState);
+    }
+    syncState();
   });
 })();

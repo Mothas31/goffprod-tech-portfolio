@@ -18,9 +18,12 @@
     <div id="logo-center" class="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
         <img
             src="/assets/img/logo_150.webp"
+            srcset="/assets/img/logo_150.webp 1x, /assets/img/logo_225.webp 1.5x, /assets/img/logo_300.webp 2x"
             alt="Logo MinusVortex"
             width="150"
             height="150"
+            fetchpriority="high"
+            decoding="async"
             class="opacity-90"
         />
     </div>
@@ -141,14 +144,48 @@
     </div>
 </section>
  
-<script src="/assets/js/minus-vortex.js"></script> 
 <script>
-  if (window.innerWidth >= 768) {  // Desktop ≥ 768px
-    const script = document.createElement('script');
-    script.src = '/assets/js/side-nav.js';
-    script.defer = true;
-    document.body.appendChild(script);
-  }
-</script>
+  (() => {
+    const loaded = new Set();
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-<script type="module" src="/assets/js/skills-3d.js"></script>
+    function loadScript(src, type) {
+      if (loaded.has(src)) return;
+      const script = document.createElement('script');
+      script.src = src;
+      if (type === 'module') script.type = 'module';
+      else script.defer = true;
+      script.dataset.lazy = '1';
+      loaded.add(src);
+      document.body.appendChild(script);
+    }
+
+    function scheduleWork(callback, timeout = 1400) {
+      if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(callback, { timeout });
+      } else {
+        window.setTimeout(callback, 500);
+      }
+    }
+
+    if (window.innerWidth >= 768) {
+      scheduleWork(() => loadScript('/assets/js/side-nav.js'));
+    }
+
+    if (!prefersReducedMotion) {
+      window.addEventListener('load', () => {
+        scheduleWork(() => loadScript('/assets/js/minus-vortex.js'), 1800);
+      }, { once: true });
+    }
+
+    const skillsSection = document.getElementById('competences');
+    if (skillsSection) {
+      const observer = new IntersectionObserver((entries, io) => {
+        if (!entries[0]?.isIntersecting) return;
+        io.disconnect();
+        scheduleWork(() => loadScript('/assets/js/skills-3d.js', 'module'));
+      }, { rootMargin: '350px 0px' });
+      observer.observe(skillsSection);
+    }
+  })();
+</script>

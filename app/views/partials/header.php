@@ -32,7 +32,7 @@ $languages = [
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <!-- Logo / Titre -->
         <div class="flex">
-            <a href="/" id="site-logo-anchor" class="text-2xl font-bold"><img src="/assets/img/logo_63.webp" alt="logo minusvortex" width="63px" height="63px"/></a>
+            <a href="/" id="site-logo-anchor" class="text-2xl font-bold"><img src="/assets/img/logo_63.webp" srcset="/assets/img/logo_63.webp 1x, /assets/img/logo_95.webp 1.5x, /assets/img/logo_126.webp 2x" alt="logo minusvortex" width="63" height="63" decoding="async"/></a>
         </div>
         <!-- Drapeaux pour changer la langue -->
         <nav class="lang-switch">

@@ -10,6 +10,10 @@
     <meta name="keywords" content="portfolio">
     <meta name="author" content="Thomas GOFFINET GOFFPROD">
 
+    <?php if (($page ?? '') === 'home'): ?>
+    <link rel="preload" as="image" href="/assets/img/logo_150.webp" imagesrcset="/assets/img/logo_150.webp 1x, /assets/img/logo_225.webp 1.5x, /assets/img/logo_300.webp 2x" imagesizes="150px" fetchpriority="high">
+    <?php endif; ?>
+
     <link rel="stylesheet" href="/assets/css/output.css">
     <link rel="stylesheet" href="/assets/css/side-nav.css" media="screen and (min-width: 768px)">
 
