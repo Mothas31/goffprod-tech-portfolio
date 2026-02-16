@@ -1,0 +1,28 @@
+<?php
+
+return [
+    'title' => 'Inicio',
+    'title_h1' => 'MinusVortex',
+    'title_h2' => 'Desarrollo de software sobrio y de alto rendimiento',
+    'text_1' => 'Desarrollo de software sobrio y de alto rendimiento',
+    'text_2' => 'Diseño sistemas claros, rápidos y comprensibles, priorizando la sobriedad técnica y la pedagogía.',
+    'link_portfolio' => '/es/portafolio',
+    'link_portfolio_text' => 'Ver portafolio',
+    'title_3' => 'Sobriedad y rendimiento',
+    'skills_card_1_text' => 'Código claro, rápido y eficiente en recursos.',
+    'skills_card_2_title' => 'Pedagogía y claridad',
+    'skills_card_2_text' => 'Sistemas comprensibles, incluso para no especialistas.',
+    'skills_card_3_title' => 'Ecodiseño',
+    'skills_card_3_text' => 'Optimización de recursos con rendimiento sostenible.',
+    'value_kicker' => 'Lo que marca la diferencia',
+    'value_title' => 'Un enfoque más elegante que la complejidad bruta',
+    'value_text' => 'Cada proyecto se diseña para seguir siendo legible, rápido y útil con el tiempo. Priorizo decisiones técnicas sólidas, sin capas innecesarias.',
+    'value_point_1_title' => 'Arquitectura legible',
+    'value_point_1_text' => 'Una base limpia para avanzar rápido sin deuda oculta.',
+    'value_point_2_title' => 'Rendimiento real',
+    'value_point_2_text' => 'Interfaces fluidas y tiempos de respuesta cortos, medibles.',
+    'value_point_3_title' => 'Relación de confianza',
+    'value_point_3_text' => 'Decisiones explicadas con claridad y prioridades visibles.',
+    'concept_title' => 'Desarrollo sobrio y de alto rendimiento',
+    'concept_text' => 'Cubo 3D poético, animado por el scroll',
+];

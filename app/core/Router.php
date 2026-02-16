@@ -6,19 +6,20 @@ class Router
     public static function dispatch(): void
     {
         $uri = trim($_SERVER['REQUEST_URI'], '/');
-        $segments = explode('/', $uri);
+        $segments = $uri === '' ? [] : explode('/', $uri);
 
-        $supportedLangs = ['fr', 'en'];
+        $supportedLangs = ['fr', 'en', 'es', 'pt'];
 
         // 1️⃣ Détection langue
         $lang = in_array($segments[0] ?? '', $supportedLangs) ? $segments[0] : 'fr';
         Lang::setLocale($lang);
 
         // 2️⃣ Slug
-        $slug = $segments[1] ?? $segments[0] ?? 'home';
+        $slugIndex = ($segments[0] ?? '') === $lang ? 1 : 0;
+        $slug = $segments[$slugIndex] ?? '';
 
         // 3️⃣ Mapping slug → page logique
-        $page = self::slugToPage($slug, $lang);
+        $page = self::slugToPage($slug);
 
         // 4️⃣ Appel de la page
         $controller = new PageController();
@@ -30,19 +31,32 @@ class Router
         }
     }
 
-    private static function slugToPage(string $slug, string $lang): string
+    private static function slugToPage(string $slug): string
     {
-        // Table simple de correspondance slug → page
-        $routes = [
-            'home' => ['fr' => 'home', 'en' => 'home'],
-            'bienvenue' => ['fr' => 'home', 'en' => 'home'],
-            'welcome' => ['fr' => 'home', 'en' => 'home'],
-            'portfolio' => ['fr' => 'portfolio', 'en' => 'portfolio'],
+        if ($slug === '' || $slug === 'home') {
+            return 'home';
+        }
+
+        $pageSlugs = [
+            'home' => [
+                'fr' => 'bienvenue',
+                'en' => 'welcome',
+                'es' => 'bienvenido',
+                'pt' => 'bem-vindo',
+            ],
+            'portfolio' => [
+                'fr' => 'portfolio',
+                'en' => 'portfolio',
+                'es' => 'portafolio',
+                'pt' => 'portfolio',
+            ],
         ];
 
-        foreach ($routes as $slugKey => $translations) {
-            if (($translations[$lang] ?? '') === $slug) {
-                return $slugKey;
+        foreach ($pageSlugs as $page => $translations) {
+            foreach ($translations as $localizedSlug) {
+                if ($localizedSlug === $slug) {
+                    return $page;
+                }
             }
         }
 

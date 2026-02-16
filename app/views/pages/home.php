@@ -15,7 +15,7 @@
             class="absolute inset-0 w-full h-full"></canvas>
 
     <!-- Logo : centre ABSOLU -->
-    <div class="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+    <div id="logo-center" class="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
         <img
             src="/assets/img/logo_150.webp"
             alt="Logo MinusVortex"

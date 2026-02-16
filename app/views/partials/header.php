@@ -4,8 +4,25 @@ $currentLang = Lang::locale();
 
 // Mapping pour les URLs traduites
 $slugMap = [
-    'home' => ['fr' => 'bienvenue', 'en' => 'welcome'],
-    'portfolio' => ['fr' => 'portfolio', 'en' => 'portfolio'],
+    'home' => [
+        'fr' => 'bienvenue',
+        'en' => 'welcome',
+        'es' => 'bienvenido',
+        'pt' => 'bem-vindo',
+    ],
+    'portfolio' => [
+        'fr' => 'portfolio',
+        'en' => 'portfolio',
+        'es' => 'portafolio',
+        'pt' => 'portfolio',
+    ],
+];
+
+$languages = [
+    'fr' => ['flag' => '🇫🇷', 'label' => 'Français'],
+    'en' => ['flag' => '🇬🇧', 'label' => 'English'],
+    'es' => ['flag' => '🇪🇸', 'label' => 'Español'],
+    'pt' => ['flag' => '🇵🇹', 'label' => 'Português'],
 ];
 
 ?>
@@ -15,14 +32,18 @@ $slugMap = [
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <!-- Logo / Titre -->
         <div class="flex">
-            <a href="/" class="text-2xl font-bold"><img src="/assets/img/logo_63.webp" alt="logo minusvortex" width="63px" height="63px"/></a>
+            <a href="/" id="site-logo-anchor" class="text-2xl font-bold"><img src="/assets/img/logo_63.webp" alt="logo minusvortex" width="63px" height="63px"/></a>
         </div>
         <!-- Drapeaux pour changer la langue -->
-        <nav class="flex gap-4">
-    <?php foreach(['fr' => '🇫🇷', 'en' => '🇬🇧'] as $langCode => $flag): ?>
+        <nav class="lang-switch">
+    <canvas class="lang-switch__canvas" aria-hidden="true"></canvas>
+    <?php foreach($languages as $langCode => $langData): ?>
         <?php $targetSlug = $slugMap[$currentPage][$langCode] ?? $slugMap['home'][$langCode]; ?>
-        <a href="/<?= $langCode ?>/<?= $targetSlug ?>">
-            <?= $flag ?>
+        <?php $isCurrent = $currentLang === $langCode; ?>
+        <a href="/<?= $langCode ?>/<?= $targetSlug ?>"
+           aria-label="<?= $langData['label'] ?>"
+           class="lang-switch__item <?= $isCurrent ? 'lang-switch__item--active' : '' ?>">
+            <span class="text-lg"><?= $langData['flag'] ?></span>
         </a>
     <?php endforeach; ?>
 </nav>
