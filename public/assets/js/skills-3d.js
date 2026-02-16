@@ -1,6 +1,5 @@
 import * as THREE from '../libs/three/build/three.module.js';
 
-console.log("Tree 3D")
 document.querySelectorAll('.skill-canvas').forEach(canvas => {
 
     const scene = new THREE.Scene();
@@ -59,10 +58,9 @@ document.querySelectorAll('.skill-canvas').forEach(canvas => {
 
     scene.add(mesh);
 
-    /* Animation douce */
+    /* Rotation sur un seul axe (Y) pour un mouvement horizontal */
     function animate() {
         mesh.rotation.y += 0.005;
-        mesh.rotation.x += 0.002;
 
         renderer.render(scene, camera);
         requestAnimationFrame(animate);

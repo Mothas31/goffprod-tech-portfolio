@@ -6,8 +6,6 @@ $currentLang = Lang::locale();
 $slugMap = [
     'home' => ['fr' => 'bienvenue', 'en' => 'welcome'],
     'portfolio' => ['fr' => 'portfolio', 'en' => 'portfolio'],
-    'vision' => ['fr' => 'vision', 'en' => 'vision'],
-    'contact' => ['fr' => 'contact', 'en' => 'contact'],
 ];
 
 ?>
@@ -22,7 +20,8 @@ $slugMap = [
         <!-- Drapeaux pour changer la langue -->
         <nav class="flex gap-4">
     <?php foreach(['fr' => '🇫🇷', 'en' => '🇬🇧'] as $langCode => $flag): ?>
-        <a href="/<?= $langCode ?>/<?= $slugMap[$currentPage][$langCode] ?>">
+        <?php $targetSlug = $slugMap[$currentPage][$langCode] ?? $slugMap['home'][$langCode]; ?>
+        <a href="/<?= $langCode ?>/<?= $targetSlug ?>">
             <?= $flag ?>
         </a>
     <?php endforeach; ?>

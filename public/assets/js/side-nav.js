@@ -26,6 +26,10 @@ const observer = new IntersectionObserver(
       const index = Array.from(sections).indexOf(entry.target);
 
       if (entry.isIntersecting) {
+        if (index < 0 || index >= navDots.length) {
+          return;
+        }
+
         // Mettre à jour les points
         navDots.forEach(dot => dot.classList.remove('active'));
         navDots[index].classList.add('active');

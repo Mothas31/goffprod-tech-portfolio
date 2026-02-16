@@ -1,8 +1,8 @@
 <!doctype html>
-<html lang="fr">
+<html lang="<?= htmlspecialchars(Lang::locale(), ENT_QUOTES, 'UTF-8') ?>">
 <head>
     <meta charset="utf-8">
-    <title> <?= __('home.title') ?></title>
+    <title><?= htmlspecialchars($title ?? __('home.title'), ENT_QUOTES, 'UTF-8') ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
      <!-- SEO Meta Tags --> 

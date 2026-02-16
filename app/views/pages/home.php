@@ -60,9 +60,9 @@
                     width="160"
                     height="160"></canvas>
 
-            <h2 class="text-xl font-bold mt-6 mb-2">Sobriété & performance</h2>
+            <h2 class="text-xl font-bold mt-6 mb-2">  <?= __('home.title_3') ?></h2>
             <p class="text-slate-300 text-sm text-center">
-                Code clair, rapide et économe en ressources.
+                <?= __('home.skills_card_1_text') ?>
             </p>
         </div>
 
@@ -73,9 +73,9 @@
                     width="160"
                     height="160"></canvas>
 
-            <h2 class="text-xl font-bold mt-6 mb-2">Pédagogie & clarté</h2>
+            <h2 class="text-xl font-bold mt-6 mb-2"><?= __('home.skills_card_2_title') ?></h2>
             <p class="text-slate-300 text-sm text-center">
-                Systèmes compréhensibles même pour non-experts.
+                <?= __('home.skills_card_2_text') ?>
             </p>
         </div>
 
@@ -86,9 +86,9 @@
                     width="160"
                     height="160"></canvas>
 
-            <h2 class="text-xl font-bold mt-6 mb-2">Éco-conception</h2>
+            <h2 class="text-xl font-bold mt-6 mb-2"><?= __('home.skills_card_3_title') ?></h2>
             <p class="text-slate-300 text-sm text-center">
-                Optimisation des ressources et performance durable.
+                <?= __('home.skills_card_3_text') ?>
             </p>
         </div>
 
@@ -97,20 +97,38 @@
 
  
 
-<section class="relative min-h-screen flex items-center justify-center overflow-hidden">
-    <video autoplay muted loop playsinline  class="absolute inset-0 w-full h-full">
-        <source src="assets/video/cube_beat_3_web.webm" type="video/webm">
-        <!-- Optionnel : fallback MP4 -->
-        <source src="assets/video/cube_beat_3.mp4" type="video/mp4">
-    </video>
-    <div class="relative z-10 text-center text-white px-8 z-50 max-w-2xl mx-auto">
-        <h2 class="text-3xl font-semibold mb-4">Le cœur du projet</h2>
-        <p class="text-lg leading-relaxed">
-            Notre philosophie va au-delà du minimalisme technique. 
-            Elle s’exprime dans le rapport humain : nous choisissons de faire moins, 
-            mais de le faire mieux, avec du temps et de l’attention pour chaque détail.
-        </p>
-    </div> 
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-950 px-6 py-24">
+    <div class="absolute inset-0 pointer-events-none">
+        <div class="absolute top-20 left-[10%] w-72 h-72 rounded-full bg-white/5 blur-3xl"></div>
+        <div class="absolute bottom-16 right-[12%] w-80 h-80 rounded-full bg-slate-100/10 blur-3xl"></div>
+    </div>
+
+    <div class="relative z-10 w-full max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+        <div>
+            <p class="text-slate-300 text-sm uppercase tracking-tight mb-4"><?= __('home.value_kicker') ?></p>
+            <h2 class="text-3xl sm:text-5xl font-bold text-white mb-6"><?= __('home.value_title') ?></h2>
+            <p class="text-lg text-slate-300 leading-relaxed max-w-xl">
+                <?= __('home.value_text') ?>
+            </p>
+        </div>
+
+        <div class="grid gap-4">
+            <article class="bg-black/70 ring ring-slate-400/20 rounded-xl p-6">
+                <h3 class="text-white font-semibold text-lg mb-2"><?= __('home.value_point_1_title') ?></h3>
+                <p class="text-slate-300"><?= __('home.value_point_1_text') ?></p>
+            </article>
+
+            <article class="bg-black/70 ring ring-slate-400/20 rounded-xl p-6">
+                <h3 class="text-white font-semibold text-lg mb-2"><?= __('home.value_point_2_title') ?></h3>
+                <p class="text-slate-300"><?= __('home.value_point_2_text') ?></p>
+            </article>
+
+            <article class="bg-black/70 ring ring-slate-400/20 rounded-xl p-6">
+                <h3 class="text-white font-semibold text-lg mb-2"><?= __('home.value_point_3_title') ?></h3>
+                <p class="text-slate-300"><?= __('home.value_point_3_text') ?></p>
+            </article>
+        </div>
+    </div>
 </section>
 
 
@@ -118,8 +136,8 @@
     <canvas id="scene-3d" class="absolute inset-0 w-full h-full"></canvas>
 
     <div class="relative z-10 text-center text-white px-8 z-50">
-        <h1 class="text-2xl sm:text-5xl font-bold mb-4">Développement sobre et performant</h1>
-        <p class="text-lg text-slate-300">Cube 3D poétique, animé par le scroll</p>
+        <h1 class="text-2xl sm:text-5xl font-bold mb-4"><?= __('home.concept_title') ?></h1>
+        <p class="text-lg text-slate-300"><?= __('home.concept_text') ?></p>
     </div>
 </section>
  

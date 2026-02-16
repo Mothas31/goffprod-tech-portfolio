@@ -38,8 +38,6 @@ class Router
             'bienvenue' => ['fr' => 'home', 'en' => 'home'],
             'welcome' => ['fr' => 'home', 'en' => 'home'],
             'portfolio' => ['fr' => 'portfolio', 'en' => 'portfolio'],
-            'vision' => ['fr' => 'vision', 'en' => 'vision'],
-            'contact' => ['fr' => 'contact', 'en' => 'contact'],
         ];
 
         foreach ($routes as $slugKey => $translations) {
