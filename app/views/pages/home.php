@@ -3,7 +3,7 @@
     <div class="line"></div>
   <span data-section="competences"></span>
     <div class="line"></div> 
-    <span data-section="concept"></span>     
+    <span data-section="prequal"></span>     
 </nav>
 
  
@@ -135,12 +135,14 @@
 </section>
 
 
-<section id="concept" class="relative min-h-screen flex items-center justify-center overflow-hidden">
-    <canvas id="scene-3d" class="absolute inset-0 w-full h-full"></canvas>
-
-    <div class="relative z-10 text-center text-white px-8 z-50">
-        <h1 class="text-2xl sm:text-5xl font-bold mb-4"><?= __('home.concept_title') ?></h1>
-        <p class="text-lg text-slate-300"><?= __('home.concept_text') ?></p>
+<section id="prequal" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-950 px-6 py-24">
+    <div id="prequal-module-root" class="w-full max-w-4xl" aria-live="polite">
+        <noscript>
+            <div class="bg-black/70 ring ring-slate-400/20 rounded-xl p-6 text-slate-100 text-center">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4">Qualification de projet</h2>
+                <p class="text-slate-300">Active JavaScript pour utiliser le questionnaire de pré-sélection.</p>
+            </div>
+        </noscript>
     </div>
 </section>
  
@@ -186,6 +188,16 @@
         scheduleWork(() => loadScript('/assets/js/skills-3d.js', 'module'));
       }, { rootMargin: '350px 0px' });
       observer.observe(skillsSection);
+    }
+
+    const prequalSection = document.getElementById('prequal');
+    if (prequalSection) {
+      const observer = new IntersectionObserver((entries, io) => {
+        if (!entries[0]?.isIntersecting) return;
+        io.disconnect();
+        scheduleWork(() => loadScript('/assets/js/prequal-loader.js'));
+      }, { rootMargin: '250px 0px' });
+      observer.observe(prequalSection);
     }
   })();
 </script>

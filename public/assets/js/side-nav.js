@@ -1,6 +1,9 @@
-const sections = document.querySelectorAll('section');
 const navDots = document.querySelectorAll('.side-nav span');
 const navLines = document.querySelectorAll('.side-nav .line');
+const sections = Array.from(navDots)
+  .map((dot) => document.getElementById(dot.dataset.section))
+  .filter(Boolean);
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // Mettre à jour la hauteur des lignes
 function updateLinesHeight() {
@@ -49,3 +52,31 @@ const observer = new IntersectionObserver(
 );
 
 sections.forEach(section => observer.observe(section));
+
+function scrollToSectionByDot(dot) {
+  const id = dot.dataset.section;
+  if (!id) return;
+  const target = document.getElementById(id);
+  if (!target) return;
+
+  target.scrollIntoView({
+    behavior: prefersReducedMotion ? 'auto' : 'smooth',
+    block: 'start'
+  });
+}
+
+navDots.forEach((dot) => {
+  dot.setAttribute('role', 'button');
+  dot.setAttribute('tabindex', '0');
+  dot.setAttribute('aria-label', `Aller a la section ${dot.dataset.section || ''}`);
+
+  dot.addEventListener('click', () => {
+    scrollToSectionByDot(dot);
+  });
+
+  dot.addEventListener('keydown', (event) => {
+    if (event.key !== 'Enter' && event.key !== ' ') return;
+    event.preventDefault();
+    scrollToSectionByDot(dot);
+  });
+});

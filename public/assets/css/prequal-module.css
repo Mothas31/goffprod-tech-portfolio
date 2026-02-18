@@ -1,0 +1,111 @@
+.prequal-widget {
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 16px;
+  background: radial-gradient(circle at 10% 10%, rgba(255, 255, 255, 0.08), rgba(0, 0, 0, 0.82) 45%);
+  color: #f1f5f9;
+  padding: 1.75rem;
+  box-shadow: 0 20px 60px rgba(2, 6, 23, 0.45);
+}
+
+.prequal-widget__kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin: 0 0 0.4rem;
+}
+
+.prequal-widget h2 {
+  margin: 0;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  line-height: 1.1;
+}
+
+.prequal-widget__intro {
+  margin: 0.6rem 0 0;
+  color: #cbd5e1;
+}
+
+.prequal-widget__body {
+  margin-top: 1.5rem;
+}
+
+.prequal-widget__question {
+  margin: 0 0 1rem;
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.prequal-widget__options {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.prequal-widget__choice {
+  width: 100%;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+  text-align: left;
+  color: #f8fafc;
+  background: rgba(15, 23, 42, 0.5);
+  transition: transform 120ms ease, border-color 120ms ease, background-color 120ms ease;
+  cursor: pointer;
+}
+
+.prequal-widget__choice:hover {
+  transform: translateY(-1px);
+  border-color: rgba(226, 232, 240, 0.6);
+  background: rgba(30, 41, 59, 0.75);
+}
+
+.prequal-widget__result {
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  border-radius: 12px;
+  padding: 1rem;
+  background: rgba(15, 23, 42, 0.5);
+}
+
+.prequal-widget__result h3 {
+  margin: 0 0 0.5rem;
+}
+
+.prequal-widget__result p,
+.prequal-widget__result ul {
+  margin: 0.5rem 0 0;
+  color: #cbd5e1;
+}
+
+.prequal-widget__result ul {
+  padding-left: 1rem;
+}
+
+.prequal-widget__cta {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.65rem 1rem;
+  border-radius: 999px;
+  font-weight: 600;
+  color: #0f172a;
+  background: #e2e8f0;
+}
+
+.prequal-widget__footer {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.prequal-widget__ghost {
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  color: #cbd5e1;
+  background: transparent;
+  border-radius: 999px;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.85rem;
+}
+
+.prequal-widget__ghost:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
