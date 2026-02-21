@@ -112,3 +112,10 @@ Ce dépôt reflète :
 
 > La technologie est un moyen.  
 > La clarté est l’objectif.
+
+
+WorkFlow de push : 
+git add .
+git commit -m "Update"
+git push github prod
+git push vps prod
