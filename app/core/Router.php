@@ -5,29 +5,38 @@ class Router
 {
     public static function dispatch(): void
     {
-        $uri = trim($_SERVER['REQUEST_URI'], '/');
-        $segments = $uri === '' ? [] : explode('/', $uri);
+        try {
+            // Validation et sanitization de l'URI
+            $uri = Security::sanitizeUrl(trim($_SERVER['REQUEST_URI'] ?? ''));
+            $uri = str_replace(['//', '../'], ['/', ''], $uri);
+            $segments = $uri === '' ? [] : explode('/', $uri);
 
-        $supportedLangs = ['fr', 'en', 'es', 'pt'];
+            $supportedLangs = ['fr', 'en', 'es', 'pt'];
 
-        // 1️⃣ Détection langue
-        $lang = in_array($segments[0] ?? '', $supportedLangs) ? $segments[0] : 'fr';
-        Lang::setLocale($lang);
+            // 1️⃣ Détection langue avec validation
+            $lang = in_array($segments[0] ?? '', $supportedLangs) ? $segments[0] : 'fr';
+            Lang::setLocale($lang);
 
-        // 2️⃣ Slug
-        $slugIndex = ($segments[0] ?? '') === $lang ? 1 : 0;
-        $slug = $segments[$slugIndex] ?? '';
+            // 2️⃣ Slug avec validation
+            $slugIndex = ($segments[0] ?? '') === $lang ? 1 : 0;
+            $slug = Security::sanitizeInput($segments[$slugIndex] ?? '');
 
-        // 3️⃣ Mapping slug → page logique
-        $page = self::slugToPage($slug);
+            // 3️⃣ Mapping slug → page logique
+            $page = self::slugToPage($slug);
 
-        // 4️⃣ Appel de la page
-        $controller = new PageController();
-        if (method_exists($controller, $page)) {
-            $controller->{$page}();
-        } else {
-            http_response_code(404);
-            View::render('pages/404', ['title' => '404']);
+            // 4️⃣ Appel de la page
+            $controller = new PageController();
+            if (method_exists($controller, $page)) {
+                $controller->{$page}();
+            } else {
+                Logger::warning("Page not found: $page for slug: $slug");
+                http_response_code(404);
+                View::render('pages/404', ['title' => '404']);
+            }
+        } catch (Exception $e) {
+            Logger::error('Routing error: ' . $e->getMessage());
+            http_response_code(500);
+            View::render('pages/404', ['title' => '500 - Internal Server Error']);
         }
     }
 

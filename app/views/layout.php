@@ -5,7 +5,12 @@
     <title><?= htmlspecialchars($title ?? __('home.title'), ENT_QUOTES, 'UTF-8') ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-     <!-- SEO Meta Tags --> 
+    <!-- Security Meta Tags -->
+    <meta name="csrf-token" content="<?= Security::generateCsrfToken() ?>">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+
+    <!-- SEO Meta Tags --> 
     <meta name="description" content="Port folio techn sobre">
     <meta name="keywords" content="portfolio">
     <meta name="author" content="Thomas GOFFINET GOFFPROD">
