@@ -7,8 +7,11 @@ class Router
     {
         try {
             // Validation et sanitization de l'URI
-            $uri = Security::sanitizeUrl(trim($_SERVER['REQUEST_URI'] ?? ''));
+            $requestUri = (string) ($_SERVER['REQUEST_URI'] ?? '');
+            $path = parse_url($requestUri, PHP_URL_PATH);
+            $uri = Security::sanitizeUrl((string) ($path ?? ''));
             $uri = str_replace(['//', '../'], ['/', ''], $uri);
+            $uri = trim($uri, '/');
             $segments = $uri === '' ? [] : explode('/', $uri);
 
             $supportedLangs = ['fr', 'en', 'es', 'pt'];

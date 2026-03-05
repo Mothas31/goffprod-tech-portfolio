@@ -32,22 +32,27 @@
   }
 
   class Line {
-    constructor() {
-      const side = Math.floor(Math.random() * 4);
-      const margin = 40;
-
-      if (side === 0) {
+    constructor(spawnInside = false) {
+      if (spawnInside) {
         this.x = Math.random() * w;
-        this.y = -margin;
-      } else if (side === 1) {
-        this.x = w + margin;
         this.y = Math.random() * h;
-      } else if (side === 2) {
-        this.x = Math.random() * w;
-        this.y = h + margin;
       } else {
-        this.x = -margin;
-        this.y = Math.random() * h;
+        const side = Math.floor(Math.random() * 4);
+        const margin = 40;
+
+        if (side === 0) {
+          this.x = Math.random() * w;
+          this.y = -margin;
+        } else if (side === 1) {
+          this.x = w + margin;
+          this.y = Math.random() * h;
+        } else if (side === 2) {
+          this.x = Math.random() * w;
+          this.y = h + margin;
+        } else {
+          this.x = -margin;
+          this.y = Math.random() * h;
+        }
       }
 
       const dx = cx - this.x;
@@ -108,6 +113,17 @@
     ctx.clearRect(0, 0, w, h);
   }
 
+  function seedInitialLines() {
+    if (lines.length > 0) return;
+    const target = Math.max(18, Math.floor(maxLinesCount() * 0.42));
+    for (let i = 0; i < target; i += 1) {
+      const line = new Line(true);
+      // Spread lifecycle so the first seconds don't look too synchronized.
+      line.life = Math.random() * (line.maxLife * 0.55);
+      lines.push(line);
+    }
+  }
+
   function animate(time) {
     if (!running) return;
 
@@ -142,6 +158,7 @@
 
   function start() {
     if (running || !shouldRun()) return;
+    seedInitialLines();
     running = true;
     rafId = requestAnimationFrame(animate);
   }
@@ -177,6 +194,7 @@
   }
 
   resize();
+  seedInitialLines();
   io.observe(canvas);
   syncAnimationState();
 })();
