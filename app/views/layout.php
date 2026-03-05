@@ -21,6 +21,14 @@
 
     <link rel="stylesheet" href="/assets/css/output.css">
     <link rel="stylesheet" href="/assets/css/side-nav.css" media="screen and (min-width: 768px)">
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "/assets/libs/three/build/three.module.min.js",
+        "three/addons/": "/assets/libs/three/examples/jsm/"
+      }
+    }
+    </script>
 
 </head>
 <body class="w-full">
