@@ -60,8 +60,8 @@
       this.maxLife = w / 5 + Math.random();
       this.baseLength = 8 + Math.random() * 12;
       this.length = this.baseLength;
-      this.alpha = 0.15 + Math.random() * 0.2;
-      this.lineWidth = 0.5 + Math.random();
+      this.alpha = 0.28 + Math.random() * 0.27;
+      this.lineWidth = 0.8 + Math.random() * 1.1;
       this.angleOffset = (Math.random() - 0.5) * 0.3;
       this.speed = 1.5 + Math.random() * 2;
     }
@@ -85,12 +85,16 @@
 
     draw() {
       const fade = Math.max(0, 1 - this.life / this.maxLife);
-      ctx.strokeStyle = `rgba(255,255,255,${this.alpha * fade})`;
+      const opacity = this.alpha * fade;
+      ctx.strokeStyle = `rgba(255,255,255,${opacity})`;
       ctx.lineWidth = this.lineWidth * fade;
+      ctx.shadowBlur = 8;
+      ctx.shadowColor = `rgba(255,255,255,${Math.min(0.45, opacity + 0.08)})`;
       ctx.beginPath();
       ctx.moveTo(this.x, this.y);
       ctx.lineTo(this.x - this.vx * this.length, this.y - this.vy * this.length);
       ctx.stroke();
+      ctx.shadowBlur = 0;
     }
 
     isDead() {
