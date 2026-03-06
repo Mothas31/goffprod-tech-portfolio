@@ -3,8 +3,8 @@
 return [
     'title'     => 'Accueil',
     'title_h1'  => 'MinusVortex',
-    'title_h2'  => 'Clarté, mouvement et impact durable',
-    'text_1'    => 'Clarté, mouvement et impact durable',
+    'title_h2'  => 'Sobriété, efficacité et empreinte durable',
+    'text_1'    => 'Sobriété, efficacité et empreinte durable',
     'text_2'    => 'Je conçois des systèmes clairs, performants et compréhensibles, en privilégiant la sobriété technique et la pédagogie.',
     'link_portfolio' => '/fr/portfolio',
     'link_portfolio_text' => 'Voir le portfolio',
