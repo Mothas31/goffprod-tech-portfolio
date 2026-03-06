@@ -3,8 +3,8 @@
 return [
     'title'     => 'Accueil',
     'title_h1'  => 'MinusVortex',
-    'title_h2'  => 'Développement logiciel sobre et performant',
-    'text_1'    => 'Développement logiciel sobre et performant',
+    'title_h2'  => 'Clarté, mouvement et impact durable',
+    'text_1'    => 'Clarté, mouvement et impact durable',
     'text_2'    => 'Je conçois des systèmes clairs, performants et compréhensibles, en privilégiant la sobriété technique et la pédagogie.',
     'link_portfolio' => '/fr/portfolio',
     'link_portfolio_text' => 'Voir le portfolio',
@@ -23,6 +23,6 @@ return [
     'value_point_2_text' => 'Des interfaces fluides et des temps de réponse courts, mesurables.',
     'value_point_3_title' => 'Relation de confiance',
     'value_point_3_text' => 'Des arbitrages expliqués simplement, avec une vision claire des priorités.',
-    'concept_title' => 'Développement sobre et performant',
+    'concept_title' => 'Une philosophie sobre et vivante',
     'concept_text' => 'Cube 3D poétique, animé par le scroll',
 ];

@@ -3,8 +3,8 @@
 return [
     'title' => 'Inicio',
     'title_h1' => 'MinusVortex',
-    'title_h2' => 'Desarrollo de software sobrio y de alto rendimiento',
-    'text_1' => 'Desarrollo de software sobrio y de alto rendimiento',
+    'title_h2' => 'Claridad, movimiento e impacto duradero',
+    'text_1' => 'Claridad, movimiento e impacto duradero',
     'text_2' => 'Diseño sistemas claros, rápidos y comprensibles, priorizando la sobriedad técnica y la pedagogía.',
     'link_portfolio' => '/es/portafolio',
     'link_portfolio_text' => 'Ver portafolio',
@@ -23,6 +23,6 @@ return [
     'value_point_2_text' => 'Interfaces fluidas y tiempos de respuesta cortos, medibles.',
     'value_point_3_title' => 'Relación de confianza',
     'value_point_3_text' => 'Decisiones explicadas con claridad y prioridades visibles.',
-    'concept_title' => 'Desarrollo sobrio y de alto rendimiento',
+    'concept_title' => 'Una filosofía sobria y viva',
     'concept_text' => 'Cubo 3D poético, animado por el scroll',
 ];

@@ -3,8 +3,8 @@
 return [
     'title'      => 'Home',
     'title_h1'   => 'MinusVortex',
-    'title_h2'   => 'Lean and high-performance software development',
-    'text_1'     => 'Lean and high-performance software development',
+    'title_h2'   => 'Clarity, motion, and lasting impact',
+    'text_1'     => 'Clarity, motion, and lasting impact',
     'text_2'     => 'I design systems that are clear, fast, and understandable, with a strong focus on technical sobriety and pedagogy.',
     'link_portfolio' => '/en/portfolio',
     'link_portfolio_text' => 'View portfolio',
@@ -23,6 +23,6 @@ return [
     'value_point_2_text' => 'Fluid interfaces and short response times you can measure.',
     'value_point_3_title' => 'Trusted collaboration',
     'value_point_3_text' => 'Clear tradeoffs, explained simply, with priorities that stay visible.',
-    'concept_title' => 'Lean and high-performance development',
+    'concept_title' => 'A sober and living philosophy',
     'concept_text' => 'A poetic 3D cube, animated by scroll',
 ];
