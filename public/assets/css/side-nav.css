@@ -11,7 +11,7 @@
     flex-direction: column;
     justify-content: space-between;
     height: 70vh;
-    z-index: 20;
+    z-index: 45;
     }
 
     .side-nav span {

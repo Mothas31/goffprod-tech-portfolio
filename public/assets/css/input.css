@@ -7,6 +7,201 @@ html {
     scroll-behavior: smooth;
 }
 
+#minus-system-scene {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    opacity: var(--minus-scene-opacity, 0);
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 72% 46%, rgba(255, 255, 255, 0.05), transparent 20rem),
+        #000000;
+    transition: opacity 0.45s ease;
+}
+
+#minus-system-scene.is-visible {
+    opacity: var(--minus-scene-opacity, 1);
+}
+
+main:has(#minus-system-scene) {
+    position: relative;
+}
+
+/* Transition de page "vortex" : la page s'efface pendant que le rectangle 3D grandit et avale l'écran. */
+#warp-veil {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    background: #000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease-in 0.22s;
+}
+
+#warp-veil.is-active {
+    opacity: 1;
+}
+
+body.is-warping {
+    overflow: hidden;
+}
+
+body.is-warping :is(section, header, footer, .side-nav) {
+    transition: opacity 0.5s ease;
+    opacity: 0;
+    pointer-events: none;
+}
+
+body.is-warping #minus-system-scene {
+    opacity: 1 !important;
+}
+
+/* Arrivée depuis une transition : la page émerge d'un petit rectangle (en trait, à
+   l'aspect de la page) qui grandit jusqu'à remplir l'écran. La fenêtre est transparente
+   (= la page visible à l'intérieur), le box-shadow remplit le noir tout autour. */
+@keyframes warp-arrive-rect {
+    from { transform: translate(-50%, -50%) scale(1); }
+    to { transform: translate(-50%, -50%) scale(0); }
+}
+
+html.warp-arrive::before {
+    content: '';
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* portrait presque carré (pas le format écran), assez grand pour couvrir au départ */
+    width: 108vmax;
+    height: 120vmax;
+    transform: translate(-50%, -50%) scale(0);
+    transform-origin: center;
+    background: #000000;
+    border: 2px solid rgba(255, 255, 255, 0.92);
+    pointer-events: none;
+    z-index: 70;
+    /* ease-in fort : lent quand le rectangle est grand, de plus en plus rapide en rétrécissant */
+    animation: warp-arrive-rect 0.95s cubic-bezier(0.5, 0, 0.75, 0) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html.warp-arrive::before {
+        display: none;
+        animation: none;
+    }
+}
+
+.competences-surface > *,
+.value-surface > *,
+.theme-scroll-shell > *,
+.prequal-surface > * {
+    position: relative;
+    z-index: 2;
+}
+
+.minus-hero {
+    display: grid;
+    place-items: end center;
+    background:
+        radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.08), transparent 24rem),
+        linear-gradient(180deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.82));
+}
+
+.minus-hero__content {
+    width: min(940px, 100%);
+    padding-top: 58vh;
+}
+
+.minus-hero__kicker {
+    margin-bottom: 1rem;
+    color: rgba(212, 175, 55, 0.86);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.minus-step-card {
+    min-height: 17rem;
+    justify-content: center;
+    border: 1px solid rgba(212, 175, 55, 0.16);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015)),
+        rgba(0, 0, 0, 0.72);
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.03),
+        0 24px 60px rgba(0, 0, 0, 0.22);
+}
+
+.minus-competence-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.92fr) minmax(320px, 1.08fr);
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: center;
+}
+
+.minus-competence-copy {
+    display: grid;
+    gap: 1rem;
+    max-width: 430px;
+}
+
+.minus-competence-copy .cta-gold {
+    justify-self: start;
+}
+
+.minus-competence-copy .minus-step-card {
+    min-height: 9.5rem;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.minus-competence-copy .minus-step-card h2,
+.minus-competence-copy .minus-step-card p {
+    text-align: left;
+}
+
+.minus-scene-space {
+    min-height: min(62vh, 34rem);
+}
+
+.minus-value-layout {
+    grid-template-columns: minmax(0, 0.92fr) minmax(320px, 1.08fr);
+}
+
+.minus-value-copy {
+    display: grid;
+    gap: 1.2rem;
+}
+
+.minus-value-points article {
+    background: rgba(0, 0, 0, 0.62);
+}
+
+@media (max-width: 767px) {
+    .minus-competence-layout,
+    .minus-value-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .minus-scene-space {
+        min-height: 16rem;
+    }
+}
+
+.minus-step-card__number {
+    display: inline-flex;
+    width: 3rem;
+    height: 3rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 9999px;
+    color: rgba(242, 217, 122, 0.92);
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
 .lang-switch {
     position: relative;
     display: flex;
@@ -113,17 +308,286 @@ html {
     animation: scroll-indicator-float 2.8s ease-in-out infinite;
 }
 
-/* Transition plus douce entre hero noir et section compétences */
-.competences-surface {
-    background: linear-gradient(180deg, #000000 0%, #111111 34%, #1b1b1b 68%, #262626 100%);
+.theme-scroll-shell {
+    position: relative;
+    z-index: 2;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: transparent;
+    color: #ffffff;
+    isolation: isolate;
 }
 
-.value-surface {
-    background: linear-gradient(180deg, #262626 0%, #1c1c1c 42%, #141414 100%);
+.theme-scroll-stage {
+    position: relative;
+    z-index: 3;
+    width: min(1180px, 100%);
+    margin: 0 auto;
+    padding: clamp(4.5rem, 9vh, 7rem) clamp(1.25rem, 5vw, 4rem);
+    display: grid;
+    grid-template-columns: minmax(0, 0.92fr) minmax(18rem, 1.08fr);
+    gap: clamp(2rem, 8vw, 7rem);
+    align-items: center;
+}
+
+.theme-scroll-copy {
+    position: relative;
+    min-height: 27rem;
+}
+
+.theme-panel {
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: min(33rem, 100%);
+    opacity: 0;
+    transform: translate3d(0, 1.8rem, 0);
+    pointer-events: none;
+    filter: blur(5px);
+    transition:
+        opacity 0.48s ease,
+        transform 0.62s cubic-bezier(0.16, 1, 0.3, 1),
+        filter 0.48s ease;
+    will-change: opacity, transform, filter;
+}
+
+.theme-scroll-shell.is-going-up .theme-panel {
+    transform: translate3d(0, -1.8rem, 0);
+}
+
+.theme-panel.is-active {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: blur(0);
+    pointer-events: auto;
+    transition-delay: 0.08s;
+}
+
+.theme-panel.is-leaving {
+    opacity: 0;
+    filter: blur(6px);
+    transition:
+        opacity 0.34s ease,
+        transform 0.42s cubic-bezier(0.7, 0, 0.84, 0),
+        filter 0.34s ease;
+}
+
+.theme-scroll-shell.is-going-down .theme-panel.is-leaving {
+    transform: translate3d(0, -1.4rem, 0);
+}
+
+.theme-scroll-shell.is-going-up .theme-panel.is-leaving {
+    transform: translate3d(0, 1.4rem, 0);
+}
+
+.theme-panel__drift {
+    animation: theme-text-drift 6.8s ease-in-out infinite;
+    transform-origin: 12% 50%;
+    will-change: transform;
+}
+
+.theme-panel__markers {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 1.55rem;
+    perspective: 12rem;
+}
+
+.theme-panel__markers span {
+    width: 0.64rem;
+    height: 0.92rem;
+    border: 1px solid rgba(255, 255, 255, 0.42);
+    background: transparent;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+    transform: translate3d(0, 0, 0) rotateX(12deg) rotateY(-28deg) rotateZ(-1deg);
+    animation: theme-marker-float 3.8s ease-in-out infinite;
+}
+
+.theme-panel__markers span:nth-child(2n) {
+    animation-delay: -1.2s;
+}
+
+.theme-panel__markers span.is-current {
+    background: rgba(255, 255, 255, 0.86);
+    border-color: rgba(255, 255, 255, 0.92);
+    box-shadow:
+        0 0 13px rgba(255, 255, 255, 0.24),
+        inset 0 0 10px rgba(0, 0, 0, 0.24);
+}
+
+.theme-panel h2 {
+    margin: 0 0 1.1rem;
+    color: #ffffff;
+    font-size: clamp(2.8rem, 6vw, 5.8rem);
+    line-height: 0.9;
+    font-weight: 800;
+    letter-spacing: 0;
+}
+
+.theme-panel__drift > p {
+    max-width: 31rem;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: clamp(1.05rem, 1.7vw, 1.35rem);
+    line-height: 1.65;
+}
+
+.theme-panel__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 2.2rem;
+}
+
+.theme-choice {
+    display: inline-flex;
+    min-height: 2rem;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 0;
+    padding: 0.28rem 0.1rem;
+    color: rgba(255, 255, 255, 0.94);
+    background: transparent;
+    font-size: 0.92rem;
+    font-weight: 700;
+    text-decoration: none;
+    animation: theme-choice-breathe 3.2s ease-in-out infinite;
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.theme-choice:hover {
+    color: #ffffff;
+    background: transparent;
+    animation-play-state: paused;
+    filter: blur(0);
+}
+
+.theme-choice--muted {
+    color: rgba(255, 255, 255, 0.74);
+    animation-delay: -1.6s;
+}
+
+.theme-choice--muted:hover {
+    color: #ffffff;
+    background: transparent;
+}
+
+@keyframes theme-marker-float {
+    0%, 100% {
+        transform: translate3d(0, 0, 0) rotateX(12deg) rotateY(-28deg) rotateZ(-1deg);
+    }
+    50% {
+        transform: translate3d(0, -0.12rem, 0) rotateX(18deg) rotateY(18deg) rotateZ(1deg);
+    }
+}
+
+@keyframes theme-choice-breathe {
+    0%, 100% {
+        transform: scale(1);
+        filter: blur(0);
+    }
+    42% {
+        transform: scale(1.045);
+        filter: blur(1.1px);
+    }
+    58% {
+        transform: scale(0.985);
+        filter: blur(0);
+    }
+}
+
+.theme-scroll-scene-space {
+    min-height: min(70vh, 42rem);
+}
+
+.theme-scroll-progress {
+    position: absolute;
+    left: clamp(3.1rem, 4.2vw, 4.6rem);
+    top: 50%;
+    display: grid;
+    gap: 0.92rem;
+    transform: translateY(-50%);
+}
+
+.theme-scroll-progress button {
+    width: 1.35rem;
+    height: 1.35rem;
+    display: grid;
+    place-items: center;
+    border: 0;
+    border-radius: 9999px;
+    background: transparent;
+    cursor: pointer;
+    transform: none;
+    transition:
+        transform 0.24s ease,
+        opacity 0.24s ease;
+}
+
+.theme-scroll-progress button::before {
+    content: "";
+    width: 0.28rem;
+    height: 0.28rem;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.22);
+    transition:
+        width 0.28s ease,
+        height 0.28s ease,
+        background-color 0.28s ease,
+        box-shadow 0.28s ease;
+}
+
+.theme-scroll-progress button:hover,
+.theme-scroll-progress button:focus-visible {
+    transform: scale(1.18);
+    outline: none;
+}
+
+.theme-scroll-progress button:hover::before,
+.theme-scroll-progress button:focus-visible::before {
+    background: rgba(255, 255, 255, 0.62);
+}
+
+.theme-scroll-progress button.is-active::before {
+    width: 0.36rem;
+    height: 1.55rem;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 0 14px rgba(255, 255, 255, 0.36);
 }
 
 .prequal-surface {
     background: linear-gradient(180deg, #141414 0%, #101010 45%, #0a0a0a 100%);
+}
+
+@media (max-width: 767px) {
+    .theme-scroll-stage {
+        min-height: 100svh;
+        grid-template-columns: 1fr;
+        align-content: end;
+        padding-top: 38svh;
+    }
+
+    .theme-scroll-copy {
+        min-height: 28rem;
+    }
+
+    .theme-panel h2 {
+        font-size: clamp(2.55rem, 15vw, 4.2rem);
+    }
+
+    .theme-scroll-scene-space {
+        display: none;
+    }
+
+    .theme-scroll-progress {
+        left: 0.8rem;
+    }
 }
 
 .cta-gold {
@@ -234,6 +698,24 @@ html {
 @media (prefers-reduced-motion: reduce) {
     .logo-vortex-spin {
         animation: none;
+    }
+
+    .theme-panel__drift,
+    .theme-panel__markers span,
+    .theme-choice {
+        animation: none;
+    }
+}
+
+@keyframes theme-text-drift {
+    0%, 100% {
+        transform: translate3d(0, 0, 0) rotate(0deg);
+    }
+    35% {
+        transform: translate3d(0.18rem, -0.26rem, 0) rotate(-0.18deg);
+    }
+    70% {
+        transform: translate3d(-0.1rem, 0.18rem, 0) rotate(0.12deg);
     }
 }
  
