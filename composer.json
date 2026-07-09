@@ -1,0 +1,8 @@
+{
+    "name": "goffprod/portfolio",
+    "description": "Portfolio technique Goffprod avec paiement Stripe.",
+    "license": "proprietary",
+    "require": {
+        "stripe/stripe-php": "^20.1"
+    }
+}

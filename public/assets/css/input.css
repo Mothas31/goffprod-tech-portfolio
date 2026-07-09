@@ -342,7 +342,7 @@ html.warp-arrive::before {
     inset: 0 auto auto 0;
     width: min(33rem, 100%);
     opacity: 0;
-    transform: translate3d(0, 1.8rem, 0);
+    transform: translate3d(1.8rem, 0, 0);
     pointer-events: none;
     filter: blur(5px);
     transition:
@@ -352,8 +352,8 @@ html.warp-arrive::before {
     will-change: opacity, transform, filter;
 }
 
-.theme-scroll-shell.is-going-up .theme-panel {
-    transform: translate3d(0, -1.8rem, 0);
+.theme-scroll-shell.is-going-left .theme-panel {
+    transform: translate3d(-1.8rem, 0, 0);
 }
 
 .theme-panel.is-active {
@@ -373,12 +373,12 @@ html.warp-arrive::before {
         filter 0.34s ease;
 }
 
-.theme-scroll-shell.is-going-down .theme-panel.is-leaving {
-    transform: translate3d(0, -1.4rem, 0);
+.theme-scroll-shell.is-going-right .theme-panel.is-leaving {
+    transform: translate3d(-1.4rem, 0, 0);
 }
 
-.theme-scroll-shell.is-going-up .theme-panel.is-leaving {
-    transform: translate3d(0, 1.4rem, 0);
+.theme-scroll-shell.is-going-left .theme-panel.is-leaving {
+    transform: translate3d(1.4rem, 0, 0);
 }
 
 .theme-panel__drift {
@@ -504,6 +504,58 @@ html.warp-arrive::before {
 
 .theme-scroll-scene-space {
     min-height: min(70vh, 42rem);
+}
+
+.theme-scroll-hint {
+    position: absolute;
+    left: 0;
+    bottom: 0.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    opacity: 0.85;
+    transition: opacity 0.5s ease;
+}
+
+.theme-scroll-shell--interacted .theme-scroll-hint {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.theme-scroll-hint__track {
+    position: relative;
+    width: 4.4rem;
+    height: 2px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.14);
+    border-radius: 9999px;
+}
+
+.theme-scroll-hint__glow {
+    position: absolute;
+    top: 0;
+    left: -30%;
+    width: 30%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0));
+    animation: theme-hint-streak 2.2s ease-in-out infinite;
+}
+
+.theme-scroll-hint__label {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+}
+
+@keyframes theme-hint-streak {
+    0% {
+        left: -30%;
+    }
+    100% {
+        left: 100%;
+    }
 }
 
 .theme-scroll-progress {
@@ -702,7 +754,8 @@ html.warp-arrive::before {
 
     .theme-panel__drift,
     .theme-panel__markers span,
-    .theme-choice {
+    .theme-choice,
+    .theme-scroll-hint__glow {
         animation: none;
     }
 }

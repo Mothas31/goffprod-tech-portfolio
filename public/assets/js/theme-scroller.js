@@ -7,8 +7,15 @@
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let activeIndex = 0;
   let lockedUntil = 0;
-  let touchStartY = 0;
+  let touchStartX = 0;
   let pinRaf = 0;
+  let hasInteracted = false;
+
+  function markInteracted() {
+    if (hasInteracted) return;
+    hasInteracted = true;
+    shell.classList.add('theme-scroll-shell--interacted');
+  }
 
   function isShellFocused() {
     const rect = shell.getBoundingClientRect();
@@ -39,10 +46,10 @@
     if (nextIndex === activeIndex) return false;
 
     const previousIndex = activeIndex;
-    const direction = nextIndex > previousIndex ? 'down' : 'up';
+    const direction = nextIndex > previousIndex ? 'right' : 'left';
     activeIndex = nextIndex;
-    shell.classList.toggle('is-going-down', direction === 'down');
-    shell.classList.toggle('is-going-up', direction === 'up');
+    shell.classList.toggle('is-going-right', direction === 'right');
+    shell.classList.toggle('is-going-left', direction === 'left');
 
     panels.forEach((panel, panelIndex) => {
       const active = panelIndex === activeIndex;
@@ -65,6 +72,7 @@
 
   function maybeStep(direction, event) {
     if (!isShellFocused()) return;
+    markInteracted();
 
     const now = performance.now();
     if (now < lockedUntil) {
@@ -94,27 +102,28 @@
   }
 
   window.addEventListener('wheel', (event) => {
-    if (Math.abs(event.deltaY) < 18) return;
-    maybeStep(event.deltaY > 0 ? 1 : -1, event);
+    const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
+    if (Math.abs(delta) < 18) return;
+    maybeStep(delta > 0 ? 1 : -1, event);
   }, { passive: false });
 
   window.addEventListener('touchstart', (event) => {
-    touchStartY = event.touches[0]?.clientY || 0;
+    touchStartX = event.touches[0]?.clientX || 0;
   }, { passive: true });
 
   window.addEventListener('touchmove', (event) => {
-    const currentY = event.touches[0]?.clientY || touchStartY;
-    const delta = touchStartY - currentY;
+    const currentX = event.touches[0]?.clientX || touchStartX;
+    const delta = touchStartX - currentX;
     if (Math.abs(delta) < 34) return;
     maybeStep(delta > 0 ? 1 : -1, event);
-    touchStartY = currentY;
+    touchStartX = currentX;
   }, { passive: false });
 
   window.addEventListener('keydown', (event) => {
     if (!isShellFocused()) return;
-    if (['ArrowDown', 'PageDown', 'Space'].includes(event.code)) {
+    if (['ArrowRight', 'PageDown', 'Space'].includes(event.code)) {
       maybeStep(1, event);
-    } else if (['ArrowUp', 'PageUp'].includes(event.code)) {
+    } else if (['ArrowLeft', 'PageUp'].includes(event.code)) {
       maybeStep(-1, event);
     }
   });
@@ -124,6 +133,7 @@
     const dot = target instanceof Element ? target.closest('[data-theme-dot]') : null;
     if (dot instanceof HTMLButtonElement) {
       event.preventDefault();
+      markInteracted();
       const nextIndex = Number(dot.dataset.themeTarget);
       if (!Number.isFinite(nextIndex)) return;
       pinShell();

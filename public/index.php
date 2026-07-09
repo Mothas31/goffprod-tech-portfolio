@@ -1,6 +1,19 @@
 <?php
 declare(strict_types=1);
 
+if (PHP_SAPI === 'cli-server') {
+    $requestPath = (string) parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
+    $staticFile = realpath(__DIR__ . $requestPath);
+    if (
+        $requestPath !== '/'
+        && $staticFile !== false
+        && str_starts_with($staticFile, realpath(__DIR__) ?: '')
+        && is_file($staticFile)
+    ) {
+        return false;
+    }
+}
+
 // Démarrer la session pour CSRF et sécurité
 session_start();
 
@@ -18,20 +31,19 @@ if (parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) === '/robots.txt') {
     exit;
 }
 
-// Configuration sécurité avancée
-ini_set('display_errors', '0');
-error_reporting(E_ALL);
-ini_set('log_errors', '1');
-ini_set('error_log', __DIR__ . '/../storage/logs/error.log');
+$requestPath = (string) parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
+$apiFile = realpath(__DIR__ . $requestPath);
+if (
+    str_starts_with($requestPath, '/api/')
+    && $apiFile !== false
+    && str_starts_with($apiFile, realpath(__DIR__ . '/api') ?: '')
+    && is_file($apiFile)
+) {
+    require $apiFile;
+    exit;
+}
 
-// Autoload ultra simple avec sécurité
-require_once __DIR__ . '/../app/core/Security.php';
-require_once __DIR__ . '/../app/core/Logger.php';
-require_once __DIR__ . '/../app/core/Lang.php';
-require_once __DIR__ . '/../app/core/View.php';
-require_once __DIR__ . '/../app/core/Router.php';
-require_once __DIR__ . '/../app/core/Helper.php';
-require_once __DIR__ . '/../app/controllers/PageController.php';
+require_once __DIR__ . '/../app/bootstrap.php';
 
 // Appliquer les headers de sécurité
 Security::setSecurityHeaders();

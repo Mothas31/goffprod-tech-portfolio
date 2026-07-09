@@ -16,6 +16,57 @@ $slugMap = [
         'es' => 'portafolio',
         'pt' => 'portfolio',
     ],
+    'payment' => [
+        'fr' => 'paiement.html',
+        'en' => 'payment.html',
+        'es' => 'pago.html',
+        'pt' => 'pagamento.html',
+    ],
+];
+
+$alignmentSlugMap = [
+    'universe-health' => [
+        'fr' => 'alignement-sante.html',
+        'en' => 'alignment-health.html',
+        'es' => 'alineacion-salud.html',
+        'pt' => 'alinhamento-saude.html',
+    ],
+    'universe-finance' => [
+        'fr' => 'alignement-finance.html',
+        'en' => 'alignment-finance.html',
+        'es' => 'alineacion-negocio.html',
+        'pt' => 'alinhamento-negocio.html',
+    ],
+    'universe-dev' => [
+        'fr' => 'alignement-developpement.html',
+        'en' => 'alignment-development.html',
+        'es' => 'alineacion-desarrollo.html',
+        'pt' => 'alinhamento-desenvolvimento.html',
+    ],
+    'universe-mobility' => [
+        'fr' => 'alignement-mobilite.html',
+        'en' => 'alignment-mobility.html',
+        'es' => 'alineacion-movilidad.html',
+        'pt' => 'alinhamento-mobilidade.html',
+    ],
+    'universe-quality' => [
+        'fr' => 'alignement-qualite.html',
+        'en' => 'alignment-quality.html',
+        'es' => 'alineacion-calidad.html',
+        'pt' => 'alinhamento-qualidade.html',
+    ],
+    'universe-formation' => [
+        'fr' => 'alignement-formation.html',
+        'en' => 'alignment-learning.html',
+        'es' => 'alineacion-formacion.html',
+        'pt' => 'alinhamento-formacao.html',
+    ],
+    'universe-ai' => [
+        'fr' => 'alignement-ia.html',
+        'en' => 'alignment-ai.html',
+        'es' => 'alineacion-ia.html',
+        'pt' => 'alinhamento-ia.html',
+    ],
 ];
 
 $languages = [
@@ -38,9 +89,21 @@ $languages = [
         <nav class="lang-switch">
     <canvas class="lang-switch__canvas" aria-hidden="true"></canvas>
     <?php foreach($languages as $langCode => $langData): ?>
-        <?php $targetSlug = $slugMap[$currentPage][$langCode] ?? $slugMap['home'][$langCode]; ?>
+        <?php
+            $targetSlug = $slugMap[$currentPage][$langCode] ?? $slugMap['home'][$langCode];
+            if ($currentPage === 'alignment' && isset($alignmentTheme, $alignmentSlugMap[$alignmentTheme][$langCode])) {
+                $targetSlug = $alignmentSlugMap[$alignmentTheme][$langCode];
+            }
+            $queryString = '';
+            if ($currentPage === 'alignment') {
+                $answer = (string)($_GET['a'] ?? '');
+                if (in_array($answer, ['agree', 'disagree'], true)) {
+                    $queryString = '?a=' . rawurlencode($answer);
+                }
+            }
+        ?>
         <?php $isCurrent = $currentLang === $langCode; ?>
-        <a href="/<?= $langCode ?>/<?= $targetSlug ?>"
+        <a href="/<?= $langCode ?>/<?= $targetSlug ?><?= $queryString ?>"
            aria-label="<?= $langData['label'] ?>"
            class="lang-switch__item <?= $isCurrent ? 'lang-switch__item--active' : '' ?>">
             <span class="text-lg"><?= $langData['flag'] ?></span>

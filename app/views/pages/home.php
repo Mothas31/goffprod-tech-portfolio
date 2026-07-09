@@ -118,6 +118,11 @@ $disagreeLabel = $themeChoiceLabels[$themeLocale]['disagree'] ?? $themeChoiceLab
                     </div>
                 </article>
             <?php endforeach; ?>
+
+            <div class="theme-scroll-hint" data-theme-hint aria-hidden="true">
+                <span class="theme-scroll-hint__track"><span class="theme-scroll-hint__glow"></span></span>
+                <span class="theme-scroll-hint__label">Scroll ou touches &larr; &rarr;</span>
+            </div>
         </div>
 
         <div class="theme-scroll-scene-space" aria-hidden="true"></div>
@@ -279,6 +284,6 @@ $disagreeLabel = $themeChoiceLabels[$themeLocale]['disagree'] ?? $themeChoiceLab
     }
 
     loadScript('/assets/js/minus-system-scene.js', 'module');
-    loadScript('/assets/js/theme-scroller.js?v=20260630-5');
+    loadScript('/assets/js/theme-scroller.js?v=20260709-horizontal');
   })();
 </script>

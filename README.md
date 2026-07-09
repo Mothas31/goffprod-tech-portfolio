@@ -64,6 +64,12 @@ mais de convaincre par la cohérence.
 
 ## 📁 Documentation clé
 
+- [`doc/INDEX.md`](./doc/INDEX.md)  
+  Point d'entree court pour les prochaines sessions IA et les chantiers actifs
+
+- [`suivis/INDEX.md`](./suivis/INDEX.md)  
+  Historique compact des decisions, fichiers touches et prochaines actions
+
 - [`PORTFOLIO.md`](./PORTFOLIO.md)  
   Vision globale, structure et intention du portfolio
 
