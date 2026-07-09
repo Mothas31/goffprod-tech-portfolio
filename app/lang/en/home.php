@@ -3,9 +3,9 @@
 return [
     'title'      => 'Home',
     'title_h1'   => 'MinusVortex',
-    'title_h2'   => 'Clarity, motion, and lasting impact',
-    'text_1'     => 'Clarity, motion, and lasting impact',
-    'text_2'     => 'I design systems that are clear, fast, and understandable, with a strong focus on technical sobriety and pedagogy.',
+    'title_h2'   => 'Less noise, more ownership',
+    'text_1'     => 'Less noise, more ownership.',
+    'text_2'     => 'A system that drains time, money and clarity is not a fatality. I reduce the chaos — debt, needless complexity, dependencies — and you keep ownership of what gets built.',
     'link_portfolio' => '/en/portfolio',
     'link_portfolio_text' => 'View portfolio',
     'title_3'   => 'Sobriety & performance',
@@ -24,5 +24,5 @@ return [
     'value_point_3_title' => 'Trusted collaboration',
     'value_point_3_text' => 'Clear tradeoffs, explained simply, with priorities that stay visible.',
     'concept_title' => 'A sober and living philosophy',
-    'concept_text' => 'A poetic 3D cube, animated by scroll',
+    'concept_text' => 'Removing what should not exist: in code, in projects, in organizations.',
 ];

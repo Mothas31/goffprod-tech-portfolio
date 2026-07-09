@@ -9,21 +9,32 @@ if (is_readable($inlineLogoPath)) {
         $inlineLogo = preg_replace('/<\\?xml[^>]*>\\s*/i', '', $inlineLogo);
         $inlineLogo = preg_replace('/<!--.*?-->/s', '', $inlineLogo);
         $inlineLogo = preg_replace('/fill\\s*:\\s*#[0-9a-fA-F]{3,8}/i', 'fill:#d4af37', $inlineLogo);
-        $inlineLogo = preg_replace('/fill\\s*=\\s*"#[0-9a-fA-F]{3,8}"/i', 'fill="#d43737ff"', $inlineLogo);
+        $inlineLogo = preg_replace('/fill\\s*=\\s*"#[0-9a-fA-F]{3,8}"/i', 'fill="#d4af37"', $inlineLogo);
     }
 }
+?>
+<?php
+// Thèmes du scroller (réutilise les "univers" du module d'alignement).
+$prequalTree = require __DIR__ . '/../../data/prequal_tree.php';
+$themeLocale = class_exists('Lang') ? Lang::locale() : 'fr';
+$themeUniverses = $prequalTree[$themeLocale]['universes'] ?? ($prequalTree['fr']['universes'] ?? []);
+$themeChoiceLabels = [
+    'fr' => ['agree' => 'Plutôt d’accord', 'disagree' => 'Pas d’accord'],
+    'en' => ['agree' => 'Mostly agree', 'disagree' => 'Disagree'],
+    'es' => ['agree' => 'Bastante de acuerdo', 'disagree' => 'No estoy de acuerdo'],
+    'pt' => ['agree' => 'Concordo bastante', 'disagree' => 'Não concordo'],
+];
+$agreeLabel = $themeChoiceLabels[$themeLocale]['agree'] ?? $themeChoiceLabels['fr']['agree'];
+$disagreeLabel = $themeChoiceLabels[$themeLocale]['disagree'] ?? $themeChoiceLabels['fr']['disagree'];
 ?>
 
 <nav class="side-nav">
   <span data-section="intro"></span>
     <div class="line"></div>
-  <span data-section="competences"></span>
-    <div class="line"></div> 
-    <span data-section="prequal"></span>     
+  <span data-section="themes"></span>
 </nav>
 
  
-
 <section id="intro" class="bg-black relative min-h-screen text-slate-100 overflow-hidden">
 
     <!-- Canvas background -->
@@ -61,7 +72,7 @@ if (is_readable($inlineLogoPath)) {
             <?= __('home.text_1') ?>
         </p>
 
-        <a href="#competences" class="scroll-indicator mt-10" aria-label="<?= __('home.link_portfolio_text') ?>">
+        <a href="#themes" class="scroll-indicator mt-10" aria-label="<?= __('home.link_portfolio_text') ?>">
             <span class="scroll-indicator__line" aria-hidden="true"></span>
             <svg class="scroll-indicator__arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M12 5v13m0 0-5-5m5 5 5-5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
@@ -71,105 +82,57 @@ if (is_readable($inlineLogoPath)) {
 
 </section>
 
+<canvas id="minus-system-scene" class="minus-system-scene" aria-hidden="true"></canvas>
 
 
-<!-- Section compétences -->
-<section id="competences"
-         class="competences-surface w-full min-h-screen py-24 flex flex-col items-center justify-center text-slate-100">
 
-    <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-12">
-
-        <!-- Card 1 -->
-        <div class="p-6 bg-black rounded-xl shadow transition flex flex-col items-center">
-            <canvas class="skill-canvas"
-                    data-shape="cube"
-                    width="160"
-                    height="160"></canvas>
-
-            <h2 class="text-xl font-bold mt-6 mb-2">  <?= __('home.title_3') ?></h2>
-            <p class="text-slate-300 text-sm text-center">
-                <?= __('home.skills_card_1_text') ?>
-            </p>
+<section id="themes" class="theme-scroll-shell" data-theme-scroller data-theme-count="<?= count($themeUniverses) ?>">
+    <div class="theme-scroll-stage">
+        <div class="theme-scroll-copy" aria-live="polite">
+            <?php foreach ($themeUniverses as $index => $theme): ?>
+                <?php
+                    $themePath = (string)($theme['path'] ?? '#');
+                    $separator = strpos($themePath, '?') === false ? '?' : '&';
+                    $agreeHref = $themePath . $separator . 'a=agree';
+                    $disagreeHref = $themePath . $separator . 'a=disagree';
+                ?>
+                <article class="theme-panel<?= $index === 0 ? ' is-active' : '' ?>"
+                         data-theme-panel
+                         data-theme-index="<?= $index ?>">
+                    <div class="theme-panel__drift">
+                        <div class="theme-panel__markers" aria-hidden="true">
+                            <?php foreach ($themeUniverses as $markerIndex => $markerTheme): ?>
+                                <span class="<?= $markerIndex === $index ? 'is-current' : '' ?>"></span>
+                            <?php endforeach; ?>
+                        </div>
+                        <h2><?= htmlspecialchars((string)($theme['label'] ?? ''), ENT_QUOTES, 'UTF-8') ?></h2>
+                        <p><?= htmlspecialchars((string)($theme['statement'] ?? ''), ENT_QUOTES, 'UTF-8') ?></p>
+                        <div class="theme-panel__actions">
+                            <a href="<?= htmlspecialchars($disagreeHref, ENT_QUOTES, 'UTF-8') ?>"
+                               class="theme-choice theme-choice--muted"
+                               data-theme-link><?= htmlspecialchars($disagreeLabel, ENT_QUOTES, 'UTF-8') ?></a>
+                            <a href="<?= htmlspecialchars($agreeHref, ENT_QUOTES, 'UTF-8') ?>"
+                               class="theme-choice"
+                               data-theme-link><?= htmlspecialchars($agreeLabel, ENT_QUOTES, 'UTF-8') ?></a>
+                        </div>
+                    </div>
+                </article>
+            <?php endforeach; ?>
         </div>
 
-        <!-- Card 2 -->
-        <div class="p-6 bg-black rounded-xl shadow transition flex flex-col items-center">
-            <canvas class="skill-canvas"
-                    data-shape="bar"
-                    width="160"
-                    height="160"></canvas>
-
-            <h2 class="text-xl font-bold mt-6 mb-2"><?= __('home.skills_card_2_title') ?></h2>
-            <p class="text-slate-300 text-sm text-center">
-                <?= __('home.skills_card_2_text') ?>
-            </p>
-        </div>
-
-        <!-- Card 3 -->
-        <div class="p-6 bg-black rounded-xl shadow transition flex flex-col items-center">
-            <canvas class="skill-canvas"
-                    data-shape="ring"
-                    width="160"
-                    height="160"></canvas>
-
-            <h2 class="text-xl font-bold mt-6 mb-2"><?= __('home.skills_card_3_title') ?></h2>
-            <p class="text-slate-300 text-sm text-center">
-                <?= __('home.skills_card_3_text') ?>
-            </p>
-        </div>
-
+        <div class="theme-scroll-scene-space" aria-hidden="true"></div>
     </div>
 
-    <a href="#prequal" class="cta-gold mt-14" aria-label="Continuer la visite">
-        <span class="cta-gold__label" data-text="Continuer la visite">Continuer la visite</span>
-    </a>
-</section>
-
- 
-
-<section class="value-surface relative min-h-screen flex items-center justify-center overflow-hidden px-6 py-24">
-    <div class="absolute inset-0 pointer-events-none">
-        <div class="absolute top-28 left-[18%] w-44 h-44 rounded-full bg-white/5 blur-3xl"></div>
-        <div class="absolute bottom-24 right-[18%] w-52 h-52 rounded-full bg-white/6 blur-3xl"></div>
-    </div>
-
-    <div class="relative z-10 w-full max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-        <div>
-            <p class="text-zinc-300 text-sm uppercase tracking-tight mb-4"><?= __('home.value_kicker') ?></p>
-            <h2 class="text-3xl sm:text-5xl font-bold text-white mb-6"><?= __('home.value_title') ?></h2>
-            <p class="text-lg text-zinc-300 leading-relaxed max-w-xl">
-                <?= __('home.value_text') ?>
-            </p>
-        </div>
-
-        <div class="grid gap-4">
-            <article class="bg-black/72 ring ring-zinc-300/20 rounded-xl p-6">
-                <h3 class="text-white font-semibold text-lg mb-2"><?= __('home.value_point_1_title') ?></h3>
-                <p class="text-zinc-300"><?= __('home.value_point_1_text') ?></p>
-            </article>
-
-            <article class="bg-black/72 ring ring-zinc-300/20 rounded-xl p-6">
-                <h3 class="text-white font-semibold text-lg mb-2"><?= __('home.value_point_2_title') ?></h3>
-                <p class="text-zinc-300"><?= __('home.value_point_2_text') ?></p>
-            </article>
-
-            <article class="bg-black/72 ring ring-zinc-300/20 rounded-xl p-6">
-                <h3 class="text-white font-semibold text-lg mb-2"><?= __('home.value_point_3_title') ?></h3>
-                <p class="text-zinc-300"><?= __('home.value_point_3_text') ?></p>
-            </article>
-        </div>
-    </div>
-</section>
-
-
-<section id="prequal" class="prequal-surface relative min-h-screen flex items-center justify-center overflow-hidden px-6 py-24">
-    <div id="prequal-module-root" class="w-full max-w-4xl" aria-live="polite">
-        <noscript>
-            <div class="bg-black/72 ring ring-zinc-300/20 rounded-xl p-6 text-zinc-100 text-center">
-                <h2 class="text-2xl sm:text-3xl font-bold mb-4">Qualification de projet</h2>
-                <p class="text-zinc-300">Active JavaScript pour utiliser le questionnaire de pré-sélection.</p>
-            </div>
-        </noscript>
+    <div class="theme-scroll-progress" aria-label="Navigation des themes">
+        <?php foreach ($themeUniverses as $index => $theme): ?>
+            <button
+                type="button"
+                class="<?= $index === 0 ? 'is-active' : '' ?>"
+                data-theme-dot
+                data-theme-target="<?= $index ?>"
+                aria-label="Aller au theme <?= htmlspecialchars((string)($theme['label'] ?? ''), ENT_QUOTES, 'UTF-8') ?>"
+            ></button>
+        <?php endforeach; ?>
     </div>
 </section>
  
@@ -177,7 +140,7 @@ if (is_readable($inlineLogoPath)) {
   (() => {
     const loaded = new Set();
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const introDownLink = document.querySelector('.scroll-indicator[href="#competences"]');
+    const introDownLink = document.querySelector('.scroll-indicator[href="#themes"]');
     const introSection = document.getElementById('intro');
     const introCanvas = document.getElementById('vortex-canvas');
     const introLogo = document.getElementById('logo-center');
@@ -288,7 +251,7 @@ if (is_readable($inlineLogoPath)) {
 
     if (introDownLink) {
       introDownLink.addEventListener('click', (event) => {
-        const target = document.getElementById('competences');
+        const target = document.getElementById('themes');
         if (!target) return;
         event.preventDefault();
 
@@ -315,24 +278,7 @@ if (is_readable($inlineLogoPath)) {
       }, { once: true });
     }
 
-    const skillsSection = document.getElementById('competences');
-    if (skillsSection) {
-      const observer = new IntersectionObserver((entries, io) => {
-        if (!entries[0]?.isIntersecting) return;
-        io.disconnect();
-        scheduleWork(() => loadScript('/assets/js/skills-3d.js', 'module'));
-      }, { rootMargin: '350px 0px' });
-      observer.observe(skillsSection);
-    }
-
-    const prequalSection = document.getElementById('prequal');
-    if (prequalSection) {
-      const observer = new IntersectionObserver((entries, io) => {
-        if (!entries[0]?.isIntersecting) return;
-        io.disconnect();
-        scheduleWork(() => loadScript('/assets/js/prequal-loader.js'));
-      }, { rootMargin: '250px 0px' });
-      observer.observe(prequalSection);
-    }
+    loadScript('/assets/js/minus-system-scene.js', 'module');
+    loadScript('/assets/js/theme-scroller.js?v=20260630-5');
   })();
 </script>

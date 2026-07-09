@@ -11,12 +11,11 @@
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
 
     <!-- SEO Meta Tags --> 
-    <meta name="description" content="Port folio techn sobre">
-    <meta name="keywords" content="portfolio">
+    <meta name="description" content="<?= htmlspecialchars(__('common.meta_description'), ENT_QUOTES, 'UTF-8') ?>">
     <meta name="author" content="Thomas GOFFINET GOFFPROD">
 
     <?php if (($page ?? '') === 'home'): ?>
-    <link rel="preload" as="image" href="/assets/img/logo_150.webp" imagesrcset="/assets/img/logo_150.webp 1x, /assets/img/logo_225.webp 1.5x, /assets/img/logo_300.webp 2x" imagesizes="150px" fetchpriority="high">
+    <link rel="preload" as="image" href="/assets/img/logo_63.webp" imagesrcset="/assets/img/logo_63.webp 1x, /assets/img/logo_95.webp 1.5x, /assets/img/logo_126.webp 2x" imagesizes="63px" fetchpriority="high">
     <?php endif; ?>
 
     <link rel="stylesheet" href="/assets/css/output.css">
@@ -30,8 +29,11 @@
     }
     </script>
 
+    <!-- Transition d'arrivée (cercle blanc) : posé avant le rendu pour éviter tout flash. -->
+    <script>try{if(sessionStorage.getItem('minusWarp')==='1'){document.documentElement.classList.add('warp-arrive');}}catch(e){}</script>
+
 </head>
-<body class="w-full">
+<body class="w-full bg-black">
 
 <?php require __DIR__ . '/partials/header.php'; ?>
 
@@ -41,6 +43,7 @@
 
 <?php require __DIR__ . '/partials/footer.php'; ?>
 
+<script src="/assets/js/page-warp.js" defer></script>
 <script src="/assets/js/app.js" defer></script>
 <script src="/assets/js/lang-switch-vortex.js" defer></script>
 </body>

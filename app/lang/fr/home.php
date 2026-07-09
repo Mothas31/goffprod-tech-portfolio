@@ -3,9 +3,9 @@
 return [
     'title'     => 'Accueil',
     'title_h1'  => 'MinusVortex',
-    'title_h2'  => 'Sobriété, efficacité et empreinte durable',
-    'text_1'    => 'Sobriété, efficacité et empreinte durable',
-    'text_2'    => 'Je conçois des systèmes clairs, performants et compréhensibles, en privilégiant la sobriété technique et la pédagogie.',
+    'title_h2'  => 'Moins de bruit, plus de maîtrise',
+    'text_1'    => 'Moins de bruit, plus de maîtrise.',
+    'text_2'    => 'Un système qui coûte du temps, de l’argent et de la clarté n’est pas une fatalité. Je réduis le chaos — dette, complexité inutile, dépendances — et vous gardez l’ownership de ce qui est construit.',
     'link_portfolio' => '/fr/portfolio',
     'link_portfolio_text' => 'Voir le portfolio',
     'title_3'   => 'Sobriété & performance',
@@ -24,5 +24,5 @@ return [
     'value_point_3_title' => 'Relation de confiance',
     'value_point_3_text' => 'Des arbitrages expliqués simplement, avec une vision claire des priorités.',
     'concept_title' => 'Une philosophie sobre et vivante',
-    'concept_text' => 'Cube 3D poétique, animé par le scroll',
+    'concept_text' => 'Retirer ce qui ne devrait pas exister : dans le code, les projets, les organisations.',
 ];

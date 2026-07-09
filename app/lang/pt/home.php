@@ -3,9 +3,9 @@
 return [
     'title' => 'Início',
     'title_h1' => 'MinusVortex',
-    'title_h2' => 'Clareza, movimento e impacto duradouro',
-    'text_1' => 'Clareza, movimento e impacto duradouro',
-    'text_2' => 'Projeto sistemas claros, rápidos e compreensíveis, priorizando sobriedade técnica e pedagogia.',
+    'title_h2' => 'Menos ruído, mais controlo',
+    'text_1' => 'Menos ruído, mais controlo.',
+    'text_2' => 'Um sistema que custa tempo, dinheiro e clareza não é uma fatalidade. Reduzo o caos — dívida, complexidade inútil, dependências — e você mantém a propriedade do que é construído.',
     'link_portfolio' => '/pt/portfolio',
     'link_portfolio_text' => 'Ver portfólio',
     'title_3' => 'Sobriedade e performance',
@@ -24,5 +24,5 @@ return [
     'value_point_3_title' => 'Relação de confiança',
     'value_point_3_text' => 'Escolhas explicadas com clareza e prioridades visíveis.',
     'concept_title' => 'Uma filosofia sóbria e viva',
-    'concept_text' => 'Cubo 3D poético, animado pelo scroll',
+    'concept_text' => 'Retirar o que não deveria existir: no código, nos projetos, nas organizações.',
 ];
