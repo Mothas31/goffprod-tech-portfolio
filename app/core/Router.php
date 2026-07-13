@@ -50,50 +50,24 @@ class Router
         }
     }
 
+    private static function routes(): array
+    {
+        static $routes = null;
+        if ($routes === null) {
+            $routes = require __DIR__ . '/../config/routes.php';
+        }
+        return $routes;
+    }
+
     private static function slugToPage(string $slug): string
     {
         if ($slug === '' || $slug === 'home') {
             return 'home';
         }
 
-        $pageSlugs = [
-            'home' => [
-                'fr' => 'bienvenue',
-                'en' => 'welcome',
-                'es' => 'bienvenido',
-                'pt' => 'bem-vindo',
-            ],
-            'portfolio' => [
-                'fr' => 'portfolio',
-                'en' => 'portfolio',
-                'es' => 'portafolio',
-                'pt' => 'portfolio',
-            ],
-            'payment' => [
-                'fr' => 'paiement.html',
-                'en' => 'payment.html',
-                'es' => 'pago.html',
-                'pt' => 'pagamento.html',
-            ],
-            'paymentSuccess' => [
-                'fr' => 'paiement-succes.html',
-                'en' => 'payment-success.html',
-                'es' => 'pago-exitoso.html',
-                'pt' => 'pagamento-sucesso.html',
-            ],
-            'paymentCancel' => [
-                'fr' => 'paiement-annule.html',
-                'en' => 'payment-cancel.html',
-                'es' => 'pago-cancelado.html',
-                'pt' => 'pagamento-cancelado.html',
-            ],
-        ];
-
-        foreach ($pageSlugs as $page => $translations) {
-            foreach ($translations as $localizedSlug) {
-                if ($localizedSlug === $slug) {
-                    return $page;
-                }
+        foreach (self::routes()['pages'] as $page => $translations) {
+            if (in_array($slug, $translations, true)) {
+                return $page;
             }
         }
 
@@ -102,45 +76,12 @@ class Router
 
     private static function slugToAlignmentTheme(string $slug, string $lang): ?string
     {
-        $map = [
-            'fr' => [
-                'alignement-sante.html' => 'universe-health',
-                'alignement-finance.html' => 'universe-finance',
-                'alignement-developpement.html' => 'universe-dev',
-                'alignement-mobilite.html' => 'universe-mobility',
-                'alignement-qualite.html' => 'universe-quality',
-                'alignement-formation.html' => 'universe-formation',
-                'alignement-ia.html' => 'universe-ai',
-            ],
-            'en' => [
-                'alignment-health.html' => 'universe-health',
-                'alignment-finance.html' => 'universe-finance',
-                'alignment-development.html' => 'universe-dev',
-                'alignment-mobility.html' => 'universe-mobility',
-                'alignment-quality.html' => 'universe-quality',
-                'alignment-learning.html' => 'universe-formation',
-                'alignment-ai.html' => 'universe-ai',
-            ],
-            'es' => [
-                'alineacion-salud.html' => 'universe-health',
-                'alineacion-negocio.html' => 'universe-finance',
-                'alineacion-desarrollo.html' => 'universe-dev',
-                'alineacion-movilidad.html' => 'universe-mobility',
-                'alineacion-calidad.html' => 'universe-quality',
-                'alineacion-formacion.html' => 'universe-formation',
-                'alineacion-ia.html' => 'universe-ai',
-            ],
-            'pt' => [
-                'alinhamento-saude.html' => 'universe-health',
-                'alinhamento-negocio.html' => 'universe-finance',
-                'alinhamento-desenvolvimento.html' => 'universe-dev',
-                'alinhamento-mobilidade.html' => 'universe-mobility',
-                'alinhamento-qualidade.html' => 'universe-quality',
-                'alinhamento-formacao.html' => 'universe-formation',
-                'alinhamento-ia.html' => 'universe-ai',
-            ],
-        ];
+        foreach (self::routes()['alignment'] as $themeId => $translations) {
+            if (($translations[$lang] ?? null) === $slug) {
+                return $themeId;
+            }
+        }
 
-        return $map[$lang][$slug] ?? null;
+        return null;
     }
 }

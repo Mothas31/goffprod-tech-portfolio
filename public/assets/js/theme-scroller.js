@@ -3,7 +3,7 @@
   if (!shell) return;
 
   const panels = Array.from(shell.querySelectorAll('[data-theme-panel]'));
-  const dots = Array.from(shell.querySelectorAll('[data-theme-dot]'));
+  const arrows = Array.from(shell.querySelectorAll('[data-theme-arrow]'));
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let activeIndex = 0;
   let lockedUntil = 0;
@@ -41,6 +41,15 @@
     }));
   }
 
+  function syncArrows() {
+    arrows.forEach((arrow) => {
+      const direction = Number(arrow.dataset.themeArrow);
+      const disabled = direction < 0 ? activeIndex === 0 : activeIndex === panels.length - 1;
+      arrow.classList.toggle('is-disabled', disabled);
+      arrow.setAttribute('aria-disabled', disabled ? 'true' : 'false');
+    });
+  }
+
   function setActive(index) {
     const nextIndex = Math.max(0, Math.min(panels.length - 1, index));
     if (nextIndex === activeIndex) return false;
@@ -63,37 +72,17 @@
       panels[previousIndex]?.classList.remove('is-leaving');
     }, prefersReducedMotion ? 0 : 520);
 
-    dots.forEach((dot, dotIndex) => {
-      dot.classList.toggle('is-active', dotIndex === activeIndex);
-    });
+    syncArrows();
     syncSceneProgress();
     return true;
   }
 
-  function maybeStep(direction, event) {
-    if (!isShellFocused()) return;
+  function step(direction) {
     markInteracted();
 
     const now = performance.now();
-    if (now < lockedUntil) {
-      event.preventDefault();
-      pinShell();
-      return;
-    }
+    if (now < lockedUntil) return;
 
-    const atStart = activeIndex === 0;
-    const atEnd = activeIndex === panels.length - 1;
-    if (direction < 0 && atStart) {
-      return;
-    }
-
-    if (direction > 0 && atEnd) {
-      event.preventDefault();
-      pinShell();
-      return;
-    }
-
-    event.preventDefault();
     pinShell();
     const changed = setActive(activeIndex + direction);
     if (changed && !prefersReducedMotion) {
@@ -101,10 +90,23 @@
     }
   }
 
+  function maybeStep(direction, event) {
+    if (!isShellFocused()) return;
+
+    const atStart = activeIndex === 0;
+    const atEnd = activeIndex === panels.length - 1;
+    if ((direction < 0 && atStart) || (direction > 0 && atEnd)) return;
+
+    event.preventDefault();
+    step(direction);
+  }
+
+  // Seul le scroll HORIZONTAL change de theme; le scroll vertical garde
+  // son comportement natif de defilement de page.
   window.addEventListener('wheel', (event) => {
-    const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
-    if (Math.abs(delta) < 18) return;
-    maybeStep(delta > 0 ? 1 : -1, event);
+    if (Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
+    if (Math.abs(event.deltaX) < 18) return;
+    maybeStep(event.deltaX > 0 ? 1 : -1, event);
   }, { passive: false });
 
   window.addEventListener('touchstart', (event) => {
@@ -121,23 +123,21 @@
 
   window.addEventListener('keydown', (event) => {
     if (!isShellFocused()) return;
-    if (['ArrowRight', 'PageDown', 'Space'].includes(event.code)) {
+    if (event.code === 'ArrowRight') {
       maybeStep(1, event);
-    } else if (['ArrowLeft', 'PageUp'].includes(event.code)) {
+    } else if (event.code === 'ArrowLeft') {
       maybeStep(-1, event);
     }
   });
 
   shell.addEventListener('click', (event) => {
     const target = event.target;
-    const dot = target instanceof Element ? target.closest('[data-theme-dot]') : null;
-    if (dot instanceof HTMLButtonElement) {
+    const arrow = target instanceof Element ? target.closest('[data-theme-arrow]') : null;
+    if (arrow instanceof HTMLButtonElement) {
       event.preventDefault();
-      markInteracted();
-      const nextIndex = Number(dot.dataset.themeTarget);
-      if (!Number.isFinite(nextIndex)) return;
-      pinShell();
-      setActive(nextIndex);
+      const direction = Number(arrow.dataset.themeArrow);
+      if (direction !== 1 && direction !== -1) return;
+      step(direction);
       return;
     }
 
@@ -154,5 +154,6 @@
   panels.forEach((panel, panelIndex) => {
     panel.setAttribute('aria-hidden', panelIndex === activeIndex ? 'false' : 'true');
   });
+  syncArrows();
   syncSceneProgress();
 })();

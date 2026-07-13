@@ -48,6 +48,13 @@ require_once __DIR__ . '/../app/bootstrap.php';
 // Appliquer les headers de sécurité
 Security::setSecurityHeaders();
 
+// sitemap.xml généré dynamiquement à partir des routes (app/config/routes.php)
+if (parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) === '/sitemap.xml') {
+    header('Content-Type: application/xml; charset=UTF-8');
+    echo Seo::sitemapXml();
+    exit;
+}
+
 // Router
 try {
     Router::dispatch();

@@ -6,7 +6,8 @@ class PageController
     public function home(): void
     {
         View::render('pages/home', [
-            'title' => Lang::get('home.title'),
+            'title' => Lang::get('seo.home.title'),
+            'metaDescription' => Lang::get('seo.home.description'),
             'page'  => 'home',
         ]);
     }
@@ -14,7 +15,8 @@ class PageController
     public function portfolio(): void
     {
         View::render('pages/portfolio', [
-            'title' => Lang::get('portfolio.title'),
+            'title' => Lang::get('seo.portfolio.title'),
+            'metaDescription' => Lang::get('seo.portfolio.description'),
             'page'  => 'portfolio',
         ]);
     }
@@ -22,7 +24,8 @@ class PageController
     public function alignment(string $themeId): void
     {
         View::render('pages/alignment', [
-            'title' => 'Alignement',
+            'title' => Lang::get('seo.alignment.' . $themeId . '.title'),
+            'metaDescription' => Lang::get('seo.alignment.' . $themeId . '.description'),
             'page' => 'alignment',
             'alignmentTheme' => $themeId,
         ]);
@@ -46,16 +49,18 @@ class PageController
     public function payment(): void
     {
         View::render('pages/payment', [
-            'title' => 'Paiement',
+            'title' => Lang::get('seo.payment.title'),
             'page' => 'payment',
+            'noindex' => true,
         ]);
     }
 
     public function paymentSuccess(): void
     {
         View::render('pages/payment_success', [
-            'title' => 'Paiement confirme',
-            'page' => 'payment',
+            'title' => Lang::get('seo.payment_success.title'),
+            'page' => 'paymentSuccess',
+            'noindex' => true,
         ]);
     }
 
@@ -63,16 +68,18 @@ class PageController
     {
         http_response_code(404);
         View::render('pages/404', [
-            'title' => '404',
-            'page'  => 'home',
+            'title' => Lang::get('seo.not_found.title'),
+            'page'  => '404',
+            'noindex' => true,
         ]);
     }
 
     public function paymentCancel(): void
     {
         View::render('pages/payment_cancel', [
-            'title' => 'Paiement annule',
-            'page' => 'payment',
+            'title' => Lang::get('seo.payment_cancel.title'),
+            'page' => 'paymentCancel',
+            'noindex' => true,
         ]);
     }
 }

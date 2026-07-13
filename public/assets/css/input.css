@@ -558,59 +558,118 @@ html.warp-arrive::before {
     }
 }
 
-.theme-scroll-progress {
+.theme-arrow {
+    display: none;
     position: absolute;
-    left: clamp(3.1rem, 4.2vw, 4.6rem);
     top: 50%;
-    display: grid;
-    gap: 0.92rem;
-    transform: translateY(-50%);
-}
-
-.theme-scroll-progress button {
-    width: 1.35rem;
-    height: 1.35rem;
-    display: grid;
-    place-items: center;
+    z-index: 4;
+    align-items: center;
+    gap: 0.15rem;
+    padding: 1rem 0.6rem;
     border: 0;
-    border-radius: 9999px;
     background: transparent;
+    color: rgba(255, 255, 255, 0.85);
     cursor: pointer;
-    transform: none;
-    transition:
-        transform 0.24s ease,
-        opacity 0.24s ease;
+    transform: translateY(-50%);
+    transition: opacity 0.35s ease, color 0.25s ease;
 }
 
-.theme-scroll-progress button::before {
-    content: "";
-    width: 0.28rem;
-    height: 0.28rem;
-    border-radius: 9999px;
-    background: rgba(255, 255, 255, 0.22);
-    transition:
-        width 0.28s ease,
-        height 0.28s ease,
-        background-color 0.28s ease,
-        box-shadow 0.28s ease;
+.theme-arrow--prev {
+    left: clamp(1.2rem, 3vw, 3.2rem);
 }
 
-.theme-scroll-progress button:hover,
-.theme-scroll-progress button:focus-visible {
-    transform: scale(1.18);
+.theme-arrow--next {
+    right: clamp(1.2rem, 3vw, 3.2rem);
+}
+
+.theme-arrow:hover,
+.theme-arrow:focus-visible {
+    color: #ffffff;
     outline: none;
 }
 
-.theme-scroll-progress button:hover::before,
-.theme-scroll-progress button:focus-visible::before {
-    background: rgba(255, 255, 255, 0.62);
+.theme-arrow.is-disabled {
+    opacity: 0.18;
+    pointer-events: none;
 }
 
-.theme-scroll-progress button.is-active::before {
-    width: 0.36rem;
-    height: 1.55rem;
-    background: rgba(255, 255, 255, 0.94);
-    box-shadow: 0 0 14px rgba(255, 255, 255, 0.36);
+.theme-arrow__track {
+    position: relative;
+    width: 3.4rem;
+    height: 2px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.16);
+    border-radius: 9999px;
+}
+
+.theme-arrow__wave {
+    position: absolute;
+    top: 0;
+    left: -40%;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0));
+    animation: theme-arrow-wave 2.4s ease-in-out infinite;
+}
+
+.theme-arrow--prev .theme-arrow__wave {
+    animation-name: theme-arrow-wave-reverse;
+}
+
+.theme-arrow__head {
+    width: 0.62rem;
+    height: 0.62rem;
+    flex: none;
+    border-top: 2px solid currentColor;
+    border-right: 2px solid currentColor;
+    border-radius: 1px;
+}
+
+.theme-arrow--next .theme-arrow__head {
+    transform: rotate(45deg);
+    margin-left: -0.55rem;
+}
+
+.theme-arrow--prev .theme-arrow__head {
+    transform: rotate(-135deg);
+    margin-right: -0.55rem;
+}
+
+.theme-arrow:hover .theme-arrow__wave {
+    animation-duration: 1.2s;
+}
+
+@media (min-width: 768px) {
+    .theme-arrow {
+        display: flex;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .theme-arrow__wave {
+        animation: none;
+        left: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.5);
+    }
+}
+
+@keyframes theme-arrow-wave {
+    0% {
+        left: -40%;
+    }
+    60%, 100% {
+        left: 100%;
+    }
+}
+
+@keyframes theme-arrow-wave-reverse {
+    0% {
+        left: 100%;
+    }
+    60%, 100% {
+        left: -40%;
+    }
 }
 
 .prequal-surface {
@@ -623,22 +682,34 @@ html.warp-arrive::before {
         grid-template-columns: 1fr;
         align-content: end;
         padding-top: 38svh;
+        padding-left: 3.2rem;
+        padding-right: 1.5rem;
+        padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
     }
 
     .theme-scroll-copy {
         min-height: 28rem;
     }
 
+    .theme-panel {
+        width: 100%;
+    }
+
     .theme-panel h2 {
-        font-size: clamp(2.55rem, 15vw, 4.2rem);
+        font-size: clamp(1.9rem, 10vw, 3rem);
+        word-break: break-word;
+    }
+
+    .theme-panel__drift > p {
+        max-width: 100%;
     }
 
     .theme-scroll-scene-space {
         display: none;
     }
 
-    .theme-scroll-progress {
-        left: 0.8rem;
+    #intro-content {
+        padding-bottom: max(3rem, env(safe-area-inset-bottom) + 1.5rem);
     }
 }
 

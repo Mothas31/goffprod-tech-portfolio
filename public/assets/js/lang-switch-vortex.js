@@ -37,16 +37,25 @@
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
 
-    function logoCenter() {
-      const rect = logo.getBoundingClientRect();
-      return {
-        x: rect.left + rect.width / 2,
-        y: rect.top + rect.height / 2,
+    let cachedSwitcherRect = { left: 0, top: 0 };
+    let cachedLogoTarget = { x: 0, y: 0 };
+    let rectRaf = 0;
+
+    function updateCachedRects() {
+      cachedSwitcherRect = switcher.getBoundingClientRect();
+      const logoRect = logo.getBoundingClientRect();
+      cachedLogoTarget = {
+        x: logoRect.left + logoRect.width / 2,
+        y: logoRect.top + logoRect.height / 2,
       };
     }
 
-    function switcherRect() {
-      return switcher.getBoundingClientRect();
+    function requestRectUpdate() {
+      if (rectRaf) return;
+      rectRaf = requestAnimationFrame(() => {
+        rectRaf = 0;
+        updateCachedRects();
+      });
     }
 
     function spawnLine() {
@@ -99,8 +108,8 @@
 
       ctx.clearRect(0, 0, width, height);
       ctx.globalCompositeOperation = 'lighter';
-      const rect = switcherRect();
-      const target = logoCenter();
+      const rect = cachedSwitcherRect;
+      const target = cachedLogoTarget;
 
       if (ts - lastLineSpawn > 110 && lines.length < 36) {
         spawnLine();
@@ -160,7 +169,12 @@
     }
 
     resize();
-    window.addEventListener('resize', resize, { passive: true });
+    updateCachedRects();
+    window.addEventListener('resize', () => {
+      resize();
+      requestRectUpdate();
+    }, { passive: true });
+    window.addEventListener('scroll', requestRectUpdate, { passive: true });
     document.addEventListener('visibilitychange', syncState);
     if (typeof reducedMotionQuery.addEventListener === 'function') {
       reducedMotionQuery.addEventListener('change', syncState);

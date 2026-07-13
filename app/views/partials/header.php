@@ -1,73 +1,11 @@
-<?php 
+<?php
 $currentPage = $page ?? 'home';
 $currentLang = Lang::locale();
 
-// Mapping pour les URLs traduites
-$slugMap = [
-    'home' => [
-        'fr' => 'bienvenue',
-        'en' => 'welcome',
-        'es' => 'bienvenido',
-        'pt' => 'bem-vindo',
-    ],
-    'portfolio' => [
-        'fr' => 'portfolio',
-        'en' => 'portfolio',
-        'es' => 'portafolio',
-        'pt' => 'portfolio',
-    ],
-    'payment' => [
-        'fr' => 'paiement.html',
-        'en' => 'payment.html',
-        'es' => 'pago.html',
-        'pt' => 'pagamento.html',
-    ],
-];
-
-$alignmentSlugMap = [
-    'universe-health' => [
-        'fr' => 'alignement-sante.html',
-        'en' => 'alignment-health.html',
-        'es' => 'alineacion-salud.html',
-        'pt' => 'alinhamento-saude.html',
-    ],
-    'universe-finance' => [
-        'fr' => 'alignement-finance.html',
-        'en' => 'alignment-finance.html',
-        'es' => 'alineacion-negocio.html',
-        'pt' => 'alinhamento-negocio.html',
-    ],
-    'universe-dev' => [
-        'fr' => 'alignement-developpement.html',
-        'en' => 'alignment-development.html',
-        'es' => 'alineacion-desarrollo.html',
-        'pt' => 'alinhamento-desenvolvimento.html',
-    ],
-    'universe-mobility' => [
-        'fr' => 'alignement-mobilite.html',
-        'en' => 'alignment-mobility.html',
-        'es' => 'alineacion-movilidad.html',
-        'pt' => 'alinhamento-mobilidade.html',
-    ],
-    'universe-quality' => [
-        'fr' => 'alignement-qualite.html',
-        'en' => 'alignment-quality.html',
-        'es' => 'alineacion-calidad.html',
-        'pt' => 'alinhamento-qualidade.html',
-    ],
-    'universe-formation' => [
-        'fr' => 'alignement-formation.html',
-        'en' => 'alignment-learning.html',
-        'es' => 'alineacion-formacion.html',
-        'pt' => 'alinhamento-formacao.html',
-    ],
-    'universe-ai' => [
-        'fr' => 'alignement-ia.html',
-        'en' => 'alignment-ai.html',
-        'es' => 'alineacion-ia.html',
-        'pt' => 'alinhamento-ia.html',
-    ],
-];
+// Mapping pour les URLs traduites (source unique : app/config/routes.php)
+$routes = require __DIR__ . '/../../config/routes.php';
+$slugMap = $routes['pages'];
+$alignmentSlugMap = $routes['alignment'];
 
 $languages = [
     'fr' => ['flag' => '🇫🇷', 'label' => 'Français'],
