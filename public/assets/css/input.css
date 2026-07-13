@@ -589,11 +589,36 @@ html.warp-arrive::before {
 .theme-arrow:focus-visible {
     color: #ffffff;
     outline: none;
+    animation: none;
+    filter: blur(0);
 }
 
 .theme-arrow.is-disabled {
     opacity: 0.18;
     pointer-events: none;
+    animation: none;
+    filter: blur(0);
+}
+
+/* Effet de focale : leger flou qui respire, net au survol (meme esprit que theme-choice-breathe). */
+.theme-arrow {
+    animation: theme-arrow-focus 3.4s ease-in-out infinite;
+}
+
+.theme-arrow--prev {
+    animation-delay: -1.7s;
+}
+
+@keyframes theme-arrow-focus {
+    0%, 100% {
+        filter: blur(0);
+    }
+    45% {
+        filter: blur(1.4px);
+    }
+    62% {
+        filter: blur(0.4px);
+    }
 }
 
 .theme-arrow__track {
@@ -656,6 +681,10 @@ html.warp-arrive::before {
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .theme-arrow {
+        animation: none;
+    }
+
     .theme-arrow__wave {
         animation: none;
         left: 0;
