@@ -16,10 +16,10 @@ return [
             'pt' => 'portfolio',
         ],
         'blog' => [
-            'fr' => 'blog',
-            'en' => 'blog',
-            'es' => 'blog',
-            'pt' => 'blog',
+            'fr' => 'signaux',
+            'en' => 'signals',
+            'es' => 'senales',
+            'pt' => 'sinais',
         ],
         'payment' => [
             'fr' => 'paiement.html',

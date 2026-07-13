@@ -1,7 +1,7 @@
 <?php $blogLocale = Lang::locale(); ?>
 <section class="min-h-screen bg-black text-zinc-100 px-6 py-28">
     <div class="max-w-3xl mx-auto">
-        <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-4">Blog</h1>
+        <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-4"><?= htmlspecialchars(Lang::get('seo.blog.h1'), ENT_QUOTES, 'UTF-8') ?></h1>
         <p class="text-zinc-400 text-lg mb-16"><?= htmlspecialchars(Lang::get('seo.blog.description'), ENT_QUOTES, 'UTF-8') ?></p>
 
         <?php if (empty($articles)): ?>

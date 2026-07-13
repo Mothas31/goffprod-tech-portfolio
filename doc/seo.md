@@ -17,7 +17,7 @@ Complements :
 
 - `/llms.txt` -> `Seo::llmsTxt()` : resume markdown du site pour les crawlers de LLM (convention llmstxt.org), genere depuis routes.php + lang/seo.php + Blog.
 - Pages d'alignement : le label, le statement et l'orientation du theme sont rendus cote serveur dans `#prequal-module-root` (les crawlers IA n'executent pas le JS) ; le module interactif remplace ce contenu au chargement.
-- Blog : `/{lang}/blog` (listing) et `/{lang}/blog/{slug}` (article). Un article = un fichier `app/content/articles/*.php` avec id, date, slugs par langue et title/description/body par langue. Integre automatiquement au sitemap, au llms.txt, au canonical/hreflang et au JSON-LD BlogPosting.
+- Blog : `/{lang}/signaux` (listing, slug localise via routes.php) et `/{lang}/signaux/{slug}` (article). Un article = un fichier `app/content/articles/*.php` avec id, date, slugs par langue et title/description/body par langue. Integre automatiquement au sitemap, au llms.txt, au canonical/hreflang et au JSON-LD BlogPosting.
 
 ## Fichiers concernes
 
