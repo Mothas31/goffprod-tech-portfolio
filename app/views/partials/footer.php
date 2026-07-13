@@ -8,20 +8,40 @@
 </footer>
 
 <?php if (!in_array($page ?? '', ['blog', 'blogArticle'], true)): ?>
-<!-- CTA flottant vers le blog : s'efface quand le vrai footer entre dans le viewport. -->
-<a href="<?= htmlspecialchars(Seo::pathFor('blog', Lang::locale()), ENT_QUOTES, 'UTF-8') ?>" class="footer-float-cta" data-footer-float-cta>
-    <?= htmlspecialchars(__('common.blog_cta'), ENT_QUOTES, 'UTF-8') ?> <span aria-hidden="true">&rarr;</span>
+<!-- Rappel flottant du footer (trait + texte) : fade in dans la zone des themes,
+     s'efface quand le vrai footer entre dans le viewport et prend sa place. -->
+<a href="<?= htmlspecialchars(Seo::pathFor('blog', Lang::locale()), ENT_QUOTES, 'UTF-8') ?>" class="footer-float-cta is-waiting" data-footer-float-cta>
+    <span class="footer-float-cta__line" aria-hidden="true"></span>
+    <span class="footer-float-cta__label"><?= htmlspecialchars(__('common.blog_cta'), ENT_QUOTES, 'UTF-8') ?> <span aria-hidden="true">&rarr;</span></span>
 </a>
 <script>
   (() => {
     const cta = document.querySelector('[data-footer-float-cta]');
     const footer = document.getElementById('site-footer');
     if (!cta || !footer || !('IntersectionObserver' in window)) return;
+
+    let inThemes = false;
+    let footerVisible = false;
+    const themes = document.getElementById('themes');
+
+    function sync() {
+      cta.classList.toggle('is-waiting', themes ? !inThemes : false);
+      cta.classList.toggle('is-docked', footerVisible);
+    }
+
+    if (themes) {
+      new IntersectionObserver((entries) => {
+        entries.forEach((entry) => { inThemes = entry.isIntersecting; });
+        sync();
+      }, { threshold: 0.25 }).observe(themes);
+    }
+
     new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        cta.classList.toggle('is-docked', entry.isIntersecting);
-      });
+      entries.forEach((entry) => { footerVisible = entry.isIntersecting; });
+      sync();
     }, { threshold: 0.1 }).observe(footer);
+
+    sync();
   })();
 </script>
 <?php endif; ?>
