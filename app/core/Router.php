@@ -34,6 +34,21 @@ class Router
 
             $page = self::slugToPage($slug);
 
+            // Articles de blog : /{lang}/blog/{slug-article}
+            if ($page === 'blog') {
+                $articleSlug = Security::sanitizeInput($segments[$slugIndex + 1] ?? '');
+                if ($articleSlug !== '') {
+                    $article = Blog::findBySlug($articleSlug, $lang);
+                    $controller = new PageController();
+                    if ($article !== null) {
+                        $controller->blogArticle($article);
+                    } else {
+                        $controller->notFound();
+                    }
+                    return;
+                }
+            }
+
             // 4️⃣ Appel de la page
             $controller = new PageController();
             if (method_exists($controller, $page)) {

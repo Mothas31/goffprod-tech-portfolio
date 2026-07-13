@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'themes_hint' => 'Scroll ou touches ← →',
     'title'     => 'Accueil',
     'title_h1'  => 'MinusVortex',
     'title_h2'  => 'Moins de bruit, plus de maîtrise',

@@ -30,6 +30,9 @@ return [
     'alignment.universe-ai.title' => 'Alignement IA — Adopter l’IA sans dépendance | MinusVortex',
     'alignment.universe-ai.description' => 'Diagnostic d’alignement IA : évaluez en quelques questions où l’IA ajoute du bruit ou de la dépendance dans votre système, et le levier le plus sobre pour en garder la maîtrise.',
 
+    'blog.title' => 'Blog — Sobriété logicielle & maîtrise technique | MinusVortex',
+    'blog.description' => 'Articles sur la réduction du chaos technique : dette, complexité inutile, dépendances. Des pratiques concrètes pour des systèmes sobres et durables.',
+
     'payment.title' => 'Paiement | MinusVortex',
     'payment_success.title' => 'Paiement confirmé | MinusVortex',
     'payment_cancel.title' => 'Paiement annulé | MinusVortex',

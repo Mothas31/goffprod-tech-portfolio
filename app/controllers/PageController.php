@@ -31,6 +31,28 @@ class PageController
         ]);
     }
 
+    public function blog(): void
+    {
+        View::render('pages/blog', [
+            'title' => Lang::get('seo.blog.title'),
+            'metaDescription' => Lang::get('seo.blog.description'),
+            'page' => 'blog',
+            'articles' => Blog::all(),
+        ]);
+    }
+
+    public function blogArticle(array $article): void
+    {
+        $content = Blog::content($article, Lang::locale());
+        View::render('pages/blog_article', [
+            'title' => ($content['title'] ?? '') . ' | MinusVortex',
+            'metaDescription' => $content['description'] ?? '',
+            'page' => 'blogArticle',
+            'article' => $article,
+            'content' => $content,
+        ]);
+    }
+
     public function vision(): void
     {
         View::render('pages/vision', [

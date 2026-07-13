@@ -55,6 +55,13 @@ if (parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) === '/sitemap.xml') 
     exit;
 }
 
+// llms.txt : resume markdown du site pour les crawlers de LLM (llmstxt.org)
+if (parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) === '/llms.txt') {
+    header('Content-Type: text/plain; charset=UTF-8');
+    echo Seo::llmsTxt();
+    exit;
+}
+
 // Router
 try {
     Router::dispatch();

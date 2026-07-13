@@ -30,6 +30,9 @@ return [
     'alignment.universe-ai.title' => 'AI Alignment — Adopt AI without dependency | MinusVortex',
     'alignment.universe-ai.description' => 'AI alignment check: assess in a few questions where AI adds noise or dependency to your system, and the most sober lever to stay in control.',
 
+    'blog.title' => 'Blog — Software sobriety & technical ownership | MinusVortex',
+    'blog.description' => 'Articles on reducing technical chaos: debt, needless complexity, dependencies. Concrete practices for sober, durable systems.',
+
     'payment.title' => 'Payment | MinusVortex',
     'payment_success.title' => 'Payment confirmed | MinusVortex',
     'payment_cancel.title' => 'Payment cancelled | MinusVortex',

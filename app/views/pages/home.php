@@ -121,7 +121,7 @@ $disagreeLabel = $themeChoiceLabels[$themeLocale]['disagree'] ?? $themeChoiceLab
 
             <div class="theme-scroll-hint" data-theme-hint aria-hidden="true">
                 <span class="theme-scroll-hint__track"><span class="theme-scroll-hint__glow"></span></span>
-                <span class="theme-scroll-hint__label">Scroll ou touches &larr; &rarr;</span>
+                <span class="theme-scroll-hint__label"><?= htmlspecialchars(__('home.themes_hint'), ENT_QUOTES, 'UTF-8') ?></span>
             </div>
 
             <button type="button" class="theme-arrow theme-arrow--prev is-disabled" data-theme-arrow="-1" aria-label="Theme precedent">

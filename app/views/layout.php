@@ -12,9 +12,10 @@
     $__page = $page ?? 'home';
     $__alignmentTheme = $alignmentTheme ?? null;
     $__isNoindex = ($noindex ?? false) === true || $__page === '404';
+    $__article = $article ?? null;
     $__hasSeoRoute = $__page !== '404' && array_key_exists(
         $__page,
-        ['home' => 1, 'portfolio' => 1, 'payment' => 1, 'paymentSuccess' => 1, 'paymentCancel' => 1, 'alignment' => 1]
+        ['home' => 1, 'portfolio' => 1, 'payment' => 1, 'paymentSuccess' => 1, 'paymentCancel' => 1, 'alignment' => 1, 'blog' => 1, 'blogArticle' => 1]
     );
     $__title = htmlspecialchars($title ?? __('home.title'), ENT_QUOTES, 'UTF-8');
     $__metaDescription = htmlspecialchars($metaDescription ?? __('common.meta_description'), ENT_QUOTES, 'UTF-8');
@@ -26,11 +27,11 @@
     <meta name="robots" content="<?= $__isNoindex ? 'noindex, follow' : 'index, follow' ?>">
 
     <?php if ($__hasSeoRoute): ?>
-    <link rel="canonical" href="<?= htmlspecialchars(Seo::canonicalUrl($__page, Lang::locale(), $__alignmentTheme), ENT_QUOTES, 'UTF-8') ?>">
-    <?php foreach (Seo::alternateUrls($__page, $__alignmentTheme) as $__hrefLang => $__hrefUrl): ?>
+    <link rel="canonical" href="<?= htmlspecialchars(Seo::canonicalUrl($__page, Lang::locale(), $__alignmentTheme, $__article), ENT_QUOTES, 'UTF-8') ?>">
+    <?php foreach (Seo::alternateUrls($__page, $__alignmentTheme, $__article) as $__hrefLang => $__hrefUrl): ?>
     <link rel="alternate" hreflang="<?= $__hrefLang ?>" href="<?= htmlspecialchars($__hrefUrl, ENT_QUOTES, 'UTF-8') ?>">
     <?php endforeach; ?>
-    <link rel="alternate" hreflang="x-default" href="<?= htmlspecialchars(Seo::canonicalUrl($__page, Seo::defaultLang(), $__alignmentTheme), ENT_QUOTES, 'UTF-8') ?>">
+    <link rel="alternate" hreflang="x-default" href="<?= htmlspecialchars(Seo::canonicalUrl($__page, Seo::defaultLang(), $__alignmentTheme, $__article), ENT_QUOTES, 'UTF-8') ?>">
     <?php endif; ?>
 
     <!-- Open Graph / Twitter -->
@@ -41,7 +42,7 @@
     <meta property="og:locale" content="<?= Seo::ogLocale(Lang::locale()) ?>">
     <meta property="og:image" content="<?= htmlspecialchars(Seo::baseUrl(), ENT_QUOTES, 'UTF-8') ?>/assets/img/logo_300.webp">
     <?php if ($__hasSeoRoute): ?>
-    <meta property="og:url" content="<?= htmlspecialchars(Seo::canonicalUrl($__page, Lang::locale(), $__alignmentTheme), ENT_QUOTES, 'UTF-8') ?>">
+    <meta property="og:url" content="<?= htmlspecialchars(Seo::canonicalUrl($__page, Lang::locale(), $__alignmentTheme, $__article), ENT_QUOTES, 'UTF-8') ?>">
     <?php endif; ?>
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="<?= $__title ?>">
@@ -52,13 +53,49 @@
     <script type="application/ld+json"><?= json_encode([
         '@context' => 'https://schema.org',
         '@type' => 'Person',
+        '@id' => Seo::baseUrl() . '/#person',
         'name' => 'Thomas Goffinet',
         'alternateName' => 'MinusVortex',
         'url' => Seo::baseUrl(),
         'image' => Seo::baseUrl() . '/assets/img/logo_300.webp',
         'jobTitle' => 'Développeur logiciel',
         'description' => __('common.meta_description'),
+        'sameAs' => [
+            'https://github.com/Mothas31',
+        ],
+        'knowsAbout' => [
+            'Développement logiciel',
+            'Réduction de la dette technique',
+            'Éco-conception',
+            'Architecture logicielle sobre',
+        ],
     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) ?></script>
+
+    <?php if ($__page === 'alignment' && $__alignmentTheme !== null): ?>
+    <script type="application/ld+json"><?= json_encode([
+        '@context' => 'https://schema.org',
+        '@type' => 'Service',
+        'name' => $title ?? '',
+        'description' => $metaDescription ?? '',
+        'url' => Seo::canonicalUrl('alignment', Lang::locale(), $__alignmentTheme),
+        'inLanguage' => Lang::locale(),
+        'provider' => ['@id' => Seo::baseUrl() . '/#person'],
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) ?></script>
+    <?php endif; ?>
+
+    <?php if ($__page === 'blogArticle' && $__article !== null): ?>
+    <script type="application/ld+json"><?= json_encode([
+        '@context' => 'https://schema.org',
+        '@type' => 'BlogPosting',
+        'headline' => $content['title'] ?? '',
+        'description' => $metaDescription ?? '',
+        'datePublished' => $__article['date'] ?? '',
+        'dateModified' => $__article['updated'] ?? ($__article['date'] ?? ''),
+        'inLanguage' => Lang::locale(),
+        'url' => Seo::canonicalUrl('blogArticle', Lang::locale(), null, $__article),
+        'author' => ['@id' => Seo::baseUrl() . '/#person'],
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) ?></script>
+    <?php endif; ?>
 
     <?php if (($page ?? '') === 'home'): ?>
     <link rel="preload" as="image" href="/assets/img/logo_63.webp" imagesrcset="/assets/img/logo_63.webp 1x, /assets/img/logo_95.webp 1.5x, /assets/img/logo_126.webp 2x" imagesizes="63px" fetchpriority="high">

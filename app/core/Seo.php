@@ -7,7 +7,7 @@ class Seo
     private const DEFAULT_LANG = 'fr';
 
     /** Pages indexables (hors flux de paiement transactionnel). */
-    private const INDEXABLE_PAGES = ['home', 'portfolio'];
+    private const INDEXABLE_PAGES = ['home', 'portfolio', 'blog'];
 
     private static ?array $routes = null;
 
@@ -36,8 +36,14 @@ class Seo
         return $scheme . '://' . $host;
     }
 
-    public static function pathFor(string $page, string $lang, ?string $alignmentTheme = null): string
+    public static function pathFor(string $page, string $lang, ?string $alignmentTheme = null, ?array $article = null): string
     {
+        if ($page === 'blogArticle' && $article !== null) {
+            $blogSlug = self::routes()['pages']['blog'][$lang] ?? 'blog';
+            $articleSlug = $article['slugs'][$lang] ?? ($article['slugs'][self::DEFAULT_LANG] ?? '');
+            return '/' . $lang . '/' . $blogSlug . '/' . $articleSlug;
+        }
+
         if ($page === 'alignment' && $alignmentTheme !== null) {
             $slug = self::routes()['alignment'][$alignmentTheme][$lang] ?? null;
         } else {
@@ -51,17 +57,17 @@ class Seo
         return '/' . $lang . '/' . $slug;
     }
 
-    public static function canonicalUrl(string $page, string $lang, ?string $alignmentTheme = null): string
+    public static function canonicalUrl(string $page, string $lang, ?string $alignmentTheme = null, ?array $article = null): string
     {
-        return self::baseUrl() . self::pathFor($page, $lang, $alignmentTheme);
+        return self::baseUrl() . self::pathFor($page, $lang, $alignmentTheme, $article);
     }
 
     /** @return array<string,string> lang => url absolue, pour toutes les langues supportées */
-    public static function alternateUrls(string $page, ?string $alignmentTheme = null): array
+    public static function alternateUrls(string $page, ?string $alignmentTheme = null, ?array $article = null): array
     {
         $urls = [];
         foreach (self::LANGS as $lang) {
-            $urls[$lang] = self::canonicalUrl($page, $lang, $alignmentTheme);
+            $urls[$lang] = self::canonicalUrl($page, $lang, $alignmentTheme, $article);
         }
         return $urls;
     }
@@ -72,14 +78,78 @@ class Seo
         return $map[$lang] ?? 'fr_FR';
     }
 
+    /**
+     * llms.txt : resume du site en markdown pour les crawlers de LLM
+     * (convention https://llmstxt.org). Genere depuis routes.php et les
+     * fichiers de langue seo.php pour rester synchronise avec le site.
+     */
+    public static function llmsTxt(): string
+    {
+        $base = self::baseUrl();
+        $seoFr = require __DIR__ . '/../lang/fr/seo.php';
+        $seoEn = require __DIR__ . '/../lang/en/seo.php';
+
+        $lines = [];
+        $lines[] = '# MinusVortex — Thomas Goffinet';
+        $lines[] = '';
+        $lines[] = '> ' . ($seoFr['home.description'] ?? '');
+        $lines[] = '';
+        $lines[] = 'Thomas Goffinet (alias MinusVortex) est un développeur logiciel indépendant.';
+        $lines[] = 'Sa spécialité : réduire le chaos technique — dette, complexité inutile, dépendances —';
+        $lines[] = 'pour livrer des systèmes sobres, performants et durables dont le client garde l\'ownership.';
+        $lines[] = 'Site disponible en français (langue principale), anglais, espagnol et portugais.';
+        $lines[] = '';
+        $lines[] = '## Pages principales (français)';
+        $lines[] = '';
+        $lines[] = '- [' . ($seoFr['home.title'] ?? 'Accueil') . '](' . self::canonicalUrl('home', 'fr') . ')';
+        $lines[] = '- [' . ($seoFr['portfolio.title'] ?? 'Portfolio') . '](' . self::canonicalUrl('portfolio', 'fr') . ')';
+
+        foreach (array_keys(self::routes()['alignment']) as $theme) {
+            $title = $seoFr['alignment.' . $theme . '.title'] ?? $theme;
+            $description = $seoFr['alignment.' . $theme . '.description'] ?? '';
+            $lines[] = '- [' . $title . '](' . self::canonicalUrl('alignment', 'fr', $theme) . '): ' . $description;
+        }
+
+        $lines[] = '';
+        $lines[] = '## Articles (français)';
+        $lines[] = '';
+        foreach (Blog::all() as $article) {
+            $content = Blog::content($article, 'fr');
+            $lines[] = '- [' . ($content['title'] ?? $article['id']) . '](' . self::canonicalUrl('blogArticle', 'fr', null, $article) . '): ' . ($content['description'] ?? '');
+        }
+
+        $lines[] = '';
+        $lines[] = '## Main pages (English)';
+        $lines[] = '';
+        $lines[] = '- [' . ($seoEn['home.title'] ?? 'Home') . '](' . self::canonicalUrl('home', 'en') . ')';
+        $lines[] = '- [' . ($seoEn['portfolio.title'] ?? 'Portfolio') . '](' . self::canonicalUrl('portfolio', 'en') . ')';
+
+        foreach (array_keys(self::routes()['alignment']) as $theme) {
+            $title = $seoEn['alignment.' . $theme . '.title'] ?? $theme;
+            $lines[] = '- [' . $title . '](' . self::canonicalUrl('alignment', 'en', $theme) . ')';
+        }
+
+        $lines[] = '';
+        $lines[] = '## Ressources';
+        $lines[] = '';
+        $lines[] = '- [Sitemap](' . $base . '/sitemap.xml): toutes les URLs indexables, avec alternates es/pt';
+        $lines[] = '- [GitHub](https://github.com/Mothas31)';
+        $lines[] = '';
+
+        return implode("\n", $lines);
+    }
+
     public static function sitemapXml(): string
     {
         $entries = [];
         foreach (self::INDEXABLE_PAGES as $page) {
-            $entries[] = ['page' => $page, 'theme' => null];
+            $entries[] = ['page' => $page, 'theme' => null, 'article' => null];
         }
         foreach (array_keys(self::routes()['alignment']) as $theme) {
-            $entries[] = ['page' => 'alignment', 'theme' => $theme];
+            $entries[] = ['page' => 'alignment', 'theme' => $theme, 'article' => null];
+        }
+        foreach (Blog::all() as $article) {
+            $entries[] = ['page' => 'blogArticle', 'theme' => null, 'article' => $article];
         }
 
         $xml = new XMLWriter();
@@ -91,7 +161,7 @@ class Seo
         $xml->writeAttribute('xmlns:xhtml', 'http://www.w3.org/1999/xhtml');
 
         foreach ($entries as $entry) {
-            $alternates = self::alternateUrls($entry['page'], $entry['theme']);
+            $alternates = self::alternateUrls($entry['page'], $entry['theme'], $entry['article']);
 
             foreach (self::LANGS as $lang) {
                 $xml->startElement('url');

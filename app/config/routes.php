@@ -15,6 +15,12 @@ return [
             'es' => 'portafolio',
             'pt' => 'portfolio',
         ],
+        'blog' => [
+            'fr' => 'blog',
+            'en' => 'blog',
+            'es' => 'blog',
+            'pt' => 'blog',
+        ],
         'payment' => [
             'fr' => 'paiement.html',
             'en' => 'payment.html',
