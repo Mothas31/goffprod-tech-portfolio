@@ -123,19 +123,19 @@ $disagreeLabel = $themeChoiceLabels[$themeLocale]['disagree'] ?? $themeChoiceLab
                 <span class="theme-scroll-hint__track"><span class="theme-scroll-hint__glow"></span></span>
                 <span class="theme-scroll-hint__label">Scroll ou touches &larr; &rarr;</span>
             </div>
+
+            <button type="button" class="theme-arrow theme-arrow--prev is-disabled" data-theme-arrow="-1" aria-label="Theme precedent">
+                <span class="theme-arrow__head" aria-hidden="true"></span>
+                <span class="theme-arrow__track" aria-hidden="true"><span class="theme-arrow__wave"></span></span>
+            </button>
+            <button type="button" class="theme-arrow theme-arrow--next" data-theme-arrow="1" aria-label="Theme suivant">
+                <span class="theme-arrow__track" aria-hidden="true"><span class="theme-arrow__wave"></span></span>
+                <span class="theme-arrow__head" aria-hidden="true"></span>
+            </button>
         </div>
 
         <div class="theme-scroll-scene-space" aria-hidden="true"></div>
     </div>
-
-    <button type="button" class="theme-arrow theme-arrow--prev is-disabled" data-theme-arrow="-1" aria-label="Theme precedent">
-        <span class="theme-arrow__head" aria-hidden="true"></span>
-        <span class="theme-arrow__track" aria-hidden="true"><span class="theme-arrow__wave"></span></span>
-    </button>
-    <button type="button" class="theme-arrow theme-arrow--next" data-theme-arrow="1" aria-label="Theme suivant">
-        <span class="theme-arrow__track" aria-hidden="true"><span class="theme-arrow__wave"></span></span>
-        <span class="theme-arrow__head" aria-hidden="true"></span>
-    </button>
 </section>
  
 <script>

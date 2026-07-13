@@ -574,12 +574,15 @@ html.warp-arrive::before {
     transition: opacity 0.35s ease, color 0.25s ease;
 }
 
+/* Ancrees au bloc de texte (.theme-scroll-copy), pas aux bords de page. */
 .theme-arrow--prev {
-    left: clamp(1.2rem, 3vw, 3.2rem);
+    left: 0;
+    transform: translate(calc(-100% - 0.5rem), -50%);
 }
 
 .theme-arrow--next {
-    right: clamp(1.2rem, 3vw, 3.2rem);
+    right: 0;
+    transform: translate(calc(100% + 0.5rem), -50%);
 }
 
 .theme-arrow:hover,
@@ -642,6 +645,13 @@ html.warp-arrive::before {
 @media (min-width: 768px) {
     .theme-arrow {
         display: flex;
+    }
+}
+
+/* Ecrans moyens : trait plus court pour ne pas sortir de la section. */
+@media (min-width: 768px) and (max-width: 1279px) {
+    .theme-arrow__track {
+        width: 2.1rem;
     }
 }
 
