@@ -19,6 +19,9 @@ function updateLinesHeight() {
   });
 }
 
+// Le script est charge en differe (souvent apres l'evenement load) :
+// calculer immediatement, puis recaler sur load/resize.
+updateLinesHeight();
 window.addEventListener('load', updateLinesHeight);
 window.addEventListener('resize', updateLinesHeight);
 

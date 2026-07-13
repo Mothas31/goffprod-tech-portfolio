@@ -271,7 +271,7 @@ $disagreeLabel = $themeChoiceLabels[$themeLocale]['disagree'] ?? $themeChoiceLab
     window.addEventListener('touchstart', stopSmoothScroll, { passive: true });
 
     if (window.innerWidth >= 768) {
-      scheduleWork(() => loadScript('/assets/js/side-nav.js'));
+      scheduleWork(() => loadScript('/assets/js/side-nav.js?v=20260713-immediate-line'));
     }
 
     if (!prefersReducedMotion) {
