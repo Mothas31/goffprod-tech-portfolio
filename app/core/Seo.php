@@ -90,11 +90,11 @@ class Seo
         $seoEn = require __DIR__ . '/../lang/en/seo.php';
 
         $lines = [];
-        $lines[] = '# MinusVortex — Thomas Goffinet';
+        $lines[] = '# MinusVortex';
         $lines[] = '';
         $lines[] = '> ' . ($seoFr['home.description'] ?? '');
         $lines[] = '';
-        $lines[] = 'Thomas Goffinet (alias MinusVortex) est un développeur logiciel indépendant.';
+        $lines[] = 'MinusVortex est une pratique de développement logiciel sobre.';
         $lines[] = 'Sa spécialité : réduire le chaos technique — dette, complexité inutile, dépendances —';
         $lines[] = 'pour livrer des systèmes sobres, performants et durables dont le client garde l\'ownership.';
         $lines[] = 'Site disponible en français (langue principale), anglais, espagnol et portugais.';

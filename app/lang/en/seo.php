@@ -3,11 +3,11 @@
 // Per-page <title> and meta descriptions for indexable pages.
 // Flat "page.field" keys because Lang::get only splits on the first dot.
 return [
-    'home.title' => 'Thomas Goffinet — Sober software developer | MinusVortex',
-    'home.description' => 'Independent software developer. I reduce technical chaos — debt, needless complexity, dependencies — to build sober, fast and durable systems.',
+    'home.title' => 'MinusVortex — Less noise, more ownership | Sober software development',
+    'home.description' => 'MinusVortex reduces technical chaos — debt, needless complexity, dependencies — building sober, fast and durable systems you keep ownership of.',
 
     'portfolio.title' => 'Portfolio — Projects & work | MinusVortex',
-    'portfolio.description' => 'Projects and work by Thomas Goffinet: sober, fast and maintainable systems, built to last without hidden debt.',
+    'portfolio.description' => 'MinusVortex projects and work: sober, fast and maintainable systems, built to last without hidden debt.',
 
     'alignment.universe-health.title' => 'Health Alignment — Less noise, more energy | MinusVortex',
     'alignment.universe-health.description' => 'Health alignment check: spot in a few questions where noise hides — overload, scattering, inherited habits — and the most sober lever to get your energy back.',

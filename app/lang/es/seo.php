@@ -3,11 +3,11 @@
 // <title> y meta descripciones por página indexable.
 // Claves planas «pagina.campo» porque Lang::get solo separa en el primer punto.
 return [
-    'home.title' => 'Thomas Goffinet — Desarrollador de software sobrio | MinusVortex',
-    'home.description' => 'Desarrollador de software independiente. Reduzco el caos técnico — deuda, complejidad inútil, dependencias — para construir sistemas sobrios, rápidos y duraderos.',
+    'home.title' => 'MinusVortex — Menos ruido, más control | Software sobrio',
+    'home.description' => 'MinusVortex reduce el caos técnico — deuda, complejidad inútil, dependencias — construyendo sistemas sobrios, rápidos y duraderos cuyo control conservas.',
 
     'portfolio.title' => 'Portafolio — Proyectos y trabajos | MinusVortex',
-    'portfolio.description' => 'Proyectos y trabajos de Thomas Goffinet: sistemas sobrios, rápidos y mantenibles, construidos para durar sin deuda oculta.',
+    'portfolio.description' => 'Proyectos y trabajos MinusVortex: sistemas sobrios, rápidos y mantenibles, construidos para durar sin deuda oculta.',
 
     'alignment.universe-health.title' => 'Alineación Salud — Menos ruido, más energía | MinusVortex',
     'alignment.universe-health.description' => 'Diagnóstico de alineación de salud: detecta en pocas preguntas dónde se esconde el ruido — sobrecarga, dispersión, hábitos heredados — y la palanca más sobria para recuperar tu energía.',

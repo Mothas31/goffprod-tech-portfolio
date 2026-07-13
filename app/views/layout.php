@@ -23,7 +23,7 @@
 
     <!-- SEO Meta Tags -->
     <meta name="description" content="<?= $__metaDescription ?>">
-    <meta name="author" content="Thomas GOFFINET GOFFPROD">
+    <meta name="author" content="MinusVortex">
     <meta name="robots" content="<?= $__isNoindex ? 'noindex, follow' : 'index, follow' ?>">
 
     <?php if ($__hasSeoRoute): ?>
@@ -36,7 +36,7 @@
 
     <!-- Open Graph / Twitter -->
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="MinusVortex — Thomas Goffinet">
+    <meta property="og:site_name" content="MinusVortex">
     <meta property="og:title" content="<?= $__title ?>">
     <meta property="og:description" content="<?= $__metaDescription ?>">
     <meta property="og:locale" content="<?= Seo::ogLocale(Lang::locale()) ?>">
@@ -52,13 +52,12 @@
     <!-- Structured Data -->
     <script type="application/ld+json"><?= json_encode([
         '@context' => 'https://schema.org',
-        '@type' => 'Person',
-        '@id' => Seo::baseUrl() . '/#person',
-        'name' => 'Thomas Goffinet',
-        'alternateName' => 'MinusVortex',
+        '@type' => 'Organization',
+        '@id' => Seo::baseUrl() . '/#org',
+        'name' => 'MinusVortex',
         'url' => Seo::baseUrl(),
+        'logo' => Seo::baseUrl() . '/assets/img/logo_300.webp',
         'image' => Seo::baseUrl() . '/assets/img/logo_300.webp',
-        'jobTitle' => 'Développeur logiciel',
         'description' => __('common.meta_description'),
         'sameAs' => [
             'https://github.com/Mothas31',
@@ -79,7 +78,7 @@
         'description' => $metaDescription ?? '',
         'url' => Seo::canonicalUrl('alignment', Lang::locale(), $__alignmentTheme),
         'inLanguage' => Lang::locale(),
-        'provider' => ['@id' => Seo::baseUrl() . '/#person'],
+        'provider' => ['@id' => Seo::baseUrl() . '/#org'],
     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) ?></script>
     <?php endif; ?>
 
@@ -93,7 +92,7 @@
         'dateModified' => $__article['updated'] ?? ($__article['date'] ?? ''),
         'inLanguage' => Lang::locale(),
         'url' => Seo::canonicalUrl('blogArticle', Lang::locale(), null, $__article),
-        'author' => ['@id' => Seo::baseUrl() . '/#person'],
+        'author' => ['@id' => Seo::baseUrl() . '/#org'],
     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) ?></script>
     <?php endif; ?>
 

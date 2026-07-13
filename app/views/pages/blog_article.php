@@ -5,7 +5,7 @@
 
         <h1 class="text-3xl sm:text-4xl font-bold tracking-tight mt-6 mb-4"><?= htmlspecialchars((string)($content['title'] ?? ''), ENT_QUOTES, 'UTF-8') ?></h1>
         <time datetime="<?= htmlspecialchars((string)($article['date'] ?? ''), ENT_QUOTES, 'UTF-8') ?>" class="text-sm text-zinc-500">
-            <?= htmlspecialchars((string)($article['date'] ?? ''), ENT_QUOTES, 'UTF-8') ?> — Thomas Goffinet
+            <?= htmlspecialchars((string)($article['date'] ?? ''), ENT_QUOTES, 'UTF-8') ?> — MinusVortex
         </time>
 
         <div class="blog-body mt-10">

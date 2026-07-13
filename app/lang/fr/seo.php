@@ -3,11 +3,11 @@
 // Titres (<title>) et meta descriptions par page indexable.
 // Clés plates « page.champ » car Lang::get ne découpe que sur le premier point.
 return [
-    'home.title' => 'Thomas Goffinet — Développeur logiciel sobre | MinusVortex',
-    'home.description' => 'Développeur logiciel indépendant. Je réduis le chaos technique — dette, complexité inutile, dépendances — pour des systèmes sobres, performants et durables.',
+    'home.title' => 'MinusVortex — Moins de bruit, plus de maîtrise | Développement logiciel sobre',
+    'home.description' => 'MinusVortex réduit le chaos technique — dette, complexité inutile, dépendances — pour des systèmes sobres, performants et durables dont vous gardez l’ownership.',
 
     'portfolio.title' => 'Portfolio — Projets & réalisations | MinusVortex',
-    'portfolio.description' => 'Projets et réalisations de Thomas Goffinet : des systèmes sobres, rapides et maintenables, conçus pour durer sans dette cachée.',
+    'portfolio.description' => 'Projets et réalisations MinusVortex : des systèmes sobres, rapides et maintenables, conçus pour durer sans dette cachée.',
 
     'alignment.universe-health.title' => 'Alignement Santé — Moins de bruit, plus d’énergie | MinusVortex',
     'alignment.universe-health.description' => 'Diagnostic d’alignement santé : repérez en quelques questions où se cache le bruit — surcharge, dispersion, habitudes subies — et le levier le plus sobre pour retrouver de l’énergie.',
