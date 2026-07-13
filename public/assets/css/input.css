@@ -711,6 +711,47 @@ html.warp-arrive::before {
     }
 }
 
+/* CTA flottant vers le blog (desktop + mobile), masque quand le footer est visible. */
+.footer-float-cta {
+    position: fixed;
+    bottom: max(1.1rem, env(safe-area-inset-bottom));
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 40;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.6rem 1.5rem;
+    border-radius: 9999px;
+    background: rgba(0, 0, 0, 0.62);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+        opacity 0.4s ease,
+        transform 0.4s ease,
+        border-color 0.25s ease,
+        background-color 0.25s ease;
+}
+
+.footer-float-cta:hover,
+.footer-float-cta:focus-visible {
+    border-color: rgba(255, 255, 255, 0.65);
+    background: rgba(0, 0, 0, 0.8);
+    outline: none;
+}
+
+.footer-float-cta.is-docked {
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, 0.8rem);
+}
+
 /* Corps des articles de blog (HTML issu de app/content/articles). */
 .blog-body p {
     color: rgba(255, 255, 255, 0.78);
