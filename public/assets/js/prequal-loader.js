@@ -2,7 +2,7 @@
   const root = document.getElementById('prequal-module-root');
   if (!root || root.dataset.loaded === '1') return;
 
-  const ASSET_VERSION = '20260714-business-memory-4';
+  const ASSET_VERSION = '20260714-business-memory-5';
   const locale = (document.documentElement.lang || 'fr').slice(0, 2).toLowerCase();
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const presetThemeId = root.dataset.prequalTheme || '';
@@ -91,6 +91,10 @@
               label: 'Trop de dépendance humaine',
               node: 'Transmission',
               insight: 'Si tout tient dans quelques têtes, la croissance augmente la fragilité au lieu de la réduire.',
+              article: {
+                label: 'Lire : garder l’ownership de son système',
+                href: '/fr/signaux/garder-l-ownership-de-son-systeme.html'
+              },
               evidenceTitle: 'GitLab handbook',
               evidenceText: 'Un exemple radical de documentation ouverte pour rendre les règles de fonctionnement transmissibles.',
               href: 'https://handbook.gitlab.com/',
@@ -179,6 +183,10 @@
               label: 'Moins de questions support',
               node: 'Autonomie',
               insight: 'Quand le système est clair, les utilisateurs demandent moins d’aide pour faire l’action attendue.',
+              article: {
+                label: 'Lire : garder l’ownership de son système',
+                href: '/fr/signaux/garder-l-ownership-de-son-systeme.html'
+              },
               evidenceTitle: 'Clarté produit',
               evidenceText: 'Un bon signe de minimalisme : les frictions disparaissent avant même d’être expliquées.',
               href: 'https://www.nngroup.com/articles/minimalism-flat-design/',
@@ -235,6 +243,10 @@
               label: 'Écrire les règles du jeu',
               node: 'Règles claires',
               insight: 'Documenter les arbitrages transforme une intuition en système transmissible.',
+              article: {
+                label: 'Lire : garder l’ownership de son système',
+                href: '/fr/signaux/garder-l-ownership-de-son-systeme.html'
+              },
               evidenceTitle: 'Handbook first',
               evidenceText: 'Quand les règles sont visibles, l’équipe dépend moins des implicites et des corrections tardives.',
               href: 'https://handbook.gitlab.com/',
@@ -529,18 +541,29 @@
         const answerIndex = index - 1;
         // Une seule idee detaillee a la fois : les choix precedents restent
         // lisibles comme noeuds, sans empiler cinq paragraphes sur la carte.
-        const info = node.answer && node.kind === 'active' ? `
-          <article class="business-network__info business-network__info--slot-${answerIndex % 5}" style="--item-delay:${prefersReducedMotion ? 0 : answerIndex * 80}ms">
+        const infoId = node.answer ? `business-memory-${answerIndex}` : '';
+        const article = node.answer?.option?.article;
+        const info = node.answer ? `
+          <article id="${infoId}" class="business-network__info business-network__info--slot-${answerIndex % 5}">
             <p class="business-network__axis">${escapeHtml(node.answer.step.axis)}</p>
             <h3>${escapeHtml(node.answer.option.node)}</h3>
             <p>${escapeHtml(node.answer.option.insight)}</p>
+            ${article ? `<a href="${escapeHtml(article.href)}">${escapeHtml(article.label)} →</a>` : ''}
           </article>
         ` : '';
+        const marker = node.answer
+          ? `<button type="button" class="business-network__trigger" aria-describedby="${infoId}" aria-label="Relire le choix ${escapeHtml(node.label)}">
+              <span class="business-network__dot"></span>
+              <span class="business-network__label">${escapeHtml(node.label)}</span>
+            </button>`
+          : `<span class="business-network__trigger" aria-hidden="true">
+              <span class="business-network__dot"></span>
+              <span class="business-network__label">${escapeHtml(node.label)}</span>
+            </span>`;
         return `
           <div class="business-network__node business-network__node--${node.kind}"
                 style="left:${node.x}%; top:${node.y}%; --node-scale:${scale.toFixed(2)}; --node-delay:${delay}ms">
-            <span class="business-network__dot"></span>
-            <span class="business-network__label">${escapeHtml(node.label)}</span>
+            ${marker}
             ${info}
           </div>
         `;

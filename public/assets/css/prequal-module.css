@@ -927,7 +927,8 @@
 .business-game {
   width: min(100%, 78rem);
   min-height: calc(100svh - 12rem);
-  padding-top: clamp(1.8rem, 4vh, 3.5rem);
+  margin-top: clamp(3rem, 5vh, 4rem);
+  padding-top: clamp(3rem, 6vh, 5rem);
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -974,7 +975,7 @@
   color: #ffffff;
   width: 100%;
   max-width: none;
-  font-size: clamp(2.45rem, 4.35vw, 4.15rem);
+  font-size: clamp(2.35rem, 4vw, 3.85rem);
   line-height: 0.94;
   font-weight: 800;
   letter-spacing: -0.025em;
@@ -1255,6 +1256,28 @@
   white-space: nowrap;
 }
 
+.business-network__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.48rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+}
+
+button.business-network__trigger {
+  pointer-events: auto;
+  cursor: help;
+}
+
+button.business-network__trigger:focus-visible {
+  outline: 1px solid rgba(255, 255, 255, 0.72);
+  outline-offset: 0.38rem;
+}
+
 .business-network__dot {
   width: 0.62rem;
   height: 0.62rem;
@@ -1318,9 +1341,25 @@
   transform: translate3d(0, -50%, 2rem);
   transform-origin: 0 50%;
   white-space: normal;
+  opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  animation: business-knowledge-enter 320ms ease both;
-  animation-delay: var(--item-delay, 0ms);
+  transition: opacity 180ms ease, visibility 180ms ease;
+}
+
+.business-network__node--active .business-network__info,
+.business-network__node:hover .business-network__info,
+.business-network__node:focus-within .business-network__info {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.business-network__nodes:has(.business-network__node:hover) .business-network__node--active:not(:hover) .business-network__info,
+.business-network__nodes:has(.business-network__node:focus-within) .business-network__node--active:not(:focus-within) .business-network__info {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .business-network__info--slot-0 {
@@ -1383,6 +1422,24 @@
   color: rgba(255, 255, 255, 0.58);
   font-size: clamp(0.68rem, 0.86vw, 0.78rem);
   line-height: 1.35;
+}
+
+.business-network__info a {
+  width: fit-content;
+  margin-top: 0.18rem;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.68rem;
+  line-height: 1.3;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.32);
+  pointer-events: auto;
+}
+
+.business-network__info a:hover,
+.business-network__info a:focus-visible {
+  color: #ffffff;
+  border-bottom-color: rgba(255, 255, 255, 0.82);
+  outline: none;
 }
 
 .business-game__result {
