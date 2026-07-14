@@ -789,8 +789,10 @@ html.warp-arrive::before {
 .blog-filters {
     display: flex;
     align-items: center;
+    justify-content: space-evenly;
     flex-wrap: wrap;
-    gap: 0.65rem;
+    gap: 0;
+    width: 100%;
     margin: 2rem 0 3.5rem;
 }
 
@@ -801,15 +803,31 @@ html.warp-arrive::before {
     width: 2.8rem;
     height: 2.8rem;
     padding: 0.7rem;
-    color: #000000;
-    background: #ffffff;
-    border: 1px solid #ffffff;
+    color: rgba(255, 255, 255, 0.82);
+    background: rgba(255, 255, 255, 0.015);
+    border: 1px solid rgba(255, 255, 255, 0.34);
     border-radius: 0;
     cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    isolation: isolate;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.025);
+    transition: color 0.25s ease, border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.blog-filter::before {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    inset: -45%;
+    background: linear-gradient(115deg, transparent 38%, rgba(255, 255, 255, 0.3) 50%, transparent 62%);
+    transform: translateX(-72%);
+    transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .blog-filter svg {
+    position: relative;
+    z-index: 1;
     width: 100%;
     height: 100%;
     fill: none;
@@ -817,22 +835,39 @@ html.warp-arrive::before {
     stroke-width: 2.6;
     stroke-linecap: round;
     stroke-linejoin: round;
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.12));
 }
 
 .blog-filter:hover,
 .blog-filter:focus-visible {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.75);
     transform: translateY(-2px);
+    box-shadow: inset 0 0 14px rgba(255, 255, 255, 0.06), 0 0 12px rgba(255, 255, 255, 0.08);
+}
+
+.blog-filter:hover::before,
+.blog-filter:focus-visible::before {
+    transform: translateX(72%);
 }
 
 .blog-filter:focus-visible {
-    outline: 2px solid #ffffff;
+    outline: 1px solid #ffffff;
     outline-offset: 3px;
 }
 
 .blog-filter.is-active {
-    color: #000000;
-    background: #ffffff;
-    box-shadow: inset 0 0 0 2px #000000, 0 0 0 2px #ffffff;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.045);
+    border-color: rgba(255, 255, 255, 0.92);
+    box-shadow: inset 0 0 16px rgba(255, 255, 255, 0.08), 0 0 13px rgba(255, 255, 255, 0.11);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .blog-filter,
+    .blog-filter::before {
+        transition: none;
+    }
 }
 
 .blog-grid {
