@@ -10,11 +10,22 @@
 
         <div class="space-y-12">
             <?php foreach ($articles as $blogArticle): ?>
-                <?php $blogContent = Blog::content($blogArticle, $blogLocale); ?>
+                <?php
+                    $blogContent = Blog::content($blogArticle, $blogLocale);
+                    $blogBadge = Blog::themeBadge($blogArticle['theme'] ?? null, $blogLocale);
+                ?>
                 <article class="border-t border-zinc-800 pt-8">
-                    <time datetime="<?= htmlspecialchars((string)($blogArticle['date'] ?? ''), ENT_QUOTES, 'UTF-8') ?>" class="text-sm text-zinc-500">
-                        <?= htmlspecialchars((string)($blogArticle['date'] ?? ''), ENT_QUOTES, 'UTF-8') ?>
-                    </time>
+                    <div class="flex items-center gap-4 text-sm text-zinc-500">
+                        <?php if ($blogBadge !== null): ?>
+                            <span class="blog-theme-badge">
+                                <span class="blog-theme-badge__icon" aria-hidden="true"><?= $blogBadge['svg'] ?></span>
+                                <?= htmlspecialchars($blogBadge['label'], ENT_QUOTES, 'UTF-8') ?>
+                            </span>
+                        <?php endif; ?>
+                        <time datetime="<?= htmlspecialchars((string)($blogArticle['date'] ?? ''), ENT_QUOTES, 'UTF-8') ?>">
+                            <?= htmlspecialchars((string)($blogArticle['date'] ?? ''), ENT_QUOTES, 'UTF-8') ?>
+                        </time>
+                    </div>
                     <h2 class="text-2xl font-bold mt-2 mb-3">
                         <a href="<?= htmlspecialchars(Seo::pathFor('blogArticle', $blogLocale, null, $blogArticle), ENT_QUOTES, 'UTF-8') ?>" class="hover:text-white text-zinc-100">
                             <?= htmlspecialchars((string)($blogContent['title'] ?? ''), ENT_QUOTES, 'UTF-8') ?>

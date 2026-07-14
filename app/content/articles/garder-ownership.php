@@ -2,6 +2,7 @@
 
 return [
     'id' => 'garder-ownership',
+    'theme' => 'universe-finance',
     'date' => '2026-06-18',
     'slugs' => [
         'fr' => 'garder-l-ownership-de-son-systeme.html',

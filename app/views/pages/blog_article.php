@@ -3,10 +3,19 @@
     <div class="max-w-3xl mx-auto">
         <a href="<?= htmlspecialchars(Seo::pathFor('blog', $blogLocale), ENT_QUOTES, 'UTF-8') ?>" class="text-sm text-zinc-500 hover:text-zinc-300">&larr; <?= htmlspecialchars(Lang::get('seo.blog.h1'), ENT_QUOTES, 'UTF-8') ?></a>
 
+        <?php $articleBadge = Blog::themeBadge($article['theme'] ?? null, $blogLocale); ?>
         <h1 class="text-3xl sm:text-4xl font-bold tracking-tight mt-6 mb-4"><?= htmlspecialchars((string)($content['title'] ?? ''), ENT_QUOTES, 'UTF-8') ?></h1>
-        <time datetime="<?= htmlspecialchars((string)($article['date'] ?? ''), ENT_QUOTES, 'UTF-8') ?>" class="text-sm text-zinc-500">
-            <?= htmlspecialchars((string)($article['date'] ?? ''), ENT_QUOTES, 'UTF-8') ?> — MinusVortex
-        </time>
+        <div class="flex items-center gap-4 text-sm text-zinc-500">
+            <?php if ($articleBadge !== null): ?>
+                <span class="blog-theme-badge">
+                    <span class="blog-theme-badge__icon" aria-hidden="true"><?= $articleBadge['svg'] ?></span>
+                    <?= htmlspecialchars($articleBadge['label'], ENT_QUOTES, 'UTF-8') ?>
+                </span>
+            <?php endif; ?>
+            <time datetime="<?= htmlspecialchars((string)($article['date'] ?? ''), ENT_QUOTES, 'UTF-8') ?>">
+                <?= htmlspecialchars((string)($article['date'] ?? ''), ENT_QUOTES, 'UTF-8') ?> — MinusVortex
+            </time>
+        </div>
 
         <div class="blog-body mt-10">
             <?= $content['body'] ?? '' ?>

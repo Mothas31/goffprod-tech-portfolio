@@ -2,6 +2,7 @@
 
 return [
     'id' => 'dette-technique-signaux',
+    'theme' => 'universe-dev',
     'date' => '2026-07-13',
     'slugs' => [
         'fr' => 'dette-technique-3-signaux.html',

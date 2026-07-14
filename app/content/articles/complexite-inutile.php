@@ -2,6 +2,7 @@
 
 return [
     'id' => 'complexite-inutile',
+    'theme' => 'universe-quality',
     'date' => '2026-07-01',
     'slugs' => [
         'fr' => 'complexite-inutile-le-prix-du-au-cas-ou.html',
