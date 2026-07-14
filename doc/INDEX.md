@@ -4,8 +4,9 @@ But: eviter de rescanner tout le projet a chaque nouvelle session IA.
 
 ## A lire en premier
 
-1. [`doc/paiements-stripe.md`](paiements-stripe.md) pour le chantier Stripe / paiements en ligne.
-2. [`doc/seo.md`](seo.md) pour le SEO multilingue (canonical, hreflang, sitemap, titres/descriptions par page).
+1. [`doc/design-site.md`](design-site.md) pour le design du site : intention, publics, boucle, budgets techniques, chantiers. **A lire avant toute feature.**
+2. [`doc/paiements-stripe.md`](paiements-stripe.md) pour le chantier Stripe / paiements en ligne.
+3. [`doc/seo.md`](seo.md) pour le SEO multilingue (canonical, hreflang, sitemap, titres/descriptions par page).
 2. [`suivis/INDEX.md`](../suivis/INDEX.md) pour l'etat des sessions et les prochaines actions.
 3. `README.md` pour la vision generale du portfolio.
 
