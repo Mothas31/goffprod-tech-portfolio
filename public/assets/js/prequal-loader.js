@@ -2,7 +2,7 @@
   const root = document.getElementById('prequal-module-root');
   if (!root || root.dataset.loaded === '1') return;
 
-  const ASSET_VERSION = '20260714-business-map-2';
+  const ASSET_VERSION = '20260714-business-memory-3';
   const locale = (document.documentElement.lang || 'fr').slice(0, 2).toLowerCase();
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const presetThemeId = root.dataset.prequalTheme || '';
@@ -429,19 +429,26 @@
   function businessMarkup() {
     return `
       <section class="business-game" aria-labelledby="business-game-title" data-business-game>
-        <div class="business-game__copy">
+        <header class="business-game__header">
           <h2 id="business-game-title" data-business-title></h2>
+        </header>
 
-          <div class="business-game__progress" data-business-progress aria-hidden="true"></div>
-          <p class="business-game__status" data-business-status></p>
-          <p class="business-game__question" data-business-question></p>
-          <div class="business-game__choices" data-business-choices></div>
-        </div>
+        <div class="business-game__stage">
+          <div class="business-game__copy">
+            <div class="business-game__progress" data-business-progress aria-hidden="true"></div>
+            <p class="business-game__status" data-business-status></p>
+            <div class="business-game__question-frame">
+              <p class="business-game__question" data-business-question></p>
+              <div data-business-result></div>
+            </div>
+          </div>
 
-        <div class="business-game__map" aria-label="Carte d'alignement business">
-          <div class="business-network">
-            <svg class="business-network__lines" viewBox="0 0 100 100" preserveAspectRatio="none" data-business-lines aria-hidden="true"></svg>
-            <div class="business-network__nodes" data-business-nodes></div>
+          <div class="business-game__map" aria-label="Carte d'alignement business">
+            <div class="business-network">
+              <svg class="business-network__lines" viewBox="0 0 100 100" preserveAspectRatio="none" data-business-lines aria-hidden="true"></svg>
+              <div class="business-network__nodes" data-business-nodes></div>
+            </div>
+            <div class="business-game__choices" data-business-choices></div>
           </div>
         </div>
       </section>
@@ -455,12 +462,13 @@
     const statusEl = root.querySelector('[data-business-status]');
     const questionEl = root.querySelector('[data-business-question]');
     const choicesEl = root.querySelector('[data-business-choices]');
+    const resultEl = root.querySelector('[data-business-result]');
     const mapEl = root.querySelector('.business-game__map');
     const linesEl = root.querySelector('[data-business-lines]');
     const nodesEl = root.querySelector('[data-business-nodes]');
     const config = BUSINESS_GAME_COPY.fr;
 
-    if (!gameEl || !questionEl || !choicesEl || !linesEl || !nodesEl) {
+    if (!gameEl || !questionEl || !choicesEl || !resultEl || !linesEl || !nodesEl) {
       return false;
     }
 
@@ -471,6 +479,7 @@
     const answers = [];
     let stepIndex = 0;
     let renderToken = 0;
+    let choiceLocked = false;
 
     function baseNode() {
       return {
@@ -600,6 +609,8 @@
       gameEl.classList.remove('business-game--result');
       statusEl.textContent = `${step.axis} ${stepIndex + 1}/${config.steps.length}`;
       choicesEl.innerHTML = '';
+      resultEl.innerHTML = '';
+      choiceLocked = false;
 
       renderProgress();
       renderNetwork();
@@ -647,6 +658,7 @@
       gameEl.classList.add('business-game--result');
       statusEl.textContent = config.resultEyebrow;
       choicesEl.innerHTML = '';
+      resultEl.innerHTML = '';
 
       renderProgress();
       renderNetwork();
@@ -654,7 +666,7 @@
       const typed = await typeBusinessText(questionEl, profile.title, token, 46);
       if (!typed || token !== renderToken) return;
 
-      choicesEl.innerHTML = `
+      resultEl.innerHTML = `
         <div class="business-game__result">
           <p>${escapeHtml(profile.text)}</p>
           <p class="business-game__result-note">${escapeHtml(config.resultNote)}</p>
@@ -669,16 +681,37 @@
     function chooseOption(optionIndex) {
       const step = config.steps[stepIndex];
       const option = step?.options[optionIndex];
-      if (!step || !option) return;
+      if (!step || !option || choiceLocked) return;
 
-      answers.push({ step, option });
-      if (stepIndex >= config.steps.length - 1) {
-        renderResult();
-        return;
+      choiceLocked = true;
+      const buttons = Array.from(choicesEl.querySelectorAll('[data-business-option]'));
+      const selectedButton = buttons[optionIndex] || null;
+      buttons.forEach((button) => {
+        button.disabled = true;
+        button.classList.add(button === selectedButton ? 'is-selected' : 'is-dismissed');
+      });
+
+      if (selectedButton) {
+        selectedButton.style.left = `${option.pos[0]}%`;
+        selectedButton.style.top = `${option.pos[1]}%`;
       }
 
-      stepIndex += 1;
-      renderStep();
+      const rememberChoice = () => {
+        answers.push({ step, option });
+        if (stepIndex >= config.steps.length - 1) {
+          renderResult();
+          return;
+        }
+
+        stepIndex += 1;
+        renderStep();
+      };
+
+      if (prefersReducedMotion) {
+        rememberChoice();
+      } else {
+        window.setTimeout(rememberChoice, 520);
+      }
     }
 
     function resetGame() {
@@ -724,7 +757,7 @@
       });
     }
 
-    choicesEl.addEventListener('click', (event) => {
+    gameEl.addEventListener('click', (event) => {
       const target = event.target;
       if (!(target instanceof Element)) return;
 
