@@ -916,6 +916,38 @@
       }).join('');
 
       questionEl.textContent = tree.ui.resultQuestion || '';
+
+      // Sortie alignee de l'univers (cf. app/config/universes.php).
+      const outcome = selectedUniverse?.outcome || 'service';
+      let actionsMarkup;
+      if (outcome === 'book' && selectedUniverse?.outcomeUrl) {
+        actionsMarkup = `
+          <div class="prequal-widget__waitlist">
+            <h4>${tree.ui.bookTitle || ''}</h4>
+            <p>${tree.ui.bookText || ''}</p>
+            <div class="prequal-widget__result-actions">
+              <a class="prequal-widget__cta" href="${selectedUniverse.outcomeUrl}">${tree.ui.bookButton || ''}</a>
+            </div>
+          </div>`;
+      } else if (outcome === 'waitlist' || outcome === 'book') {
+        actionsMarkup = `
+          <div class="prequal-widget__waitlist" data-waitlist>
+            <h4>${tree.ui.waitlistTitle || ''}</h4>
+            <p>${tree.ui.waitlistText || ''}</p>
+            <form data-waitlist-form>
+              <input type="email" name="email" required maxlength="254" placeholder="${tree.ui.waitlistPlaceholder || 'email'}" aria-label="${tree.ui.waitlistPlaceholder || 'email'}" autocomplete="email">
+              <button type="submit">${tree.ui.waitlistButton || 'OK'}</button>
+            </form>
+            <p class="prequal-widget__waitlist-msg" data-waitlist-msg role="status" aria-live="polite" hidden></p>
+          </div>`;
+      } else {
+        actionsMarkup = `
+          <div class="prequal-widget__result-actions">
+            <a class="prequal-widget__cta" href="${contactHref}">${tree.ui.cta}</a>
+            ${score < 60 ? `<a class="prequal-widget__cta-secondary" href="${referralHref}">${tree.ui.ctaReferral}</a>` : ''}
+          </div>`;
+      }
+
       optionsEl.innerHTML = `
         <div class="prequal-widget__result">
           <p class="prequal-widget__score">${score}%</p>
@@ -923,12 +955,44 @@
           <p>${verdict}</p>
           <ul>${answerList}</ul>
           ${score < 60 ? `<p>${orientation}</p>` : ''}
-          <div class="prequal-widget__result-actions">
-            <a class="prequal-widget__cta" href="${contactHref}">${tree.ui.cta}</a>
-            ${score < 60 ? `<a class="prequal-widget__cta-secondary" href="${referralHref}">${tree.ui.ctaReferral}</a>` : ''}
-          </div>
+          ${actionsMarkup}
         </div>
       `;
+
+      const waitlistForm = optionsEl.querySelector('[data-waitlist-form]');
+      if (waitlistForm) {
+        waitlistForm.addEventListener('submit', async (event) => {
+          event.preventDefault();
+          const msgEl = optionsEl.querySelector('[data-waitlist-msg]');
+          const emailInput = waitlistForm.querySelector('input[type="email"]');
+          const button = waitlistForm.querySelector('button');
+          if (!emailInput || !msgEl) return;
+          button?.setAttribute('disabled', 'disabled');
+          try {
+            const response = await fetch('/api/waitlist.php', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                email: emailInput.value,
+                universe: selectedUniverse?.id || '',
+                lang: locale
+              })
+            });
+            const result = await response.json().catch(() => ({}));
+            if (response.ok && result.ok) {
+              waitlistForm.hidden = true;
+              msgEl.textContent = tree.ui.waitlistDone || 'OK';
+              msgEl.hidden = false;
+              return;
+            }
+            throw new Error('waitlist');
+          } catch (error) {
+            msgEl.textContent = tree.ui.waitlistError || 'Erreur';
+            msgEl.hidden = false;
+            button?.removeAttribute('disabled');
+          }
+        });
+      }
     }
 
     function transitionToQuiz() {

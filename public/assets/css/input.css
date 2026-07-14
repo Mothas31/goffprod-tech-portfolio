@@ -785,6 +785,78 @@ html.warp-arrive::before {
     stroke-linejoin: round;
 }
 
+/* Filtres et grille de Signaux. */
+.blog-filters {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin: 2rem 0 3.5rem;
+}
+
+.blog-filter {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.8rem;
+    height: 2.8rem;
+    padding: 0.7rem;
+    color: #ffffff;
+    background: #000000;
+    border: 1px solid rgba(255, 255, 255, 0.72);
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+
+.blog-filter svg {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.blog-filter:hover,
+.blog-filter:focus-visible {
+    transform: translateY(-2px);
+}
+
+.blog-filter:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 3px;
+}
+
+.blog-filter.is-active {
+    color: #000000;
+    background: #ffffff;
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem 2rem;
+}
+
+.blog-card {
+    padding-top: 1.75rem;
+    border-top: 1px solid #27272a;
+}
+
+@media (min-width: 640px) {
+    .blog-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1024px) {
+    .blog-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
 /* Corps des articles de blog (HTML issu de app/content/articles). */
 .blog-body p {
     color: rgba(255, 255, 255, 0.78);

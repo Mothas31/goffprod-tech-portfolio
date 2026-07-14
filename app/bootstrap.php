@@ -21,6 +21,7 @@ require_once __DIR__ . '/core/View.php';
 require_once __DIR__ . '/core/Router.php';
 require_once __DIR__ . '/core/Helper.php';
 require_once __DIR__ . '/repositories/PaymentRepository.php';
+require_once __DIR__ . '/repositories/WaitlistRepository.php';
 require_once __DIR__ . '/services/StripePaymentService.php';
 require_once __DIR__ . '/controllers/PageController.php';
 

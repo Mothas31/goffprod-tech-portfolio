@@ -16,6 +16,17 @@ if (!isset($data[$resolvedLang])) {
     $resolvedLang = $lang === 'fr' ? 'fr' : 'en';
 }
 
+// Sortie de chaque univers (service / book / waitlist) selon la config.
+$universeOutcomes = require __DIR__ . '/../../app/config/universes.php';
+foreach ($data[$resolvedLang]['universes'] as &$universe) {
+    $outcomeConfig = $universeOutcomes[$universe['id']] ?? [];
+    $universe['outcome'] = $outcomeConfig['outcome'] ?? 'waitlist';
+    if ($universe['outcome'] === 'book') {
+        $universe['outcomeUrl'] = $outcomeConfig['urls'][$resolvedLang] ?? '';
+    }
+}
+unset($universe);
+
 echo json_encode(
     [
         'locale' => $resolvedLang,

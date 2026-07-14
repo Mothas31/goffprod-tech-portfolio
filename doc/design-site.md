@@ -48,9 +48,9 @@ chose devrait être plus simple, sans savoir quoi retirer. Par univers :
 
 | Univers | Personne type | Douleur d'entrée | Sortie (offre) | Statut |
 |---|---|---|---|---|
-| Business | Dirigeant TPE/PME, indépendant | Dispersion, outils empilés, décisions floues | Accompagnement (audit / simplification) | Paiement générique — à spécialiser |
-| Développement | CTO, dev senior, porteur de produit | Dette, lenteur, dépendance à une personne | Accompagnement technique (audit, refactor, ownership) | Paiement générique — à spécialiser |
-| Santé | Personne malade chronique ou en surcharge | Métriques partout, protocoles subis | **Livre RCH** (témoignage de rémission — jamais « guérison promise ») | À construire |
+| Business | Dirigeant TPE/PME, indépendant | Dispersion, outils empilés, décisions floues | Accompagnement (audit / simplification) | Sortie service active |
+| Développement | CTO, dev senior, porteur de produit | Dette, lenteur, dépendance à une personne | Accompagnement technique (audit, refactor, ownership) | Sortie service active |
+| Santé | Personne malade chronique ou en surcharge | Métriques partout, protocoles subis | **Livre RCH** (témoignage de rémission — jamais « guérison promise ») | Email d'attente jusqu'à la page livre |
 | Qualité | Responsable qualité/produit | Contrôles lourds qui ne fiabilisent rien | À définir (accompagnement ?) | Email d'attente |
 | Formation | Autodidacte, responsable formation | Dispersion, accumulation sans progrès | À définir (contenu ? méthode ?) | Email d'attente |
 | Mobilité | À préciser | Friction des déplacements | À définir | Email d'attente |
@@ -104,21 +104,16 @@ ownership face à l'abstraction). Registre à suivre : affirmer et questionner
 - Le filtre assumé (Pas d'accord) est rare et juste.
 
 ### Ce qui ne va pas (par gravité)
-1. **Toutes les portes mènent à la même sortie.** Un seul produit Stripe
-   générique (« Paiement Goffprod ») quel que soit l'univers. C'est LA
-   incohérence avec le modèle écosystème. → chantier n°1.
-2. **La clé de lecture n'est pas donnée.** Le hero est beau mais muet : on ne
+1. **La clé de lecture n'est pas donnée.** Le hero est beau mais muet : on ne
    comprend pas le jeu (« une idée, sept univers, trouve le tien »). Une seule
    phrase manque — pas un argumentaire.
-3. **Le questionnaire ne promet rien.** On répond sans savoir ce qu'on obtient
+2. **Le questionnaire ne promet rien.** On répond sans savoir ce qu'on obtient
    à la fin. Une ligne d'intention suffit (« 2 minutes pour situer où le bruit
    te coûte »).
-4. **Pas de sortie douce.** L'aligné pas prêt à acheter n'a nulle part où
-   laisser une trace (email). Dans un modèle où la vente est secondaire, c'est
-   la conversion principale qui manque.
-5. **Le portfolio est vide** (« Bonjour la compagnie ») — contre-preuve
+3. **Le portfolio est vide** (« Bonjour la compagnie ») — contre-preuve
    directe pour un site qui vend la maîtrise. Le remplir ou le dépublier.
-6. La branche santé (livre RCH) n'existe pas encore sur le site.
+4. La branche santé (livre RCH) n'existe pas encore sur le site. Le contrat de
+   sortie `book` est prêt, mais Santé reste en attente tant que sa page manque.
 
 ## 6. Ce qu'on refuse (anti-scope)
 
@@ -147,10 +142,9 @@ Si ces trois constantes progressent, le reste est du détail.
 
 ## 8. Chantiers, dans l'ordre
 
-1. **Sorties par univers** — config par branche (type : `book` / `service` /
-   `waitlist`), écran d'orientation du questionnaire qui présente la sortie
-   alignée, capture d'email comme sortie par défaut. C'est le chantier qui
-   rend le modèle réel.
+1. **Sorties par univers — fait** : config `book` / `service` / `waitlist`,
+   rendu aligné dans le questionnaire et capture d'email locale. Santé basculera
+   sur `book` quand sa page existera.
 2. **La phrase de clé de lecture** sur la home + la ligne d'intention du
    questionnaire (deux phrases, zéro design).
 3. **Portfolio** : remplir avec 2-3 cas racontés façon « chaos → retrait →

@@ -18,6 +18,15 @@ return [
             'cta' => 'Partager mes infos',
             'ctaReferral' => 'Demander une orientation',
             'mailSubject' => 'Point de rencontre MinusVortex',
+            'waitlistTitle' => 'Cette branche ouvre bientôt',
+            'waitlistText' => 'L’alignement est là — l’offre arrive. Laissez votre email : vous serez prévenu à l’ouverture, rien d’autre.',
+            'waitlistPlaceholder' => 'votre@email.fr',
+            'waitlistButton' => 'Me prévenir',
+            'waitlistDone' => 'C’est noté. À bientôt.',
+            'waitlistError' => 'Email invalide ou erreur — réessayez.',
+            'bookTitle' => 'Le prolongement existe',
+            'bookText' => 'Retrouvez cette branche dans le livre MinusVortex.',
+            'bookButton' => 'Découvrir le livre',
         ],
         'universes' => [
             [
@@ -304,6 +313,15 @@ return [
             'cta' => 'Share my details',
             'ctaReferral' => 'Ask for referrals',
             'mailSubject' => 'MinusVortex meeting point',
+            'waitlistTitle' => 'This branch opens soon',
+            'waitlistText' => 'The alignment is there — the offer is coming. Leave your email: you’ll be notified at opening, nothing else.',
+            'waitlistPlaceholder' => 'your@email.com',
+            'waitlistButton' => 'Notify me',
+            'waitlistDone' => 'Noted. See you soon.',
+            'waitlistError' => 'Invalid email or error — try again.',
+            'bookTitle' => 'The next step exists',
+            'bookText' => 'Continue exploring this branch in the MinusVortex book.',
+            'bookButton' => 'Discover the book',
         ],
         'universes' => [
             [
@@ -590,6 +608,15 @@ return [
             'cta' => 'Compartir mis datos',
             'ctaReferral' => 'Pedir una orientación',
             'mailSubject' => 'Punto de encuentro MinusVortex',
+            'waitlistTitle' => 'Esta rama abre pronto',
+            'waitlistText' => 'La alineación está ahí — la oferta llega. Deja tu email: te avisaremos en la apertura, nada más.',
+            'waitlistPlaceholder' => 'tu@email.com',
+            'waitlistButton' => 'Avisarme',
+            'waitlistDone' => 'Anotado. Hasta pronto.',
+            'waitlistError' => 'Email inválido o error — inténtalo de nuevo.',
+            'bookTitle' => 'Existe un siguiente paso',
+            'bookText' => 'Sigue explorando esta rama en el libro MinusVortex.',
+            'bookButton' => 'Descubrir el libro',
         ],
         'universes' => [
             [
@@ -876,6 +903,15 @@ return [
             'cta' => 'Partilhar os meus dados',
             'ctaReferral' => 'Pedir uma orientação',
             'mailSubject' => 'Ponto de encontro MinusVortex',
+            'waitlistTitle' => 'Este ramo abre em breve',
+            'waitlistText' => 'O alinhamento está lá — a oferta está a chegar. Deixe o seu email: será avisado na abertura, nada mais.',
+            'waitlistPlaceholder' => 'seu@email.com',
+            'waitlistButton' => 'Avisar-me',
+            'waitlistDone' => 'Anotado. Até breve.',
+            'waitlistError' => 'Email inválido ou erro — tente novamente.',
+            'bookTitle' => 'Existe um próximo passo',
+            'bookText' => 'Continue a explorar este ramo no livro MinusVortex.',
+            'bookButton' => 'Descobrir o livro',
         ],
         'universes' => [
             [
