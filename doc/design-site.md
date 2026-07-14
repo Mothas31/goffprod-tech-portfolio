@@ -86,6 +86,12 @@ Chaque étape a UN travail :
   générique tombé de nulle part.
 - **Signaux** : la preuve par l'écrit. Aussi le canal découverte (SEO, IA).
 
+**Ligne éditoriale** : le backlog des sujets vit dans `articles.md` (racine) —
+30 idées, dont 10 fondatrices. Le cœur de la thèse : le contexte comme
+ressource rare à l'ère de l'IA (guerre des tokens, intelligence = compression,
+ownership face à l'abstraction). Registre à suivre : affirmer et questionner
+(lignes courtes, une idée, une question), pas argumenter.
+
 ## 5. État des lieux honnête
 
 ### Ce qui va (et qu'on protège)
