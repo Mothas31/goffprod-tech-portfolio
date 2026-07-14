@@ -71,4 +71,4 @@ $blogFilterAllLabel = $blogFilterAllLabels[$blogLocale] ?? $blogFilterAllLabels[
         </div>
     </div>
 </section>
-<script src="/assets/js/blog-filter.js" defer></script>
+<script src="/assets/js/blog-filter.js?v=20260714-square-filters" defer></script>

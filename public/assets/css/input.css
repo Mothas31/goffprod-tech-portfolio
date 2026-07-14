@@ -801,12 +801,12 @@ html.warp-arrive::before {
     width: 2.8rem;
     height: 2.8rem;
     padding: 0.7rem;
-    color: #ffffff;
-    background: #000000;
-    border: 1px solid rgba(255, 255, 255, 0.72);
-    border-radius: 9999px;
+    color: #000000;
+    background: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 0;
     cursor: pointer;
-    transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .blog-filter svg {
@@ -832,6 +832,7 @@ html.warp-arrive::before {
 .blog-filter.is-active {
     color: #000000;
     background: #ffffff;
+    box-shadow: inset 0 0 0 2px #000000, 0 0 0 2px #ffffff;
 }
 
 .blog-grid {
