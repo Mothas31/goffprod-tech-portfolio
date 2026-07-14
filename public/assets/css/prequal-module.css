@@ -975,6 +975,7 @@
   color: #ffffff;
   width: 100%;
   max-width: none;
+  text-align: center;
   font-size: clamp(2.35rem, 4vw, 3.85rem);
   line-height: 0.94;
   font-weight: 800;
