@@ -927,6 +927,8 @@
 .business-game {
   width: min(100%, 78rem);
   min-height: calc(100svh - 12rem);
+  padding-top: clamp(1.8rem, 4vh, 3.5rem);
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -972,7 +974,7 @@
   color: #ffffff;
   width: 100%;
   max-width: none;
-  font-size: clamp(2.6rem, 5vw, 4.8rem);
+  font-size: clamp(2.45rem, 4.35vw, 4.15rem);
   line-height: 0.94;
   font-weight: 800;
   letter-spacing: -0.025em;
@@ -1187,6 +1189,7 @@
 .business-network {
   position: relative;
   min-height: clamp(34rem, 74vh, 46rem);
+  pointer-events: none;
   isolation: isolate;
   perspective: 58rem;
   transform-style: preserve-3d;
@@ -1221,6 +1224,7 @@
 .business-network__nodes {
   position: absolute;
   inset: 0;
+  pointer-events: none;
 }
 
 .business-network__lines {
@@ -1243,6 +1247,7 @@
   align-items: center;
   gap: 0.48rem;
   color: rgba(255, 255, 255, 0.82);
+  pointer-events: none;
   transform: translate3d(-50%, -50%, 0) scale(var(--node-scale, 1));
   transform-origin: 0 50%;
   animation: business-node-enter 360ms ease both;

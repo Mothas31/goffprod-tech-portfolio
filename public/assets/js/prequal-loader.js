@@ -2,7 +2,7 @@
   const root = document.getElementById('prequal-module-root');
   if (!root || root.dataset.loaded === '1') return;
 
-  const ASSET_VERSION = '20260714-business-memory-3';
+  const ASSET_VERSION = '20260714-business-memory-4';
   const locale = (document.documentElement.lang || 'fr').slice(0, 2).toLowerCase();
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const presetThemeId = root.dataset.prequalTheme || '';
@@ -575,8 +575,7 @@
       choicesEl.innerHTML = step.options.map((option, index) => `
         <button type="button"
                 class="business-game__choice business-game__choice--hidden"
-                data-business-option="${index}"
-                disabled>
+                data-business-option="${index}">
           <span>${escapeHtml(option.label)}</span>
           <small>${escapeHtml(option.node)}</small>
         </button>
@@ -586,7 +585,6 @@
         choicesEl.querySelectorAll('.business-game__choice').forEach((button) => {
           button.classList.remove('business-game__choice--hidden');
           button.classList.add('business-game__choice--visible');
-          button.disabled = false;
         });
         return;
       }
@@ -596,7 +594,6 @@
           if (token !== renderToken) return;
           button.classList.remove('business-game__choice--hidden');
           button.classList.add('business-game__choice--visible');
-          button.disabled = false;
         }, 120 + (index * 165));
       });
     }
