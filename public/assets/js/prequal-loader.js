@@ -2,7 +2,7 @@
   const root = document.getElementById('prequal-module-root');
   if (!root || root.dataset.loaded === '1') return;
 
-  const ASSET_VERSION = '20260703-business-minimal-1';
+  const ASSET_VERSION = '20260714-business-map-2';
   const locale = (document.documentElement.lang || 'fr').slice(0, 2).toLowerCase();
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const presetThemeId = root.dataset.prequalTheme || '';
@@ -22,7 +22,8 @@
       emptyKnowledge: 'La carte est vide. Le premier choix donnera une forme au système.',
       resultEyebrow: 'Carte complète',
       restart: 'Rejouer',
-      cta: 'Partager cette carte',
+      cta: 'Demander un regard extérieur',
+      resultNote: 'Cette carte reste un point de départ. Gardez-la telle quelle, ou envoyez-la si vous voulez confronter cette hypothèse à votre situation réelle.',
       mailSubject: 'Carte Business Goffprod',
       preset: {
         agree: 'Terrain Business validé depuis la home : on cherche une structure lisible, durable et sans agitation inutile.',
@@ -517,7 +518,9 @@
         const scale = 0.78 + (node.z * 0.24);
         const delay = prefersReducedMotion ? 0 : index * 70;
         const answerIndex = index - 1;
-        const info = node.answer ? `
+        // Une seule idee detaillee a la fois : les choix precedents restent
+        // lisibles comme noeuds, sans empiler cinq paragraphes sur la carte.
+        const info = node.answer && node.kind === 'active' ? `
           <article class="business-network__info business-network__info--slot-${answerIndex % 5}" style="--item-delay:${prefersReducedMotion ? 0 : answerIndex * 80}ms">
             <p class="business-network__axis">${escapeHtml(node.answer.step.axis)}</p>
             <h3>${escapeHtml(node.answer.option.node)}</h3>
@@ -654,6 +657,7 @@
       choicesEl.innerHTML = `
         <div class="business-game__result">
           <p>${escapeHtml(profile.text)}</p>
+          <p class="business-game__result-note">${escapeHtml(config.resultNote)}</p>
           <div class="business-game__result-actions">
             <a href="${mailHref}" class="business-game__cta">${escapeHtml(config.cta)}</a>
             <button type="button" class="business-game__reset" data-business-reset>${escapeHtml(config.restart)}</button>

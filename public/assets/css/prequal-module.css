@@ -1246,7 +1246,6 @@
   color: #ffffff;
 }
 
-.business-network__node--answered .business-network__label,
 .business-network__node--active .business-network__label {
   display: none;
 }
@@ -1343,6 +1342,11 @@
   color: rgba(255, 255, 255, 0.68);
   font-size: clamp(1rem, 1.5vw, 1.16rem);
   line-height: 1.62;
+}
+
+.business-game__result .business-game__result-note {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.92rem;
 }
 
 .business-game__result-actions {

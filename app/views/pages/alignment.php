@@ -41,4 +41,4 @@ foreach ($ssrUniverses as $universe) {
     </div>
 </section>
 
-<script src="/assets/js/prequal-loader.js?v=20260703-business-minimal-1" defer></script>
+<script src="/assets/js/prequal-loader.js?v=20260714-business-map-2" defer></script>

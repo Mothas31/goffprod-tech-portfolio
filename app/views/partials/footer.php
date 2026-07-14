@@ -7,7 +7,7 @@
     </div>
 </footer>
 
-<?php if (!in_array($page ?? '', ['blog', 'blogArticle'], true)): ?>
+<?php if (!in_array($page ?? '', ['alignment', 'blog', 'blogArticle'], true)): ?>
 <!-- Rappel flottant du footer (trait + texte) : fade in dans la zone des themes,
      s'efface quand le vrai footer entre dans le viewport et prend sa place. -->
 <a href="<?= htmlspecialchars(Seo::pathFor('blog', Lang::locale()), ENT_QUOTES, 'UTF-8') ?>" class="footer-float-cta is-waiting" data-footer-float-cta>
