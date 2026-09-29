@@ -2,7 +2,7 @@
   const root = document.getElementById('prequal-module-root');
   if (!root || root.dataset.loaded === '1') return;
 
-  const ASSET_VERSION = '20260929-service-scenario';
+  const ASSET_VERSION = '20260929-qa-service-2';
   const locale = (document.documentElement.lang || 'fr').slice(0, 2).toLowerCase();
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const presetThemeId = root.dataset.prequalTheme || '';
@@ -958,12 +958,44 @@
       renderQuestion(option.next, true);
     }
 
+    // Parcours service : un score bas signale un besoin, donc un prospect.
+    // Pas de pourcentage ni de réorientation : toujours une prise de contact.
+    function renderServiceResult(score) {
+      const ui = tree.ui;
+      const message = score < 50 ? ui.serviceResultLow : (score < 80 ? ui.serviceResultMid : ui.serviceResultHigh);
+      const scenario = answers[0]?.label || '';
+      const body = encodeURIComponent([
+        scenario,
+        '',
+        ...answers.slice(1).map((answer) => `- ${answer.label}`)
+      ].join('\n'));
+      const contactHref = `mailto:contact@goffprod.com?subject=${encodeURIComponent(`${ui.serviceMailSubject} — ${scenario}`)}&body=${body}`;
+      const answerList = answers.slice(1).map((answer) => `<li>${answer.label}</li>`).join('');
+
+      questionEl.textContent = ui.serviceResultTitle || '';
+      optionsEl.innerHTML = `
+        <div class="prequal-widget__result prequal-widget__result--service">
+          <p>${message}</p>
+          <ul>${answerList}</ul>
+          <div class="prequal-widget__result-actions">
+            <a class="prequal-widget__cta" href="${contactHref}">${ui.serviceCta}</a>
+          </div>
+          <p class="prequal-widget__result-note">${ui.serviceNote || ''}</p>
+        </div>
+      `;
+    }
+
     function renderResult() {
       stage = 'result';
 
       const rawScore = scoreFromAnswers(answers);
       const rawMax = maxScoreFromAnswers(answers);
       const score = percentageScore(rawScore, rawMax);
+
+      if (scenarioOption() && tree.ui.serviceCta) {
+        renderServiceResult(score);
+        return;
+      }
       const verdict = resolveVerdict(tree, score);
       const orientation = selectedUniverse?.orientation || '';
       const contactHref = `mailto:contact@goffprod.com?subject=${encodeURIComponent(tree.ui.mailSubject)}&body=${toMailBody(answers, score, tree, selectedUniverse?.label || '')}`;

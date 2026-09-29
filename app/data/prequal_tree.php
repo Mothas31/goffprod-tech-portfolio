@@ -27,6 +27,14 @@ return [
             'bookTitle' => 'Le prolongement existe',
             'bookText' => 'Retrouvez cette branche dans le livre MinusVortex.',
             'bookButton' => 'Découvrir le livre',
+            // Parcours ouvert depuis un service de la home (?s=) : pas de score, toujours un contact.
+            'serviceResultTitle' => 'Ce que vos réponses montrent',
+            'serviceResultLow' => 'Plusieurs signaux montrent que ce sujet vous coûte déjà du temps ou de l’argent. C’est précisément le type de situation sur laquelle j’interviens : parlons-en, sans engagement.',
+            'serviceResultMid' => 'Une partie est maîtrisée, mais certaines zones restent fragiles. Un regard extérieur peut vous aider à décider quoi traiter en premier.',
+            'serviceResultHigh' => 'Votre base est solide. Si un projet précis se présente, je peux vous aider à la garder saine en le faisant évoluer.',
+            'serviceCta' => 'Discuter de ma situation',
+            'serviceNote' => 'Vos réponses sont jointes au message : vous n’aurez pas à les réexpliquer.',
+            'serviceMailSubject' => 'Échange MinusVortex',
         ],
         'universes' => [
             [
@@ -322,6 +330,14 @@ return [
             'bookTitle' => 'The next step exists',
             'bookText' => 'Continue exploring this branch in the MinusVortex book.',
             'bookButton' => 'Discover the book',
+            // Parcours ouvert depuis un service de la home (?s=) : pas de score, toujours un contact.
+            'serviceResultTitle' => 'What your answers show',
+            'serviceResultLow' => 'Several signals show this is already costing you time or money. That is exactly the kind of situation I work on: let’s talk, with no commitment.',
+            'serviceResultMid' => 'Part of it is under control, but some areas remain fragile. An outside view can help you decide what to tackle first.',
+            'serviceResultHigh' => 'Your foundation is solid. If a specific project comes up, I can help you keep it healthy as it evolves.',
+            'serviceCta' => 'Discuss my situation',
+            'serviceNote' => 'Your answers are included in the message, so you won’t have to explain them again.',
+            'serviceMailSubject' => 'MinusVortex conversation',
         ],
         'universes' => [
             [
@@ -617,6 +633,14 @@ return [
             'bookTitle' => 'Existe un siguiente paso',
             'bookText' => 'Sigue explorando esta rama en el libro MinusVortex.',
             'bookButton' => 'Descubrir el libro',
+            // Parcours ouvert depuis un service de la home (?s=) : pas de score, toujours un contact.
+            'serviceResultTitle' => 'Lo que muestran tus respuestas',
+            'serviceResultLow' => 'Varias señales muestran que este tema ya te cuesta tiempo o dinero. Es justo el tipo de situación en la que intervengo: hablemos, sin compromiso.',
+            'serviceResultMid' => 'Una parte está bajo control, pero algunas zonas siguen siendo frágiles. Una mirada externa puede ayudarte a decidir qué abordar primero.',
+            'serviceResultHigh' => 'Tu base es sólida. Si surge un proyecto concreto, puedo ayudarte a mantenerla sana mientras evoluciona.',
+            'serviceCta' => 'Hablar de mi situación',
+            'serviceNote' => 'Tus respuestas se incluyen en el mensaje: no tendrás que volver a explicarlas.',
+            'serviceMailSubject' => 'Conversación MinusVortex',
         ],
         'universes' => [
             [
@@ -912,6 +936,14 @@ return [
             'bookTitle' => 'Existe um próximo passo',
             'bookText' => 'Continue a explorar este ramo no livro MinusVortex.',
             'bookButton' => 'Descobrir o livro',
+            // Parcours ouvert depuis un service de la home (?s=) : pas de score, toujours un contact.
+            'serviceResultTitle' => 'O que as suas respostas mostram',
+            'serviceResultLow' => 'Vários sinais mostram que este tema já lhe custa tempo ou dinheiro. É precisamente o tipo de situação em que intervenho: falemos, sem compromisso.',
+            'serviceResultMid' => 'Uma parte está controlada, mas algumas zonas continuam frágeis. Um olhar externo pode ajudá-lo a decidir o que tratar primeiro.',
+            'serviceResultHigh' => 'A sua base é sólida. Se surgir um projeto concreto, posso ajudá-lo a mantê-la saudável enquanto evolui.',
+            'serviceCta' => 'Falar sobre a minha situação',
+            'serviceNote' => 'As suas respostas seguem incluídas na mensagem: não terá de as explicar novamente.',
+            'serviceMailSubject' => 'Conversa MinusVortex',
         ],
         'universes' => [
             [
