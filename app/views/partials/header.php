@@ -35,8 +35,11 @@ $languages = [
             $queryString = '';
             if ($currentPage === 'alignment') {
                 $answer = (string)($_GET['a'] ?? '');
+                $scenario = (string)($_GET['s'] ?? '');
                 if (in_array($answer, ['agree', 'disagree'], true)) {
                     $queryString = '?a=' . rawurlencode($answer);
+                } elseif (in_array($scenario, ['launch', 'legacy', 'performance'], true)) {
+                    $queryString = '?s=' . rawurlencode($scenario);
                 }
             }
         ?>

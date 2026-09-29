@@ -1,12 +1,12 @@
 <?php
 
 return [
-    'themes_hint' => 'Scroll or ← → keys',
+    'themes_hint' => 'Scroll or ← → keys to browse services',
     'title'      => 'Home',
     'title_h1'   => 'MinusVortex',
-    'title_h2'   => 'Less noise, more ownership',
-    'text_1'     => 'Less noise, more ownership.',
-    'text_2'     => 'A system that drains time, money and clarity is not a fatality. I reduce the chaos — debt, needless complexity, dependencies — and you keep ownership of what gets built.',
+    'title_h2'   => 'PHP / Laravel software engineering',
+    'text_1'     => 'PHP / Laravel software engineering',
+    'text_2'     => 'I take over, evolve and stabilise your business applications, without rewriting everything.',
     'link_portfolio' => '/en/portfolio',
     'link_portfolio_text' => 'View portfolio',
     'title_3'   => 'Sobriety & performance',

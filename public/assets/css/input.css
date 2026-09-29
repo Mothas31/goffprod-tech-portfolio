@@ -334,7 +334,7 @@ html.warp-arrive::before {
 
 .theme-scroll-copy {
     position: relative;
-    min-height: 27rem;
+    min-height: 30rem;
 }
 
 .theme-panel {
@@ -420,8 +420,8 @@ html.warp-arrive::before {
 .theme-panel h2 {
     margin: 0 0 1.1rem;
     color: #ffffff;
-    font-size: clamp(2.8rem, 6vw, 5.8rem);
-    line-height: 0.9;
+    font-size: clamp(2.2rem, 3.8vw, 3.6rem);
+    line-height: 1;
     font-weight: 800;
     letter-spacing: 0;
 }

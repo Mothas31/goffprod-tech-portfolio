@@ -2,6 +2,6 @@
 
 return [
     'blog_cta' => 'Aller plus loin',
-    'footer_tagline' => 'Développement logiciel sobre et performant',
-    'meta_description' => 'MinusVortex — moins de bruit, plus de maîtrise. Réduction du chaos technique : dette, complexité inutile, dépendances. Des systèmes sobres, performants et durables.',
+    'footer_tagline' => 'Ingénierie logicielle PHP / Laravel',
+    'meta_description' => 'MinusVortex — ingénierie logicielle PHP/Laravel. Reprise de legacy, applications métier, performance, intégrations et renfort pour agences, à distance depuis Lisbonne.',
 ];

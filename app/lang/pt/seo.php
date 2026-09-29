@@ -3,8 +3,8 @@
 // <title> e meta descrições por página indexável.
 // Chaves planas «pagina.campo» porque Lang::get só separa no primeiro ponto.
 return [
-    'home.title' => 'MinusVortex — Menos ruído, mais controlo | Software sóbrio',
-    'home.description' => 'A MinusVortex reduz o caos técnico — dívida, complexidade inútil, dependências — construindo sistemas sóbrios, rápidos e duradouros cujo controlo mantém.',
+    'home.title' => 'MinusVortex — Engenharia de software PHP / Laravel | Legacy, aplicações, performance',
+    'home.description' => 'A MinusVortex retoma, moderniza e estabiliza as suas aplicações PHP/Laravel: legacy, aplicações de negócio, performance, integrações ERP e API, reforço para agências.',
 
     'portfolio.title' => 'Portfólio — Projetos e trabalhos | MinusVortex',
     'portfolio.description' => 'Projetos e trabalhos MinusVortex: sistemas sóbrios, rápidos e fáceis de manter, construídos para durar sem dívida oculta.',

@@ -2,11 +2,13 @@
   const root = document.getElementById('prequal-module-root');
   if (!root || root.dataset.loaded === '1') return;
 
-  const ASSET_VERSION = '20260714-business-memory-6';
+  const ASSET_VERSION = '20260929-service-scenario';
   const locale = (document.documentElement.lang || 'fr').slice(0, 2).toLowerCase();
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const presetThemeId = root.dataset.prequalTheme || '';
   const presetAnswer = new URLSearchParams(window.location.search).get('a') || '';
+  // Lien depuis un service de la home : ouvre directement un scénario Développement.
+  const presetScenario = new URLSearchParams(window.location.search).get('s') || '';
   const BUSINESS_THEME_ID = 'universe-finance';
 
   const TYPE_SPEED_QUESTION = 46;
@@ -827,7 +829,7 @@
 
     function renderProgress() {
       if (!progressEl) return;
-      const total = selectedUniverse?.id === 'universe-dev' ? 6 : 5;
+      const total = selectedUniverse?.id === 'universe-dev' && !scenarioOption() ? 6 : 5;
       const filled = Math.max(0, Math.min(total, answers.filter((answer) => answer.maxPoints > 0).length));
       progressEl.innerHTML = Array.from({ length: total }, (_, index) => (
         `<span class="${index < filled ? 'is-filled' : ''}"></span>`
@@ -1071,6 +1073,11 @@
       widgetEl.classList.remove('prequal-widget--quiz');
     }
 
+    function scenarioOption() {
+      if (!presetScenario || selectedUniverse?.id !== 'universe-dev') return null;
+      return tree.nodes.dev_scenario?.options?.find((option) => option.tag === `scenario-${presetScenario}`) || null;
+    }
+
     async function startFromUniverse(universeId) {
       selectedUniverse = tree.universes.find((item) => item.id === universeId) || null;
       if (!selectedUniverse) return;
@@ -1078,6 +1085,13 @@
       history.length = 0;
       answers.length = 0;
       transitionToQuiz();
+
+      const presetScenarioOption = scenarioOption();
+      if (presetScenarioOption) {
+        answers.push({ label: presetScenarioOption.label, tag: presetScenarioOption.tag, points: 0, maxPoints: 0 });
+        await renderQuestion(presetScenarioOption.next, true);
+        return;
+      }
       await renderQuestion('universe_statement', true);
 
       const normalizedAnswer = ['agree', 'disagree'].includes(presetAnswer) ? presetAnswer : '';

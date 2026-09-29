@@ -100,7 +100,7 @@
     <link rel="preload" as="image" href="/assets/img/logo_63.webp" imagesrcset="/assets/img/logo_63.webp 1x, /assets/img/logo_95.webp 1.5x, /assets/img/logo_126.webp 2x" imagesizes="63px" fetchpriority="high">
     <?php endif; ?>
 
-    <link rel="stylesheet" href="/assets/css/output.css?v=20260714-signaux-dark-filters">
+    <link rel="stylesheet" href="/assets/css/output.css?v=20260929-services">
     <link rel="stylesheet" href="/assets/css/side-nav.css" media="screen and (min-width: 768px)">
     <script type="importmap">
     {

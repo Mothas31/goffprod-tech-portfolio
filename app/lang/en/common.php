@@ -2,6 +2,6 @@
 
 return [
     'blog_cta' => 'Go deeper',
-    'footer_tagline' => 'Lean and high-performance software development',
-    'meta_description' => 'MinusVortex — less noise, more ownership. Reducing technical chaos: debt, needless complexity, dependencies. Sober, fast and durable systems.',
+    'footer_tagline' => 'PHP / Laravel software engineering',
+    'meta_description' => 'MinusVortex — PHP/Laravel software engineering. Legacy takeover, business applications, performance, integrations and agency reinforcement, remotely from Lisbon.',
 ];

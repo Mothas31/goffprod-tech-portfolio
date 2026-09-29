@@ -1,12 +1,12 @@
 <?php
 
 return [
-    'themes_hint' => 'Scroll o teclas ← →',
+    'themes_hint' => 'Scroll o teclas ← → para ver los servicios',
     'title' => 'Inicio',
     'title_h1' => 'MinusVortex',
-    'title_h2' => 'Menos ruido, más control',
-    'text_1' => 'Menos ruido, más control.',
-    'text_2' => 'Un sistema que cuesta tiempo, dinero y claridad no es una fatalidad. Reduzco el caos — deuda, complejidad inútil, dependencias — y usted conserva la propiedad de lo que se construye.',
+    'title_h2' => 'Ingeniería de software PHP / Laravel',
+    'text_1' => 'Ingeniería de software PHP / Laravel',
+    'text_2' => 'Retomo, hago evolucionar y estabilizo tus aplicaciones de negocio, sin reescribirlo todo.',
     'link_portfolio' => '/es/portafolio',
     'link_portfolio_text' => 'Ver portafolio',
     'title_3' => 'Sobriedad y rendimiento',

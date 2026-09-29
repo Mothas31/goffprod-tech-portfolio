@@ -14,18 +14,14 @@ if (is_readable($inlineLogoPath)) {
 }
 ?>
 <?php
-// Thèmes du scroller (réutilise les "univers" du module d'alignement).
-$prequalTree = require __DIR__ . '/../../data/prequal_tree.php';
-$themeLocale = class_exists('Lang') ? Lang::locale() : 'fr';
-$themeUniverses = $prequalTree[$themeLocale]['universes'] ?? ($prequalTree['fr']['universes'] ?? []);
-$themeChoiceLabels = [
-    'fr' => ['agree' => 'Plutôt d’accord', 'disagree' => 'Pas d’accord'],
-    'en' => ['agree' => 'Mostly agree', 'disagree' => 'Disagree'],
-    'es' => ['agree' => 'Bastante de acuerdo', 'disagree' => 'No estoy de acuerdo'],
-    'pt' => ['agree' => 'Concordo bastante', 'disagree' => 'Não concordo'],
-];
-$agreeLabel = $themeChoiceLabels[$themeLocale]['agree'] ?? $themeChoiceLabels['fr']['agree'];
-$disagreeLabel = $themeChoiceLabels[$themeLocale]['disagree'] ?? $themeChoiceLabels['fr']['disagree'];
+// Carrousel de services : Q&R (scénario Développement) ou contact direct.
+$servicesData = require __DIR__ . '/../../data/services.php';
+$serviceLocale = class_exists('Lang') ? Lang::locale() : 'fr';
+$services = $servicesData[$serviceLocale] ?? $servicesData['fr'];
+$serviceItems = $services['items'];
+$alignmentRoutes = (require __DIR__ . '/../../config/routes.php')['alignment']['universe-dev'];
+$qaBasePath = '/' . $serviceLocale . '/' . ($alignmentRoutes[$serviceLocale] ?? $alignmentRoutes['fr']);
+$contactMail = 'contact@goffprod.com';
 ?>
 
 <nav class="side-nav">
@@ -72,6 +68,10 @@ $disagreeLabel = $themeChoiceLabels[$themeLocale]['disagree'] ?? $themeChoiceLab
             <?= __('home.text_1') ?>
         </p>
 
+        <p class="text-base md:text-lg text-slate-400 mt-4 leading-relaxed max-w-xl">
+            <?= __('home.text_2') ?>
+        </p>
+
         <a href="#themes" class="scroll-indicator mt-10" aria-label="<?= __('home.link_portfolio_text') ?>">
             <span class="scroll-indicator__line" aria-hidden="true"></span>
             <svg class="scroll-indicator__arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -86,34 +86,38 @@ $disagreeLabel = $themeChoiceLabels[$themeLocale]['disagree'] ?? $themeChoiceLab
 
 
 
-<section id="themes" class="theme-scroll-shell" data-theme-scroller data-theme-count="<?= count($themeUniverses) ?>">
+<section id="themes" class="theme-scroll-shell" data-theme-scroller data-theme-count="<?= count($serviceItems) ?>">
     <div class="theme-scroll-stage">
         <div class="theme-scroll-copy" aria-live="polite">
-            <?php foreach ($themeUniverses as $index => $theme): ?>
+            <?php foreach ($serviceItems as $index => $service): ?>
                 <?php
-                    $themePath = (string)($theme['path'] ?? '#');
-                    $separator = strpos($themePath, '?') === false ? '?' : '&';
-                    $agreeHref = $themePath . $separator . 'a=agree';
-                    $disagreeHref = $themePath . $separator . 'a=disagree';
+                    $serviceTitle = (string)$service['title'];
+                    $contactHref = 'mailto:' . $contactMail . '?subject=' . rawurlencode('MinusVortex — ' . $serviceTitle);
+                    $qaHref = $service['qa'] !== null ? $qaBasePath . '?s=' . rawurlencode((string)$service['qa']) : null;
                 ?>
                 <article class="theme-panel<?= $index === 0 ? ' is-active' : '' ?>"
                          data-theme-panel
-                         data-theme-index="<?= $index ?>">
+                         data-theme-index="<?= $index ?>"
+                         data-service="<?= htmlspecialchars((string)$service['id'], ENT_QUOTES, 'UTF-8') ?>">
                     <div class="theme-panel__drift">
                         <div class="theme-panel__markers" aria-hidden="true">
-                            <?php foreach ($themeUniverses as $markerIndex => $markerTheme): ?>
+                            <?php foreach ($serviceItems as $markerIndex => $markerService): ?>
                                 <span class="<?= $markerIndex === $index ? 'is-current' : '' ?>"></span>
                             <?php endforeach; ?>
                         </div>
-                        <h2><?= htmlspecialchars((string)($theme['label'] ?? ''), ENT_QUOTES, 'UTF-8') ?></h2>
-                        <p><?= htmlspecialchars((string)($theme['statement'] ?? ''), ENT_QUOTES, 'UTF-8') ?></p>
+                        <h2><?= htmlspecialchars($serviceTitle, ENT_QUOTES, 'UTF-8') ?></h2>
+                        <p><?= htmlspecialchars((string)$service['text'], ENT_QUOTES, 'UTF-8') ?></p>
                         <div class="theme-panel__actions">
-                            <a href="<?= htmlspecialchars($disagreeHref, ENT_QUOTES, 'UTF-8') ?>"
-                               class="theme-choice theme-choice--muted"
-                               data-theme-link><?= htmlspecialchars($disagreeLabel, ENT_QUOTES, 'UTF-8') ?></a>
-                            <a href="<?= htmlspecialchars($agreeHref, ENT_QUOTES, 'UTF-8') ?>"
-                               class="theme-choice"
-                               data-theme-link><?= htmlspecialchars($agreeLabel, ENT_QUOTES, 'UTF-8') ?></a>
+                            <?php if ($qaHref !== null): ?>
+                                <a href="<?= htmlspecialchars($contactHref, ENT_QUOTES, 'UTF-8') ?>"
+                                   class="theme-choice theme-choice--muted"><?= htmlspecialchars($services['ui']['contact'], ENT_QUOTES, 'UTF-8') ?></a>
+                                <a href="<?= htmlspecialchars($qaHref, ENT_QUOTES, 'UTF-8') ?>"
+                                   class="theme-choice"
+                                   data-theme-link><?= htmlspecialchars($services['ui']['qa'], ENT_QUOTES, 'UTF-8') ?></a>
+                            <?php else: ?>
+                                <a href="<?= htmlspecialchars($contactHref, ENT_QUOTES, 'UTF-8') ?>"
+                                   class="theme-choice"><?= htmlspecialchars($services['ui']['contact'], ENT_QUOTES, 'UTF-8') ?></a>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </article>

@@ -2,6 +2,6 @@
 
 return [
     'blog_cta' => 'Ir mais longe',
-    'footer_tagline' => 'Desenvolvimento de software sóbrio e de alta performance',
-    'meta_description' => 'MinusVortex — menos ruído, mais controlo. Redução do caos técnico: dívida, complexidade inútil, dependências. Sistemas sóbrios, rápidos e duradouros.',
+    'footer_tagline' => 'Engenharia de software PHP / Laravel',
+    'meta_description' => 'MinusVortex — engenharia de software PHP/Laravel. Recuperação de legacy, aplicações de negócio, performance, integrações e reforço para agências, remotamente a partir de Lisboa.',
 ];

@@ -3,8 +3,8 @@
 // Per-page <title> and meta descriptions for indexable pages.
 // Flat "page.field" keys because Lang::get only splits on the first dot.
 return [
-    'home.title' => 'MinusVortex — Less noise, more ownership | Sober software development',
-    'home.description' => 'MinusVortex reduces technical chaos — debt, needless complexity, dependencies — building sober, fast and durable systems you keep ownership of.',
+    'home.title' => 'MinusVortex — PHP / Laravel software engineering | Legacy, business apps, performance',
+    'home.description' => 'MinusVortex takes over, modernizes and stabilises your PHP/Laravel applications: legacy, business apps, performance, ERP and API integrations, agency reinforcement.',
 
     'portfolio.title' => 'Portfolio — Projects & work | MinusVortex',
     'portfolio.description' => 'MinusVortex projects and work: sober, fast and maintainable systems, built to last without hidden debt.',
