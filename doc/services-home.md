@@ -21,4 +21,4 @@ Le Q&R s'ouvre via `/<lang>/<slug alignement développement>?s=<scénario>` : `p
 
 Santé, Business, Mobilité, Qualité, Formation et IA ne sont plus affichés sur la home. Leurs pages d'alignement, leurs routes et leur contenu (`app/data/prequal_tree.php`) restent en place pour ne casser aucun lien ni l'indexation. À réintégrer ailleurs (blog, page dédiée) ou à retirer plus tard, par décision explicite.
 
-Contact actuel : `contact@goffprod.com` (mailto).
+Contact actuel : `thomasgoffinetfr@gmail.com` (mailto).

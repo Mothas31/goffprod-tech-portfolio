@@ -2,7 +2,7 @@
   const root = document.getElementById('prequal-module-root');
   if (!root || root.dataset.loaded === '1') return;
 
-  const ASSET_VERSION = '20260929-qa-service-2';
+  const ASSET_VERSION = '20260929-contact-mail';
   const locale = (document.documentElement.lang || 'fr').slice(0, 2).toLowerCase();
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const presetThemeId = root.dataset.prequalTheme || '';
@@ -674,7 +674,7 @@
 
     async function renderResult() {
       const profile = config.profiles[dominantSignal()] || config.profiles.focus;
-      const mailHref = `mailto:contact@goffprod.com?subject=${encodeURIComponent(config.mailSubject)}&body=${businessMailBody(profile)}`;
+      const mailHref = `mailto:thomasgoffinetfr@gmail.com?subject=${encodeURIComponent(config.mailSubject)}&body=${businessMailBody(profile)}`;
       const token = ++renderToken;
 
       gameEl.classList.add('business-game--result');
@@ -969,7 +969,7 @@
         '',
         ...answers.slice(1).map((answer) => `- ${answer.label}`)
       ].join('\n'));
-      const contactHref = `mailto:contact@goffprod.com?subject=${encodeURIComponent(`${ui.serviceMailSubject} — ${scenario}`)}&body=${body}`;
+      const contactHref = `mailto:thomasgoffinetfr@gmail.com?subject=${encodeURIComponent(`${ui.serviceMailSubject} — ${scenario}`)}&body=${body}`;
       const answerList = answers.slice(1).map((answer) => `<li>${answer.label}</li>`).join('');
 
       questionEl.textContent = ui.serviceResultTitle || '';
@@ -998,8 +998,8 @@
       }
       const verdict = resolveVerdict(tree, score);
       const orientation = selectedUniverse?.orientation || '';
-      const contactHref = `mailto:contact@goffprod.com?subject=${encodeURIComponent(tree.ui.mailSubject)}&body=${toMailBody(answers, score, tree, selectedUniverse?.label || '')}`;
-      const referralHref = `mailto:contact@goffprod.com?subject=${encodeURIComponent(`${tree.ui.mailSubject} - Orientation`)}&body=${encodeURIComponent(`${tree.ui.resultTitle}: ${score}%\n${orientation}`)}`;
+      const contactHref = `mailto:thomasgoffinetfr@gmail.com?subject=${encodeURIComponent(tree.ui.mailSubject)}&body=${toMailBody(answers, score, tree, selectedUniverse?.label || '')}`;
+      const referralHref = `mailto:thomasgoffinetfr@gmail.com?subject=${encodeURIComponent(`${tree.ui.mailSubject} - Orientation`)}&body=${encodeURIComponent(`${tree.ui.resultTitle}: ${score}%\n${orientation}`)}`;
 
       const answerList = answers.map((answer) => {
         if (!answer.maxPoints) return `<li>${answer.label}</li>`;

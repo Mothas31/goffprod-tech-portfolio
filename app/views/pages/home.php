@@ -21,7 +21,7 @@ $services = $servicesData[$serviceLocale] ?? $servicesData['fr'];
 $serviceItems = $services['items'];
 $alignmentRoutes = (require __DIR__ . '/../../config/routes.php')['alignment']['universe-dev'];
 $qaBasePath = '/' . $serviceLocale . '/' . ($alignmentRoutes[$serviceLocale] ?? $alignmentRoutes['fr']);
-$contactMail = 'contact@goffprod.com';
+$contactMail = 'thomasgoffinetfr@gmail.com';
 ?>
 
 <nav class="side-nav">
