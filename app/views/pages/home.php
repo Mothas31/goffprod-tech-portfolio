@@ -110,13 +110,17 @@ $contactMail = 'thomasgoffinetfr@gmail.com';
                         <div class="theme-panel__actions">
                             <?php if ($qaHref !== null): ?>
                                 <a href="<?= htmlspecialchars($contactHref, ENT_QUOTES, 'UTF-8') ?>"
-                                   class="theme-choice theme-choice--muted"><?= htmlspecialchars($services['ui']['contact'], ENT_QUOTES, 'UTF-8') ?></a>
+                                   class="theme-choice theme-choice--muted"
+                                   data-contact-open
+                                   data-contact-topic="<?= htmlspecialchars($serviceTitle, ENT_QUOTES, 'UTF-8') ?>"><?= htmlspecialchars($services['ui']['contact'], ENT_QUOTES, 'UTF-8') ?></a>
                                 <a href="<?= htmlspecialchars($qaHref, ENT_QUOTES, 'UTF-8') ?>"
                                    class="theme-choice"
                                    data-theme-link><?= htmlspecialchars($services['ui']['qa'], ENT_QUOTES, 'UTF-8') ?></a>
                             <?php else: ?>
                                 <a href="<?= htmlspecialchars($contactHref, ENT_QUOTES, 'UTF-8') ?>"
-                                   class="theme-choice"><?= htmlspecialchars($services['ui']['contact'], ENT_QUOTES, 'UTF-8') ?></a>
+                                   class="theme-choice"
+                                   data-contact-open
+                                   data-contact-topic="<?= htmlspecialchars($serviceTitle, ENT_QUOTES, 'UTF-8') ?>"><?= htmlspecialchars($services['ui']['contact'], ENT_QUOTES, 'UTF-8') ?></a>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -141,7 +145,50 @@ $contactMail = 'thomasgoffinetfr@gmail.com';
         <div class="theme-scroll-scene-space" aria-hidden="true"></div>
     </div>
 </section>
- 
+
+<dialog class="contact-dialog" id="contact-dialog" aria-labelledby="contact-dialog-title" data-lang="<?= htmlspecialchars($serviceLocale, ENT_QUOTES, 'UTF-8') ?>">
+    <button type="button" class="contact-dialog__close" data-contact-close aria-label="<?= htmlspecialchars($services['ui']['close'], ENT_QUOTES, 'UTF-8') ?>">×</button>
+    <p class="contact-dialog__kicker"><?= htmlspecialchars($services['ui']['contact'], ENT_QUOTES, 'UTF-8') ?></p>
+    <h2 class="contact-dialog__title" id="contact-dialog-title"></h2>
+    <div data-contact-form></div>
+</dialog>
+
+<script>
+  // "Me contacter" : formulaire dans une fenêtre ; sans JS, le lien mailto reste.
+  (() => {
+    const dialog = document.getElementById('contact-dialog');
+    if (!dialog || typeof dialog.showModal !== 'function') return;
+    const titleEl = dialog.querySelector('#contact-dialog-title');
+    const formEl = dialog.querySelector('[data-contact-form]');
+
+    function withContactForm(callback) {
+      if (window.MinusContactForm) return callback();
+      const script = document.createElement('script');
+      script.src = '/assets/js/contact-form.js?v=20260929-contact-form';
+      script.onload = callback;
+      document.body.appendChild(script);
+    }
+
+    document.addEventListener('click', (event) => {
+      const link = event.target instanceof Element ? event.target.closest('[data-contact-open]') : null;
+      if (!link) return;
+      event.preventDefault();
+      const topic = link.dataset.contactTopic || '';
+      withContactForm(() => {
+        titleEl.textContent = topic;
+        window.MinusContactForm.mount(formEl, { topic, lang: dialog.dataset.lang });
+        dialog.showModal();
+        formEl.querySelector('input[type="email"]')?.focus();
+      });
+    });
+
+    dialog.querySelector('[data-contact-close]').addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+  })();
+</script>
+
 <script>
   (() => {
     const loaded = new Set();
@@ -287,6 +334,6 @@ $contactMail = 'thomasgoffinetfr@gmail.com';
     if (!prefersReducedMotion) {
       scheduleWork(() => loadScript('/assets/js/minus-system-scene.js', 'module'), 1200);
     }
-    loadScript('/assets/js/theme-scroller.js?v=20260713-horizontal-only');
+    loadScript('/assets/js/theme-scroller.js?v=20260929-contact-dialog');
   })();
 </script>

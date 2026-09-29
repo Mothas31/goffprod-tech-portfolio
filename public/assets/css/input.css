@@ -1085,3 +1085,140 @@ html.warp-arrive::before {
     }
 }
  
+
+/* Formulaire de contact (home et fin de questionnaire) */
+.contact-form {
+    display: grid;
+    gap: 1rem;
+    max-width: 34rem;
+}
+
+.contact-form__field {
+    display: grid;
+    gap: 0.4rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.contact-form__field input,
+.contact-form__field textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 0.7rem;
+    background: rgba(255, 255, 255, 0.04);
+    color: #fff;
+    font: inherit;
+    font-weight: 400;
+    resize: vertical;
+}
+
+.contact-form__field input:focus,
+.contact-form__field textarea:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.contact-form__field textarea::placeholder {
+    color: rgba(255, 255, 255, 0.32);
+}
+
+.contact-form__trap {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.contact-form__submit {
+    justify-self: start;
+    padding: 0.85rem 1.6rem;
+    border: 0;
+    border-radius: 999px;
+    background: #fff;
+    color: #000;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.contact-form__submit:hover {
+    background: rgba(255, 255, 255, 0.86);
+}
+
+.contact-form__submit:disabled {
+    opacity: 0.6;
+    cursor: default;
+}
+
+.contact-form__privacy {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 0.8rem;
+}
+
+.contact-form__status {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+}
+
+.contact-form__status.is-error {
+    color: #fca5a5;
+}
+
+.contact-form__success {
+    margin: 0;
+    color: #fff;
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+.contact-dialog {
+    width: min(36rem, calc(100vw - 2rem));
+    max-height: calc(100svh - 2rem);
+    margin: auto;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 1.2rem;
+    background: #0b0b0b;
+    color: #fff;
+    overflow-y: auto;
+}
+
+.contact-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(4px);
+}
+
+.contact-dialog__close {
+    position: absolute;
+    top: 0.8rem;
+    right: 1rem;
+    border: 0;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.8rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.contact-dialog__close:hover {
+    color: #fff;
+}
+
+.contact-dialog__kicker {
+    margin: 0 0 0.4rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.8rem;
+}
+
+.contact-dialog__title {
+    margin: 0 2rem 1.5rem 0;
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    font-weight: 800;
+    line-height: 1.15;
+}

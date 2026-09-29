@@ -1824,3 +1824,7 @@ button.business-network__trigger:focus-visible {
     margin-right: 0;
   }
 }
+
+.prequal-surface--alignment .prequal-widget__contact {
+  margin-top: 1.8rem;
+}

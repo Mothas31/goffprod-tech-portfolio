@@ -2,7 +2,9 @@
   const root = document.getElementById('prequal-module-root');
   if (!root || root.dataset.loaded === '1') return;
 
-  const ASSET_VERSION = '20260929-contact-mail';
+  const ASSET_VERSION = '20260929-contact-form';
+  // Adresse de contact unique (contact@goffprod.com n'existe pas).
+  const CONTACT_MAIL = 'thomasgoffinetfr@gmail.com';
   const locale = (document.documentElement.lang || 'fr').slice(0, 2).toLowerCase();
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const presetThemeId = root.dataset.prequalTheme || '';
@@ -674,7 +676,7 @@
 
     async function renderResult() {
       const profile = config.profiles[dominantSignal()] || config.profiles.focus;
-      const mailHref = `mailto:thomasgoffinetfr@gmail.com?subject=${encodeURIComponent(config.mailSubject)}&body=${businessMailBody(profile)}`;
+      const mailHref = `mailto:${CONTACT_MAIL}?subject=${encodeURIComponent(config.mailSubject)}&body=${businessMailBody(profile)}`;
       const token = ++renderToken;
 
       gameEl.classList.add('business-game--result');
@@ -964,25 +966,45 @@
       const ui = tree.ui;
       const message = score < 50 ? ui.serviceResultLow : (score < 80 ? ui.serviceResultMid : ui.serviceResultHigh);
       const scenario = answers[0]?.label || '';
-      const body = encodeURIComponent([
-        scenario,
-        '',
-        ...answers.slice(1).map((answer) => `- ${answer.label}`)
-      ].join('\n'));
-      const contactHref = `mailto:thomasgoffinetfr@gmail.com?subject=${encodeURIComponent(`${ui.serviceMailSubject} — ${scenario}`)}&body=${body}`;
-      const answerList = answers.slice(1).map((answer) => `<li>${answer.label}</li>`).join('');
+      const answerLabels = answers.slice(1).map((answer) => answer.label);
+      const answerList = answerLabels.map((label) => `<li>${label}</li>`).join('');
+      const body = encodeURIComponent([scenario, '', ...answerLabels.map((label) => `- ${label}`)].join('\n'));
+      const contactHref = `mailto:${CONTACT_MAIL}?subject=${encodeURIComponent(`${ui.serviceMailSubject} — ${scenario}`)}&body=${body}`;
 
       questionEl.textContent = ui.serviceResultTitle || '';
+      // Le formulaire remplace le lien mailto ; celui-ci reste si le module ne charge pas.
       optionsEl.innerHTML = `
         <div class="prequal-widget__result prequal-widget__result--service">
           <p>${message}</p>
           <ul>${answerList}</ul>
-          <div class="prequal-widget__result-actions">
-            <a class="prequal-widget__cta" href="${contactHref}">${ui.serviceCta}</a>
+          <div class="prequal-widget__contact" data-service-contact>
+            <div class="prequal-widget__result-actions">
+              <a class="prequal-widget__cta" href="${contactHref}">${ui.serviceCta}</a>
+            </div>
+            <p class="prequal-widget__result-note">${ui.serviceNote || ''}</p>
           </div>
-          <p class="prequal-widget__result-note">${ui.serviceNote || ''}</p>
         </div>
       `;
+
+      const contactEl = optionsEl.querySelector('[data-service-contact]');
+      loadContactForm(() => {
+        window.MinusContactForm.mount(contactEl, {
+          topic: scenario,
+          answers: answerLabels,
+          lang: locale
+        });
+      });
+    }
+
+    function loadContactForm(callback) {
+      if (window.MinusContactForm) {
+        callback();
+        return;
+      }
+      const script = document.createElement('script');
+      script.src = `/assets/js/contact-form.js?v=${ASSET_VERSION}`;
+      script.onload = callback;
+      document.body.appendChild(script);
     }
 
     function renderResult() {
@@ -998,8 +1020,8 @@
       }
       const verdict = resolveVerdict(tree, score);
       const orientation = selectedUniverse?.orientation || '';
-      const contactHref = `mailto:thomasgoffinetfr@gmail.com?subject=${encodeURIComponent(tree.ui.mailSubject)}&body=${toMailBody(answers, score, tree, selectedUniverse?.label || '')}`;
-      const referralHref = `mailto:thomasgoffinetfr@gmail.com?subject=${encodeURIComponent(`${tree.ui.mailSubject} - Orientation`)}&body=${encodeURIComponent(`${tree.ui.resultTitle}: ${score}%\n${orientation}`)}`;
+      const contactHref = `mailto:${CONTACT_MAIL}?subject=${encodeURIComponent(tree.ui.mailSubject)}&body=${toMailBody(answers, score, tree, selectedUniverse?.label || '')}`;
+      const referralHref = `mailto:${CONTACT_MAIL}?subject=${encodeURIComponent(`${tree.ui.mailSubject} - Orientation`)}&body=${encodeURIComponent(`${tree.ui.resultTitle}: ${score}%\n${orientation}`)}`;
 
       const answerList = answers.map((answer) => {
         if (!answer.maxPoints) return `<li>${answer.label}</li>`;

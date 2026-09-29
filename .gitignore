@@ -7,3 +7,4 @@
 /storage/database/*.sqlite-wal
 /storage/logs/*.log
 .codex
+/storage/contact/

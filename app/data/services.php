@@ -9,6 +9,7 @@ return [
         'ui' => [
             'qa' => 'Faire le point (3 min)',
             'contact' => 'Me contacter',
+            'close' => 'Fermer',
         ],
         'items' => [
             [
@@ -53,6 +54,7 @@ return [
         'ui' => [
             'qa' => 'Quick check (3 min)',
             'contact' => 'Contact me',
+            'close' => 'Close',
         ],
         'items' => [
             [
@@ -97,6 +99,7 @@ return [
         'ui' => [
             'qa' => 'Hacer balance (3 min)',
             'contact' => 'Contactarme',
+            'close' => 'Cerrar',
         ],
         'items' => [
             [
@@ -141,6 +144,7 @@ return [
         'ui' => [
             'qa' => 'Fazer o ponto (3 min)',
             'contact' => 'Contactar-me',
+            'close' => 'Fechar',
         ],
         'items' => [
             [

@@ -91,6 +91,8 @@
   }
 
   function maybeStep(direction, event) {
+    // Fenêtre de contact ouverte : le carrousel ne bouge pas.
+    if (document.querySelector('dialog[open]')) return;
     if (!isShellFocused()) return;
 
     const atStart = activeIndex === 0;
