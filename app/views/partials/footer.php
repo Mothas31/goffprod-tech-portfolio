@@ -1,3 +1,10 @@
+<?php
+$sigmaVisionUrl = match (Lang::locale()) {
+    'en', 'pt' => 'https://sigma-vision.com/en/sustainable-digital.html',
+    'es' => 'https://sigma-vision.com/es/digital-sostenible.html',
+    default => 'https://sigma-vision.com/fr/numerique-durable/conception-logicielle.html',
+};
+?>
 <footer id="site-footer" class="relative z-10 bg-black text-center px-6 py-10">
     <div class="max-w-3xl mx-auto border-t border-white/25 pt-8">
         <nav class="mb-4">
@@ -5,7 +12,7 @@
         </nav>
         <p class="text-zinc-500 text-sm mb-2">
             <?= htmlspecialchars(__('common.network_membership'), ENT_QUOTES, 'UTF-8') ?>
-            <a href="https://sigma-vision.com/fr/numerique-durable/conception-logicielle.html" target="_blank" rel="noopener noreferrer" class="text-zinc-300 hover:text-white underline underline-offset-2">SIGMA-VISION</a>.
+            <a href="<?= htmlspecialchars($sigmaVisionUrl, ENT_QUOTES, 'UTF-8') ?>" target="_blank" rel="noopener noreferrer" class="text-zinc-300 hover:text-white underline underline-offset-2">SIGMA-VISION</a>.
         </p>
         <p class="text-zinc-500 text-sm">&copy; <?= date('Y') ?> MinusVortex - <?= __('common.footer_tagline') ?></p>
     </div>
