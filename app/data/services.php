@@ -53,7 +53,7 @@ return [
     'en' => [
         'ui' => [
             'qa' => 'Quick check (3 min)',
-            'contact' => 'Contact me',
+            'contact' => 'Contact us',
             'close' => 'Close',
         ],
         'items' => [
@@ -61,31 +61,31 @@ return [
                 'id' => 'legacy',
                 'qa' => 'legacy',
                 'title' => 'Legacy takeover and modernization',
-                'text' => 'Your PHP/Laravel application is ageing, every change costs more and nobody dares to touch it anymore. I take it over, map it and modernize it step by step, without a full rewrite.',
+                'text' => 'Your PHP/Laravel application is ageing, every change costs more and nobody dares to touch it anymore. We take it over, map it and modernize it step by step, without a full rewrite.',
             ],
             [
                 'id' => 'apps',
                 'qa' => 'launch',
                 'title' => 'Custom business applications',
-                'text' => 'An internal tool or a product that needs to grow: I turn the real need into Laravel features that are shipped, tested and maintainable.',
+                'text' => 'An internal tool or a product that needs to grow: we turn the real need into Laravel features that are shipped, tested and maintainable.',
             ],
             [
                 'id' => 'performance',
                 'qa' => 'performance',
                 'title' => 'Performance and reliability',
-                'text' => 'Slow pages, heavy SQL queries, stressful releases: I measure, fix what matters and secure operations (Linux, Nginx, deployment).',
+                'text' => 'Slow pages, heavy SQL queries, stressful releases: we measure, fix what matters and secure operations (Linux, Nginx, deployment).',
             ],
             [
                 'id' => 'integrations',
                 'qa' => null,
                 'title' => 'Integrations and migrations',
-                'text' => 'ERPs, accounting APIs, e-invoicing, third-party services: I connect your existing tools to new requirements without disrupting the way you work.',
+                'text' => 'ERPs, accounting APIs, e-invoicing, third-party services: we connect your existing tools to new requirements without disrupting the way you work.',
             ],
             [
                 'id' => 'reinforcement',
                 'qa' => null,
                 'title' => 'Laravel reinforcement for agencies',
-                'text' => 'Too many projects for your team? I work as a subcontractor or white-label developer on your PHP/Laravel projects, in English or French, remotely from Lisbon.',
+                'text' => 'Too many projects for your team? We work as a subcontractor or white-label development partner on your PHP/Laravel projects, in English or French, remotely from Lisbon.',
             ],
             [
                 'id' => 'ai',
@@ -98,7 +98,7 @@ return [
     'es' => [
         'ui' => [
             'qa' => 'Hacer balance (3 min)',
-            'contact' => 'Contactarme',
+            'contact' => 'Contáctanos',
             'close' => 'Cerrar',
         ],
         'items' => [
@@ -106,31 +106,31 @@ return [
                 'id' => 'legacy',
                 'qa' => 'legacy',
                 'title' => 'Recuperación y modernización de legacy',
-                'text' => 'Tu aplicación PHP/Laravel envejece, cada evolución cuesta más y nadie se atreve ya a tocarla. La retomo, la mapeo y la modernizo por etapas, sin reescribirlo todo.',
+                'text' => 'Tu aplicación PHP/Laravel envejece, cada evolución cuesta más y nadie se atreve ya a tocarla. La retomamos, la mapeamos y la modernizamos por etapas, sin reescribirlo todo.',
             ],
             [
                 'id' => 'apps',
                 'qa' => 'launch',
                 'title' => 'Aplicaciones de negocio a medida',
-                'text' => 'Una herramienta interna o un producto que debe evolucionar: convierto la necesidad real en funcionalidades Laravel entregadas, probadas y mantenibles.',
+                'text' => 'Una herramienta interna o un producto que debe evolucionar: convertimos la necesidad real en funcionalidades Laravel entregadas, probadas y mantenibles.',
             ],
             [
                 'id' => 'performance',
                 'qa' => 'performance',
                 'title' => 'Rendimiento y fiabilidad',
-                'text' => 'Páginas lentas, consultas SQL pesadas, puestas en producción estresantes: mido, corrijo lo que importa y aseguro la operación (Linux, Nginx, despliegue).',
+                'text' => 'Páginas lentas, consultas SQL pesadas, puestas en producción estresantes: medimos, corregimos lo que importa y aseguramos la operación (Linux, Nginx, despliegue).',
             ],
             [
                 'id' => 'integrations',
                 'qa' => null,
                 'title' => 'Integraciones y migraciones',
-                'text' => 'ERP, API contables, facturación electrónica, servicios de terceros: conecto tus herramientas existentes a las nuevas exigencias sin alterar tu forma de trabajar.',
+                'text' => 'ERP, API contables, facturación electrónica, servicios de terceros: conectamos tus herramientas existentes a las nuevas exigencias sin alterar tu forma de trabajar.',
             ],
             [
                 'id' => 'reinforcement',
                 'qa' => null,
                 'title' => 'Refuerzo Laravel para agencias',
-                'text' => '¿Demasiados proyectos para tu equipo? Intervengo como subcontratista o en marca blanca en tus proyectos PHP/Laravel, en francés o inglés, en remoto desde Lisboa.',
+                'text' => '¿Demasiados proyectos para tu equipo? Intervenimos como subcontratista o en marca blanca en tus proyectos PHP/Laravel, en francés o inglés, en remoto desde Lisboa.',
             ],
             [
                 'id' => 'ai',
@@ -143,7 +143,7 @@ return [
     'pt' => [
         'ui' => [
             'qa' => 'Fazer o ponto (3 min)',
-            'contact' => 'Contactar-me',
+            'contact' => 'Fale connosco',
             'close' => 'Fechar',
         ],
         'items' => [
@@ -151,31 +151,31 @@ return [
                 'id' => 'legacy',
                 'qa' => 'legacy',
                 'title' => 'Recuperação e modernização de legacy',
-                'text' => 'A sua aplicação PHP/Laravel está a envelhecer, cada evolução custa mais e já ninguém se atreve a mexer nela. Retomo-a, mapeio-a e modernizo-a por etapas, sem reescrever tudo.',
+                'text' => 'A sua aplicação PHP/Laravel está a envelhecer, cada evolução custa mais e já ninguém se atreve a mexer nela. Assumimo-la, mapeamo-la e modernizamo-la por etapas, sem reescrever tudo.',
             ],
             [
                 'id' => 'apps',
                 'qa' => 'launch',
                 'title' => 'Aplicações de negócio à medida',
-                'text' => 'Uma ferramenta interna ou um produto que precisa de evoluir: transformo a necessidade real em funcionalidades Laravel entregues, testadas e fáceis de manter.',
+                'text' => 'Uma ferramenta interna ou um produto que precisa de evoluir: transformamos a necessidade real em funcionalidades Laravel entregues, testadas e fáceis de manter.',
             ],
             [
                 'id' => 'performance',
                 'qa' => 'performance',
                 'title' => 'Performance e fiabilidade',
-                'text' => 'Páginas lentas, consultas SQL pesadas, entradas em produção stressantes: meço, corrijo o que importa e asseguro a operação (Linux, Nginx, deploy).',
+                'text' => 'Páginas lentas, consultas SQL pesadas, entradas em produção stressantes: medimos, corrigimos o que importa e asseguramos a operação (Linux, Nginx, deploy).',
             ],
             [
                 'id' => 'integrations',
                 'qa' => null,
                 'title' => 'Integrações e migrações',
-                'text' => 'ERP, API de contabilidade, faturação eletrónica, serviços de terceiros: ligo as suas ferramentas existentes às novas exigências sem alterar a forma como trabalha.',
+                'text' => 'ERP, API de contabilidade, faturação eletrónica, serviços de terceiros: ligamos as suas ferramentas existentes às novas exigências sem alterar a forma como trabalha.',
             ],
             [
                 'id' => 'reinforcement',
                 'qa' => null,
                 'title' => 'Reforço Laravel para agências',
-                'text' => 'Demasiados projetos para a sua equipa? Trabalho em subcontratação ou em white label nos seus projetos PHP/Laravel, em francês ou inglês, remotamente a partir de Lisboa.',
+                'text' => 'Demasiados projetos para a sua equipa? Trabalhamos em subcontratação ou como parceiro white label nos seus projetos PHP/Laravel, em francês ou inglês, remotamente a partir de Lisboa.',
             ],
             [
                 'id' => 'ai',

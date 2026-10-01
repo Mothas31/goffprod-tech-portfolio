@@ -23,8 +23,9 @@
     let rafId = 0;
     let lastFrameTime = 0;
 
-    function resize() {
+    function resizeAndMeasure() {
       const rect = switcher.getBoundingClientRect();
+      const logoRect = logo.getBoundingClientRect();
       width = Math.max(1, Math.floor(rect.width));
       height = Math.max(1, Math.floor(rect.height));
       dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -35,6 +36,11 @@
       canvas.style.height = `${height}px`;
 
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      cachedSwitcherRect = rect;
+      cachedLogoTarget = {
+        x: logoRect.left + logoRect.width / 2,
+        y: logoRect.top + logoRect.height / 2,
+      };
     }
 
     let cachedSwitcherRect = { left: 0, top: 0 };
@@ -42,8 +48,9 @@
     let rectRaf = 0;
 
     function updateCachedRects() {
-      cachedSwitcherRect = switcher.getBoundingClientRect();
+      const switcherRect = switcher.getBoundingClientRect();
       const logoRect = logo.getBoundingClientRect();
+      cachedSwitcherRect = switcherRect;
       cachedLogoTarget = {
         x: logoRect.left + logoRect.width / 2,
         y: logoRect.top + logoRect.height / 2,
@@ -168,11 +175,9 @@
       if (reducedMotionQuery.matches) drawStatic();
     }
 
-    resize();
-    updateCachedRects();
+    resizeAndMeasure();
     window.addEventListener('resize', () => {
-      resize();
-      requestRectUpdate();
+      resizeAndMeasure();
     }, { passive: true });
     window.addEventListener('scroll', requestRectUpdate, { passive: true });
     document.addEventListener('visibilitychange', syncState);

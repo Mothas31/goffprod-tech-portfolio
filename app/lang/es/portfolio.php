@@ -2,6 +2,6 @@
 
 return [
     'title' => 'Portafolio',
-    'title_h1' => 'Mi portafolio',
-    'text_1' => 'Hola, aquí encontrarás una selección de mis proyectos.',
+    'title_h1' => 'Nuestro portafolio',
+    'text_1' => 'Una selección de proyectos de MinusVortex.',
 ];

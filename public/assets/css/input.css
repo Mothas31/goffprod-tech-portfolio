@@ -335,7 +335,6 @@ html.warp-arrive::before {
 .theme-scroll-copy {
     position: relative;
     min-height: 30rem;
-    padding-bottom: 2rem;
 }
 
 .theme-panel {
@@ -508,12 +507,11 @@ html.warp-arrive::before {
 }
 
 .theme-scroll-hint {
-    position: absolute;
-    left: 0;
-    bottom: 0.2rem;
+    position: relative;
     display: flex;
     align-items: center;
     gap: 0.6rem;
+    margin-top: 1.25rem;
     opacity: 0.85;
     transition: opacity 0.5s ease;
 }

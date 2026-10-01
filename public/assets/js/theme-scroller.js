@@ -98,6 +98,7 @@
     const atStart = activeIndex === 0;
     const atEnd = activeIndex === panels.length - 1;
     if ((direction < 0 && atStart) || (direction > 0 && atEnd)) return;
+    if (!event.cancelable) return;
 
     event.preventDefault();
     step(direction);
