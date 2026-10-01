@@ -5,7 +5,7 @@
         </nav>
         <p class="text-zinc-500 text-sm mb-2">
             <?= htmlspecialchars(__('common.network_membership'), ENT_QUOTES, 'UTF-8') ?>
-            <a href="https://sigma-vision.com/fr/" target="_blank" rel="noopener noreferrer" class="text-zinc-300 hover:text-white underline underline-offset-2">SIGMA-VISION</a>.
+            <a href="https://sigma-vision.com/fr/numerique-durable/conception-logicielle.html" target="_blank" rel="noopener noreferrer" class="text-zinc-300 hover:text-white underline underline-offset-2">SIGMA-VISION</a>.
         </p>
         <p class="text-zinc-500 text-sm">&copy; <?= date('Y') ?> MinusVortex - <?= __('common.footer_tagline') ?></p>
     </div>
