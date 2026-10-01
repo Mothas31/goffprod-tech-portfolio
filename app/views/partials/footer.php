@@ -3,6 +3,10 @@
         <nav class="mb-4">
             <a href="<?= htmlspecialchars(Seo::pathFor('blog', Lang::locale()), ENT_QUOTES, 'UTF-8') ?>" class="text-white text-base font-medium hover:text-zinc-300"><?= htmlspecialchars(__('common.blog_cta'), ENT_QUOTES, 'UTF-8') ?> &rarr;</a>
         </nav>
+        <p class="text-zinc-500 text-sm mb-2">
+            <?= htmlspecialchars(__('common.network_membership'), ENT_QUOTES, 'UTF-8') ?>
+            <a href="https://sigma-vision.com/fr/" target="_blank" rel="noopener noreferrer" class="text-zinc-300 hover:text-white underline underline-offset-2">SIGMA-VISION</a>.
+        </p>
         <p class="text-zinc-500 text-sm">&copy; <?= date('Y') ?> MinusVortex - <?= __('common.footer_tagline') ?></p>
     </div>
 </footer>

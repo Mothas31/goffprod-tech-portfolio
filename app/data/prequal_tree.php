@@ -29,9 +29,9 @@ return [
             'bookButton' => 'Découvrir le livre',
             // Parcours ouvert depuis un service de la home (?s=) : pas de score, toujours un contact.
             'serviceResultTitle' => 'Ce que vos réponses montrent',
-            'serviceResultLow' => 'Plusieurs signaux montrent que ce sujet vous coûte déjà du temps ou de l’argent. C’est précisément le type de situation sur laquelle j’interviens : parlons-en, sans engagement.',
+            'serviceResultLow' => 'Plusieurs signaux montrent que ce sujet vous coûte déjà du temps ou de l’argent. C’est précisément le type de situation sur laquelle nous intervenons : parlons-en, sans engagement.',
             'serviceResultMid' => 'Une partie est maîtrisée, mais certaines zones restent fragiles. Un regard extérieur peut vous aider à décider quoi traiter en premier.',
-            'serviceResultHigh' => 'Votre base est solide. Si un projet précis se présente, je peux vous aider à la garder saine en le faisant évoluer.',
+            'serviceResultHigh' => 'Votre base est solide. Si un projet précis se présente, nous pouvons vous aider à la garder saine en le faisant évoluer.',
             'serviceCta' => 'Discuter de ma situation',
             'serviceNote' => 'Vos réponses sont jointes au message : vous n’aurez pas à les réexpliquer.',
             'serviceMailSubject' => 'Échange MinusVortex',
