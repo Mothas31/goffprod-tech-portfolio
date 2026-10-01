@@ -30,8 +30,8 @@ return [
     'alignment.universe-ai.title' => 'Alineación IA — Adoptar la IA sin dependencia | MinusVortex',
     'alignment.universe-ai.description' => 'Diagnóstico de alineación de IA: evalúa en pocas preguntas dónde la IA añade ruido o dependencia a tu sistema, y la palanca más sobria para mantener el control.',
 
-    'blog.title' => 'Señales — Sobriedad de software y control técnico | MinusVortex',
-    'blog.h1' => 'Señales',
+    'blog.title' => 'Señales MinusVortex — Sobriedad de software y control técnico',
+    'blog.h1' => 'Señales MinusVortex',
     'blog.description' => 'Artículos sobre la reducción del caos técnico: deuda, complejidad inútil, dependencias. Prácticas concretas para sistemas sobrios y duraderos.',
 
     'payment.title' => 'Pago | MinusVortex',
