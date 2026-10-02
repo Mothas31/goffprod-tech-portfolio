@@ -2,7 +2,7 @@
   const root = document.getElementById('prequal-module-root');
   if (!root || root.dataset.loaded === '1') return;
 
-  const ASSET_VERSION = '20260929-contact-form';
+  const ASSET_VERSION = '20261002-development-memory';
   // Adresse de contact unique (contact@goffprod.com n'existe pas).
   const CONTACT_MAIL = 'thomasgoffinetfr@gmail.com';
   const locale = (document.documentElement.lang || 'fr').slice(0, 2).toLowerCase();
@@ -815,6 +815,10 @@
     const questionEl = root.querySelector('[data-prequal-question]');
     const optionsEl = root.querySelector('[data-prequal-options]');
     const progressEl = root.querySelector('[data-prequal-progress]');
+    const memoryEl = root.querySelector('[data-prequal-memory]');
+    const memoryTitleEl = root.querySelector('[data-prequal-memory-title]');
+    const memoryIntroEl = root.querySelector('[data-prequal-memory-intro]');
+    const memoryListEl = root.querySelector('[data-prequal-memory-list]');
     if (!widgetEl || !universeNodesEl || !quizEl || !questionEl || !optionsEl) {
       return false;
     }
@@ -830,6 +834,7 @@
     let questionToken = 0;
     const history = [];
     const answers = [];
+    let developmentMemoryStarted = false;
 
     function renderProgress() {
       if (!progressEl) return;
@@ -857,6 +862,30 @@
       }
 
       return token === getToken();
+    }
+
+    function renderDevelopmentMemory() {
+      if (!memoryEl || !memoryTitleEl || !memoryIntroEl || !memoryListEl) return;
+
+      const enabled = developmentMemoryStarted && selectedUniverse?.id === 'universe-dev';
+      widgetEl.classList.toggle('prequal-widget--memory', enabled);
+      memoryEl.hidden = !enabled;
+      if (!enabled) return;
+
+      memoryTitleEl.textContent = tree.ui.memoryTitle || '';
+      memoryIntroEl.textContent = tree.ui.memoryIntro || '';
+      memoryListEl.innerHTML = answers.map((answer, answerIndex) => {
+        const nodeId = history[answerIndex];
+        const node = nodeId?.startsWith('dev_') ? tree.nodes[nodeId] : null;
+        if (!node || answer.maxPoints <= 0) return '';
+
+        return `
+          <li class="prequal-memory__item">
+            <span class="prequal-memory__step">${escapeHtml(node.text || '')}</span>
+            <p>${escapeHtml(answer.label)}</p>
+          </li>
+        `;
+      }).join('');
     }
 
     function getNode(nodeId) {
@@ -952,6 +981,8 @@
         points: Number(option.points || 0),
         maxPoints: Number(option.maxPoints || 0)
       });
+      if (currentNodeId === 'dev_scenario') developmentMemoryStarted = true;
+      renderDevelopmentMemory();
 
       if (option.next === 'result') {
         renderProgress();
@@ -969,7 +1000,9 @@
       const message = score < 50 ? ui.serviceResultLow : (score < 80 ? ui.serviceResultMid : ui.serviceResultHigh);
       const scenario = answers[0]?.label || '';
       const answerLabels = answers.slice(1).map((answer) => answer.label);
-      const answerList = answerLabels.map((label) => `<li>${label}</li>`).join('');
+      const answerList = memoryStartedForDevelopment()
+        ? ''
+        : `<ul>${answerLabels.map((label) => `<li>${label}</li>`).join('')}</ul>`;
       const body = encodeURIComponent([scenario, '', ...answerLabels.map((label) => `- ${label}`)].join('\n'));
       const contactHref = `mailto:${CONTACT_MAIL}?subject=${encodeURIComponent(`${ui.serviceMailSubject} — ${scenario}`)}&body=${body}`;
 
@@ -978,7 +1011,7 @@
       optionsEl.innerHTML = `
         <div class="prequal-widget__result prequal-widget__result--service">
           <p>${message}</p>
-          <ul>${answerList}</ul>
+          ${answerList}
           <div class="prequal-widget__contact" data-service-contact>
             <div class="prequal-widget__result-actions">
               <a class="prequal-widget__cta" href="${contactHref}">${ui.serviceCta}</a>
@@ -1123,6 +1156,8 @@
       questionToken += 1;
       history.length = 0;
       answers.length = 0;
+      developmentMemoryStarted = false;
+      renderDevelopmentMemory();
       renderProgress();
       questionEl.textContent = '';
       optionsEl.innerHTML = '';
@@ -1134,16 +1169,24 @@
       return tree.nodes.dev_scenario?.options?.find((option) => option.tag === `scenario-${presetScenario}`) || null;
     }
 
+    function memoryStartedForDevelopment() {
+      return developmentMemoryStarted && selectedUniverse?.id === 'universe-dev';
+    }
+
     async function startFromUniverse(universeId) {
       selectedUniverse = tree.universes.find((item) => item.id === universeId) || null;
       if (!selectedUniverse) return;
 
       history.length = 0;
       answers.length = 0;
+      developmentMemoryStarted = false;
       transitionToQuiz();
 
       const presetScenarioOption = scenarioOption();
       if (presetScenarioOption) {
+        developmentMemoryStarted = true;
+        history.push('dev_scenario');
+        renderDevelopmentMemory();
         answers.push({ label: presetScenarioOption.label, tag: presetScenarioOption.tag, points: 0, maxPoints: 0 });
         await renderQuestion(presetScenarioOption.next, true);
         return;

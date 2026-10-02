@@ -6,11 +6,13 @@ declare(strict_types=1);
 return [
     'fr' => [
         'ui' => [
-            'kicker' => 'Première vibration',
-            'title' => 'Voyons si l’on parle le même langage',
-            'intro' => 'Quelques questions concrètes sur votre situation réelle, pour voir si nos manières de travailler se rencontrent.',
-            'entryLead' => 'Choisissez le terrain qui vous ressemble.',
-            'entryQuestion' => 'Par où commence l’élan ?',
+            'kicker' => 'Pour commencer',
+            'title' => 'Mieux comprendre votre situation',
+            'intro' => 'Quelques questions sur votre quotidien et votre système pour comprendre ce qui fonctionne déjà, ce qui vous freine et où nous pourrions être utiles.',
+            'entryLead' => 'Choisissez le sujet que vous souhaitez explorer.',
+            'entryQuestion' => 'Quel sujet souhaitez-vous aborder ?',
+            'memoryTitle' => 'Vos repères',
+            'memoryIntro' => 'Vos choix se relient ici au fil du parcours.',
             'resultTitle' => 'Point de rencontre',
             'resultQuestion' => 'Ce que cela raconte',
             'back' => 'Retour',
@@ -187,11 +189,11 @@ return [
                 ],
             ],
             'dev_legacy_2' => [
-                'text' => 'Comment s’est passée votre dernière tentative de modernisation ?',
+                'text' => 'Jusqu’ici, comment les évolutions de cette application se sont-elles passées ?',
                 'options' => [
-                    ['label' => 'Par étapes, intégrée au quotidien', 'next' => 'dev_legacy_3', 'tag' => 'legacy-2-strong', 'points' => 3, 'maxPoints' => 3],
-                    ['label' => 'Un grand chantier dédié, difficile à finir', 'next' => 'dev_legacy_3', 'tag' => 'legacy-2-mid', 'points' => 2, 'maxPoints' => 3],
-                    ['label' => 'Aucune vraie tentative pour l’instant', 'next' => 'dev_legacy_3', 'tag' => 'legacy-2-low', 'points' => 0, 'maxPoints' => 3],
+                    ['label' => 'Par étapes, intégrées au quotidien', 'next' => 'dev_legacy_3', 'tag' => 'legacy-2-strong', 'points' => 3, 'maxPoints' => 3],
+                    ['label' => 'Par un chantier important, parfois difficile à mener jusqu’au bout', 'next' => 'dev_legacy_3', 'tag' => 'legacy-2-mid', 'points' => 2, 'maxPoints' => 3],
+                    ['label' => 'Nous n’avons pas encore engagé d’évolution de ce type', 'next' => 'dev_legacy_3', 'tag' => 'legacy-2-low', 'points' => 0, 'maxPoints' => 3],
                 ],
             ],
             'dev_legacy_3' => [
@@ -309,11 +311,13 @@ return [
     ],
     'en' => [
         'ui' => [
-            'kicker' => 'First signal',
-            'title' => 'Let’s see if we speak the same language',
-            'intro' => 'A few concrete questions about your actual situation, to see whether our ways of working meet.',
-            'entryLead' => 'Pick the ground that feels like yours.',
-            'entryQuestion' => 'Which domain do you need help with?',
+            'kicker' => 'To get started',
+            'title' => 'Understanding your situation',
+            'intro' => 'A few questions about your day-to-day work and system: what is working, what gets in the way, and where we might be useful.',
+            'entryLead' => 'Choose the topic you would like to explore.',
+            'entryQuestion' => 'What would you like to look at?',
+            'memoryTitle' => 'Your journey so far',
+            'memoryIntro' => 'Your choices connect here as you go.',
             'resultTitle' => 'Meeting point',
             'resultQuestion' => 'What this suggests',
             'back' => 'Back',
@@ -490,11 +494,11 @@ return [
                 ],
             ],
             'dev_legacy_2' => [
-                'text' => 'How did your last modernization attempt go?',
+                'text' => 'How have changes to this application gone so far?',
                 'options' => [
-                    ['label' => 'Step by step, woven into daily work', 'next' => 'dev_legacy_3', 'tag' => 'legacy-2-strong', 'points' => 3, 'maxPoints' => 3],
-                    ['label' => 'A big dedicated project, hard to finish', 'next' => 'dev_legacy_3', 'tag' => 'legacy-2-mid', 'points' => 2, 'maxPoints' => 3],
-                    ['label' => 'No real attempt yet', 'next' => 'dev_legacy_3', 'tag' => 'legacy-2-low', 'points' => 0, 'maxPoints' => 3],
+                    ['label' => 'In small steps, as part of day-to-day work', 'next' => 'dev_legacy_3', 'tag' => 'legacy-2-strong', 'points' => 3, 'maxPoints' => 3],
+                    ['label' => 'As a larger project that was sometimes hard to complete', 'next' => 'dev_legacy_3', 'tag' => 'legacy-2-mid', 'points' => 2, 'maxPoints' => 3],
+                    ['label' => 'We have not started this kind of change yet', 'next' => 'dev_legacy_3', 'tag' => 'legacy-2-low', 'points' => 0, 'maxPoints' => 3],
                 ],
             ],
             'dev_legacy_3' => [
@@ -612,11 +616,13 @@ return [
     ],
     'es' => [
         'ui' => [
-            'kicker' => 'Primera vibración',
-            'title' => 'Veamos si hablamos el mismo idioma',
-            'intro' => 'Unas preguntas concretas sobre su situación real, para ver si nuestras maneras de trabajar se encuentran.',
-            'entryLead' => 'Elija el terreno que más se le parece.',
-            'entryQuestion' => '¿Por dónde empieza el impulso?',
+            'kicker' => 'Para empezar',
+            'title' => 'Comprender mejor su situación',
+            'intro' => 'Unas preguntas sobre su día a día y sus sistemas para entender qué funciona, qué dificultades encuentran y dónde podríamos ser útiles.',
+            'entryLead' => 'Elija el tema que le gustaría explorar.',
+            'entryQuestion' => '¿Qué tema le gustaría abordar?',
+            'memoryTitle' => 'Su recorrido',
+            'memoryIntro' => 'Sus elecciones se conectan aquí a medida que avanza.',
             'resultTitle' => 'Punto de encuentro',
             'resultQuestion' => 'Lo que esto sugiere',
             'back' => 'Volver',
@@ -793,11 +799,11 @@ return [
                 ],
             ],
             'dev_legacy_2' => [
-                'text' => '¿Cómo fue su último intento de modernización?',
+                'text' => 'Hasta ahora, ¿cómo han sido los cambios en esta aplicación?',
                 'options' => [
-                    ['label' => 'Por etapas, integrado en el día a día', 'next' => 'dev_legacy_3', 'tag' => 'legacy-2-strong', 'points' => 3, 'maxPoints' => 3],
-                    ['label' => 'Un gran proyecto dedicado, difícil de terminar', 'next' => 'dev_legacy_3', 'tag' => 'legacy-2-mid', 'points' => 2, 'maxPoints' => 3],
-                    ['label' => 'Ningún intento real por ahora', 'next' => 'dev_legacy_3', 'tag' => 'legacy-2-low', 'points' => 0, 'maxPoints' => 3],
+                    ['label' => 'Por etapas, integrado en el trabajo diario', 'next' => 'dev_legacy_3', 'tag' => 'legacy-2-strong', 'points' => 3, 'maxPoints' => 3],
+                    ['label' => 'Mediante un proyecto amplio que a veces costó completar', 'next' => 'dev_legacy_3', 'tag' => 'legacy-2-mid', 'points' => 2, 'maxPoints' => 3],
+                    ['label' => 'Aún no hemos iniciado cambios de este tipo', 'next' => 'dev_legacy_3', 'tag' => 'legacy-2-low', 'points' => 0, 'maxPoints' => 3],
                 ],
             ],
             'dev_legacy_3' => [
@@ -915,11 +921,13 @@ return [
     ],
     'pt' => [
         'ui' => [
-            'kicker' => 'Primeira vibração',
-            'title' => 'Vamos ver se falamos a mesma língua',
-            'intro' => 'Algumas perguntas concretas sobre a sua situação real, para ver se as nossas formas de trabalhar se encontram.',
-            'entryLead' => 'Escolha o terreno que mais se parece consigo.',
-            'entryQuestion' => 'Por onde começa o impulso?',
+            'kicker' => 'Para começar',
+            'title' => 'Compreender melhor a sua situação',
+            'intro' => 'Algumas perguntas sobre o seu dia a dia e os seus sistemas: o que já funciona, o que dificulta o trabalho e onde poderíamos ser úteis.',
+            'entryLead' => 'Escolha o tema que gostaria de explorar.',
+            'entryQuestion' => 'Que tema gostaria de abordar?',
+            'memoryTitle' => 'O seu percurso',
+            'memoryIntro' => 'As suas escolhas vão-se ligando aqui ao longo do percurso.',
             'resultTitle' => 'Ponto de encontro',
             'resultQuestion' => 'O que isto sugere',
             'back' => 'Voltar',
@@ -1096,11 +1104,11 @@ return [
                 ],
             ],
             'dev_legacy_2' => [
-                'text' => 'Como correu a sua última tentativa de modernização?',
+                'text' => 'Até agora, como têm decorrido as mudanças nesta aplicação?',
                 'options' => [
-                    ['label' => 'Por etapas, integrada no dia a dia', 'next' => 'dev_legacy_3', 'tag' => 'legacy-2-strong', 'points' => 3, 'maxPoints' => 3],
-                    ['label' => 'Um grande projeto dedicado, difícil de terminar', 'next' => 'dev_legacy_3', 'tag' => 'legacy-2-mid', 'points' => 2, 'maxPoints' => 3],
-                    ['label' => 'Nenhuma tentativa real por enquanto', 'next' => 'dev_legacy_3', 'tag' => 'legacy-2-low', 'points' => 0, 'maxPoints' => 3],
+                    ['label' => 'Por etapas, integradas no dia a dia', 'next' => 'dev_legacy_3', 'tag' => 'legacy-2-strong', 'points' => 3, 'maxPoints' => 3],
+                    ['label' => 'Num projeto maior, por vezes difícil de concluir', 'next' => 'dev_legacy_3', 'tag' => 'legacy-2-mid', 'points' => 2, 'maxPoints' => 3],
+                    ['label' => 'Ainda não iniciámos mudanças deste tipo', 'next' => 'dev_legacy_3', 'tag' => 'legacy-2-low', 'points' => 0, 'maxPoints' => 3],
                 ],
             ],
             'dev_legacy_3' => [
