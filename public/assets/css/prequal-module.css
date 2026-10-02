@@ -826,6 +826,24 @@
   margin-right: 0;
 }
 
+#prequal-module-root .prequal-widget__quiz.prequal-widget__quiz--memory {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(17rem, 0.88fr);
+  width: min(100%, 78rem);
+  max-width: 78rem;
+  height: auto;
+  min-height: 0;
+  margin-right: 0;
+  align-items: start;
+}
+
+.prequal-widget__body--memory {
+  grid-column: 1;
+  grid-row: 1;
+  width: 100%;
+  min-width: 0;
+}
+
 .prequal-memory {
   min-width: 0;
   padding-top: 0.35rem;
@@ -851,6 +869,7 @@
 
 .prequal-memory__list {
   position: relative;
+  perspective: 54rem;
   display: grid;
   gap: 0.72rem;
   margin: 0;
@@ -871,10 +890,6 @@
 .prequal-memory__item {
   position: relative;
   min-width: 0;
-  padding: 0.78rem 0.9rem;
-  border: 1px solid rgba(255, 255, 255, 0.13);
-  border-radius: 0.8rem;
-  background: linear-gradient(125deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018));
   animation: prequal-memory-enter 260ms ease both;
 }
 
@@ -889,6 +904,76 @@
   box-shadow: 0 0 0.75rem rgba(255, 255, 255, 0.18);
   content: "";
   transform: rotate(45deg);
+}
+
+.prequal-memory__card {
+  position: relative;
+  overflow: hidden;
+  min-height: 5rem;
+  padding: 0.82rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 0.8rem;
+  background:
+    radial-gradient(circle at 78% 24%, rgba(255, 255, 255, 0.09), transparent 36%),
+    linear-gradient(125deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018));
+  box-shadow: inset 0 0 1.8rem rgba(255, 255, 255, 0.025), 0 0.8rem 1.8rem rgba(0, 0, 0, 0.32);
+  transform: perspective(54rem) rotateY(-5deg) rotateX(2deg) translateZ(0);
+  transform-style: preserve-3d;
+  transition: transform 260ms ease, border-color 260ms ease, box-shadow 260ms ease;
+}
+
+.prequal-memory__card::before,
+.prequal-memory__card::after {
+  position: absolute;
+  inset: 0.28rem;
+  border: 1px solid rgba(255, 255, 255, 0.085);
+  border-radius: 0.62rem;
+  content: "";
+  pointer-events: none;
+  transform: translateZ(-1rem) rotateY(3deg) rotateX(2deg);
+}
+
+.prequal-memory__card::after {
+  inset: 0.52rem;
+  opacity: 0.5;
+  transform: translateZ(-1.8rem) rotateY(6deg) rotateX(4deg);
+}
+
+.prequal-memory__card:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0 0 1.8rem rgba(255, 255, 255, 0.04), 0 1rem 2rem rgba(0, 0, 0, 0.38);
+  transform: perspective(54rem) rotateY(-2deg) rotateX(1deg) translateY(-2px) translateZ(0.4rem);
+}
+
+.prequal-memory__particle {
+  position: absolute;
+  z-index: 1;
+  width: 0.22rem;
+  height: 0.22rem;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0.65rem 0.12rem rgba(255, 255, 255, 0.68);
+  opacity: 0.35;
+  pointer-events: none;
+  animation: prequal-memory-particle 3.8s ease-in-out infinite;
+}
+
+.prequal-memory__particle--one {
+  top: 0.75rem;
+  right: 1rem;
+}
+
+.prequal-memory__particle--two {
+  right: 2.8rem;
+  bottom: 0.8rem;
+  width: 0.15rem;
+  height: 0.15rem;
+  animation-delay: -1.7s;
+}
+
+@keyframes prequal-memory-particle {
+  0%, 100% { opacity: 0.18; transform: translate3d(0, 0, 0) scale(0.72); }
+  50% { opacity: 0.82; transform: translate3d(-0.35rem, 0.22rem, 0.6rem) scale(1.15); }
 }
 
 .prequal-memory__step {
@@ -1922,11 +2007,30 @@ button.business-network__trigger:focus-visible {
     grid-template-columns: minmax(0, 1fr);
     gap: 2rem;
   }
+
+  #prequal-module-root .prequal-widget__quiz.prequal-widget__quiz--memory {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .prequal-widget__body--memory,
+  .prequal-memory {
+    grid-column: 1;
+  }
+
+  .prequal-memory {
+    grid-row: 2;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .prequal-memory__item {
     animation: none;
+  }
+
+  .prequal-memory__particle,
+  .prequal-memory__card {
+    animation: none;
+    transition: none;
   }
 }
 

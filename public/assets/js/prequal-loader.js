@@ -2,7 +2,7 @@
   const root = document.getElementById('prequal-module-root');
   if (!root || root.dataset.loaded === '1') return;
 
-  const ASSET_VERSION = '20261002-development-memory';
+  const ASSET_VERSION = '20261002-development-memory-3d';
   // Adresse de contact unique (contact@goffprod.com n'existe pas).
   const CONTACT_MAIL = 'thomasgoffinetfr@gmail.com';
   const locale = (document.documentElement.lang || 'fr').slice(0, 2).toLowerCase();
@@ -819,6 +819,7 @@
     const memoryTitleEl = root.querySelector('[data-prequal-memory-title]');
     const memoryIntroEl = root.querySelector('[data-prequal-memory-intro]');
     const memoryListEl = root.querySelector('[data-prequal-memory-list]');
+    const memoryMainEl = root.querySelector('[data-prequal-memory-main]');
     if (!widgetEl || !universeNodesEl || !quizEl || !questionEl || !optionsEl) {
       return false;
     }
@@ -869,6 +870,8 @@
 
       const enabled = developmentMemoryStarted && selectedUniverse?.id === 'universe-dev';
       widgetEl.classList.toggle('prequal-widget--memory', enabled);
+      quizEl.classList.toggle('prequal-widget__quiz--memory', enabled);
+      memoryMainEl?.classList.toggle('prequal-widget__body--memory', enabled);
       memoryEl.hidden = !enabled;
       if (!enabled) return;
 
@@ -881,8 +884,12 @@
 
         return `
           <li class="prequal-memory__item">
-            <span class="prequal-memory__step">${escapeHtml(node.text || '')}</span>
-            <p>${escapeHtml(answer.label)}</p>
+            <article class="prequal-memory__card">
+              <span class="prequal-memory__particle prequal-memory__particle--one" aria-hidden="true"></span>
+              <span class="prequal-memory__particle prequal-memory__particle--two" aria-hidden="true"></span>
+              <span class="prequal-memory__step">${escapeHtml(node.text || '')}</span>
+              <p>${escapeHtml(answer.label)}</p>
+            </article>
           </li>
         `;
       }).join('');
