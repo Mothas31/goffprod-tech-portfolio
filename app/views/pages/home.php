@@ -83,6 +83,10 @@ $contactMail = 'thomasgoffinetfr@gmail.com';
 </section>
 
 <canvas id="minus-system-scene" class="minus-system-scene" aria-hidden="true"></canvas>
+<a id="minus-portal-link"
+   class="minus-portal-link"
+   href="<?= htmlspecialchars(Seo::pathFor('portfolio', Lang::locale()), ENT_QUOTES, 'UTF-8') ?>"
+   aria-label="<?= htmlspecialchars(__('home.portal_projects'), ENT_QUOTES, 'UTF-8') ?>"></a>
 
 
 
@@ -333,7 +337,7 @@ $contactMail = 'thomasgoffinetfr@gmail.com';
     }
 
     if (!prefersReducedMotion) {
-      scheduleWork(() => loadScript('/assets/js/minus-system-scene.js', 'module'), 1200);
+        scheduleWork(() => loadScript('/assets/js/minus-system-scene.js?v=20261013-portal-border-pulse', 'module'), 1200);
     }
     loadScript('/assets/js/theme-scroller.js?v=20261001-cancelable-touch');
   })();

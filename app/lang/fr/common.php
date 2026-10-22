@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'blog_cta' => 'Aller plus loin',
+    'blog_cta' => 'Comprendre notre philosophie',
     'footer_tagline' => 'Ingénierie logicielle PHP / Laravel',
     'network_membership' => 'MinusVortex fait partie du réseau',
     'meta_description' => 'MinusVortex — ingénierie logicielle PHP/Laravel. Reprise de legacy, applications métier, performance, intégrations et renfort pour agences, à distance depuis Lisbonne.',

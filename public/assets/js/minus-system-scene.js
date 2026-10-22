@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 
 const canvas = document.getElementById('minus-system-scene');
+const portalLink = document.getElementById('minus-portal-link');
 
 if (canvas) {
   const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -24,14 +25,17 @@ if (canvas) {
     if (!intro) {
       canvas.classList.add('is-visible');
       canvas.style.setProperty('--minus-scene-opacity', '0.72');
+      portalLink?.classList.add('is-visible');
       return;
     }
 
     const rect = intro.getBoundingClientRect();
     const startReveal = window.innerHeight * 0.58;
-    const opacity = THREE.MathUtils.clamp((startReveal - rect.bottom) / startReveal, 0, 1);
+    const mobileDimmer = window.innerWidth < 768 ? 0.22 : 1;
+    const opacity = THREE.MathUtils.clamp((startReveal - rect.bottom) / startReveal, 0, 1) * mobileDimmer;
     canvas.style.setProperty('--minus-scene-opacity', opacity.toFixed(3));
     canvas.classList.toggle('is-visible', opacity > 0.02);
+    portalLink?.classList.toggle('is-visible', opacity > 0.02);
   };
 
   window.addEventListener('scroll', syncSceneVisibility, { passive: true });
@@ -54,7 +58,7 @@ if (canvas) {
     scene.add(root);
     root.add(ringGroup, fractureGroup);
 
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, window.innerWidth < 768 ? 1 : 1.75));
     renderer.outputColorSpace = THREE.SRGBColorSpace;
 
     camera.position.set(0, 0, 7.9);
@@ -83,6 +87,7 @@ if (canvas) {
     let baseScale = 0.72;
     let baseX = 2.15;
     let baseY = 0.15;
+    let portalPointer = null;
 
     window.addEventListener('resize', resize, { passive: true });
     window.addEventListener('scroll', () => {
@@ -95,6 +100,33 @@ if (canvas) {
     window.addEventListener('minus:absorb', () => { absorbTarget = 1; }, { passive: true });
     document.addEventListener('visibilitychange', syncVisibility);
     reducedMotionQuery.addEventListener?.('change', renderStill);
+
+    portalLink?.addEventListener('click', (event) => {
+      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      if (typeof window.minusWarpTo !== 'function') return;
+      event.preventDefault();
+      window.minusWarpTo(portalLink.href);
+    });
+
+    portalLink?.addEventListener('pointerenter', (event) => {
+      portalPointer = { x: event.clientX, y: event.clientY };
+      portalLink.classList.add('is-hovered');
+    });
+    portalLink?.addEventListener('pointermove', (event) => {
+      portalPointer = { x: event.clientX, y: event.clientY };
+    }, { passive: true });
+    portalLink?.addEventListener('pointerleave', () => {
+      portalPointer = null;
+      portalLink.classList.remove('is-hovered');
+    });
+    portalLink?.addEventListener('focus', () => {
+      portalPointer = null;
+      portalLink.classList.add('is-hovered');
+    });
+    portalLink?.addEventListener('blur', () => {
+      portalPointer = null;
+      portalLink.classList.remove('is-hovered');
+    });
 
     resize();
     renderStill();
@@ -116,7 +148,7 @@ if (canvas) {
     }
 
     function createStreaks() {
-      const count = 110;
+      const count = window.innerWidth < 768 ? 36 : 110;
       for (let i = 0; i < count; i += 1) {
         const line = createLine(ghostMaterial.clone());
         // Direction 3D quelconque : la lumière vient de tous les axes (x, y ET z).
@@ -147,6 +179,7 @@ if (canvas) {
       absorb = THREE.MathUtils.lerp(absorb, absorbTarget, 0.11);
       drawSystem(timeMs * 0.001, progress, !reducedMotionQuery.matches);
       renderer.render(scene, camera);
+      updatePortalPosition();
     }
 
     function drawSystem(time, amount, animate) {
@@ -200,6 +233,59 @@ if (canvas) {
         // apparaît de loin (0), pic au milieu, s'éteint absorbé au bord (0)
         line.material.opacity = Math.sin(t * Math.PI) * (0.4 + energy * 0.24 + absorb * 0.5);
       });
+    }
+
+    function updatePortalPosition() {
+      if (!portalLink || !rectFrame) return;
+
+      camera.updateMatrixWorld(true);
+      root.updateMatrixWorld(true);
+      const points = [
+        [-RECT_W, RECT_H],
+        [RECT_W, RECT_H],
+        [RECT_W, -RECT_H],
+        [-RECT_W, -RECT_H],
+      ].map(([x, y]) => {
+        const projected = new THREE.Vector3(x, y, 0)
+          .applyMatrix4(rectFrame.matrixWorld)
+          .project(camera);
+        return {
+          x: (projected.x * 0.5 + 0.5) * window.innerWidth,
+          y: (1 - (projected.y * 0.5 + 0.5)) * window.innerHeight,
+        };
+      });
+
+      const left = Math.min(...points.map((point) => point.x));
+      const right = Math.max(...points.map((point) => point.x));
+      const top = Math.min(...points.map((point) => point.y));
+      const bottom = Math.max(...points.map((point) => point.y));
+      const width = Math.max(1, right - left);
+      const height = Math.max(1, bottom - top);
+      const [topLeft, topRight, , bottomLeft] = points;
+      const edgeX = Math.hypot(topRight.x - topLeft.x, topRight.y - topLeft.y);
+      const edgeY = Math.hypot(bottomLeft.x - topLeft.x, bottomLeft.y - topLeft.y);
+      const origin = portalPointer ?? {
+        x: points.reduce((sum, point) => sum + point.x, 0) / points.length,
+        y: points.reduce((sum, point) => sum + point.y, 0) / points.length,
+      };
+      const axisX = topRight.x - topLeft.x;
+      const axisY = topRight.y - topLeft.y;
+      const axis2X = bottomLeft.x - topLeft.x;
+      const axis2Y = bottomLeft.y - topLeft.y;
+      const pulseWidth = edgeX * 2;
+      const pulseHeight = edgeY * 2;
+
+      portalLink.style.left = `${left}px`;
+      portalLink.style.top = `${top}px`;
+      portalLink.style.width = `${width}px`;
+      portalLink.style.height = `${height}px`;
+      portalLink.style.setProperty('--portal-origin-x', `${origin.x - left}px`);
+      portalLink.style.setProperty('--portal-origin-y', `${origin.y - top}px`);
+      portalLink.style.setProperty('--portal-angle', `${Math.atan2(axisY, axisX) * 180 / Math.PI}deg`);
+      portalLink.style.setProperty('--portal-pulse-width', `${pulseWidth}px`);
+      portalLink.style.setProperty('--portal-pulse-height', `${pulseHeight}px`);
+      portalLink.style.clipPath = `polygon(${points.map((point) => `${((point.x - left) / width) * 100}% ${((point.y - top) / height) * 100}%`).join(', ')})`;
+      portalLink.classList.add('is-ready');
     }
 
     function rectEdge(angle) {

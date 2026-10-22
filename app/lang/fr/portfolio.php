@@ -1,8 +1,50 @@
 <?php
 
 return [
-    'title'      => 'Portfolio',
-    'title_h1'  => 'Notre portfolio',
-    'text_1'    => 'Bonjour la compagnie',
-   
+    'title' => 'Nos projets',
+    'title_h1' => 'Nos projets',
+    'eyebrow' => 'Du concret, conçu pour durer',
+    'text_1' => 'Un écosystème numérique, une expérience de réservation, un outil de diagnostic et une application mobile : quatre projets aux usages bien différents.',
+    'visit_site' => 'Visiter le site',
+    'projects' => [
+        [
+            'name' => 'Écosystème Inochi',
+            'category' => 'Écologie & numérique',
+            'type' => 'Écosystème de projets',
+            'summary' => 'Des expériences numériques autour de la ville durable, du vivant et de la transmission, avec Inochi City, Land et Science.',
+            'tags' => ['Inochi City', 'Inochi Land', 'Inochi Science'],
+            'visual' => 'inochi',
+            'image' => 'inochi-city.webp',
+            'url' => 'https://inochi.city/',
+        ],
+        [
+            'name' => 'Week-End+',
+            'category' => 'Tourisme',
+            'type' => 'Site & réservation',
+            'summary' => 'Une vitrine de séjours avec recherche, fiches d’hébergements et parcours de réservation relié à l’agenda existant.',
+            'tags' => ['PHP', 'Réservation', 'Intégration'],
+            'visual' => 'weekend',
+            'image' => 'weekend-plus.webp',
+            'url' => 'https://week-end-plus.com/',
+        ],
+        [
+            'name' => 'Water Performance',
+            'category' => 'Eau & collectivités',
+            'type' => 'Diagnostic & rapports',
+            'summary' => 'Un outil qui transforme les données de consommation d’eau en tableaux de bord et en rapports pour aider les communes à cibler leurs actions.',
+            'tags' => ['Données', 'Tableaux de bord', 'Rapports'],
+            'visual' => 'water',
+            'image' => 'water-performance.webp',
+            'url' => 'https://diagnostic-performance-eau.fr/',
+        ],
+        [
+            'name' => 'Nodus',
+            'category' => 'Outil personnel',
+            'type' => 'Application en alpha',
+            'summary' => 'Un outil local-first pour relier habitudes, notes et journaling, avec des données conservées dans des fichiers lisibles.',
+            'tags' => ['Local-first', 'Markdown', 'Tauri'],
+            'visual' => 'nodus',
+            'image' => 'nodus-mobile.webp',
+        ],
+    ],
 ];

@@ -6,6 +6,12 @@ $blogFilterAllLabels = [
     'es' => 'Todos los universos',
     'pt' => 'Todos os universos',
 ];
+$blogFilterAllVisibleLabels = [
+    'fr' => 'Tous',
+    'en' => 'All',
+    'es' => 'Todos',
+    'pt' => 'Todos',
+];
 $blogFilters = [];
 foreach ($articles as $filterArticle) {
     $filterThemeId = (string)($filterArticle['theme'] ?? '');
@@ -18,21 +24,28 @@ foreach ($articles as $filterArticle) {
     }
 }
 $blogFilterAllLabel = $blogFilterAllLabels[$blogLocale] ?? $blogFilterAllLabels['fr'];
+$blogFilterAllVisibleLabel = $blogFilterAllVisibleLabels[$blogLocale] ?? $blogFilterAllVisibleLabels['fr'];
 ?>
-<section class="min-h-screen bg-black text-zinc-100 px-6 py-28">
+<section class="min-h-screen bg-black text-zinc-100 px-6 pt-40 pb-28 lg:pt-56">
     <div class="max-w-7xl mx-auto">
-        <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-4"><?= htmlspecialchars(Lang::get('seo.blog.h1'), ENT_QUOTES, 'UTF-8') ?></h1>
+        <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-6"><?= htmlspecialchars(Lang::get('seo.blog.h1'), ENT_QUOTES, 'UTF-8') ?></h1>
         <p class="text-zinc-400 text-lg"><?= htmlspecialchars(Lang::get('seo.blog.description'), ENT_QUOTES, 'UTF-8') ?></p>
 
         <?php if (!empty($blogFilters)): ?>
             <nav class="blog-filters" aria-label="<?= htmlspecialchars($blogFilterAllLabel, ENT_QUOTES, 'UTF-8') ?>" data-blog-filters>
-                <button class="blog-filter is-active" type="button" data-blog-filter="all" aria-pressed="true" aria-controls="blog-grid" aria-label="<?= htmlspecialchars($blogFilterAllLabel, ENT_QUOTES, 'UTF-8') ?>" title="<?= htmlspecialchars($blogFilterAllLabel, ENT_QUOTES, 'UTF-8') ?>">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="7" cy="7" r="1.5"/><circle cx="17" cy="7" r="1.5"/><circle cx="7" cy="17" r="1.5"/><circle cx="17" cy="17" r="1.5"/></svg>
-                </button>
-                <?php foreach ($blogFilters as $filterThemeId => $filterBadge): ?>
-                    <button class="blog-filter" type="button" data-blog-filter="<?= htmlspecialchars($filterThemeId, ENT_QUOTES, 'UTF-8') ?>" aria-pressed="false" aria-controls="blog-grid" aria-label="<?= htmlspecialchars($filterBadge['label'], ENT_QUOTES, 'UTF-8') ?>" title="<?= htmlspecialchars($filterBadge['label'], ENT_QUOTES, 'UTF-8') ?>">
-                        <?= $filterBadge['svg'] ?>
+                <div class="blog-filter-option">
+                    <button class="blog-filter is-active" type="button" data-blog-filter="all" aria-pressed="true" aria-controls="blog-grid" aria-label="<?= htmlspecialchars($blogFilterAllLabel, ENT_QUOTES, 'UTF-8') ?>" title="<?= htmlspecialchars($blogFilterAllLabel, ENT_QUOTES, 'UTF-8') ?>">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="7" cy="7" r="1.5"/><circle cx="17" cy="7" r="1.5"/><circle cx="7" cy="17" r="1.5"/><circle cx="17" cy="17" r="1.5"/></svg>
                     </button>
+                    <span class="blog-filter-label"><?= htmlspecialchars($blogFilterAllVisibleLabel, ENT_QUOTES, 'UTF-8') ?></span>
+                </div>
+                <?php foreach ($blogFilters as $filterThemeId => $filterBadge): ?>
+                    <div class="blog-filter-option">
+                        <button class="blog-filter" type="button" data-blog-filter="<?= htmlspecialchars($filterThemeId, ENT_QUOTES, 'UTF-8') ?>" aria-pressed="false" aria-controls="blog-grid" aria-label="<?= htmlspecialchars($filterBadge['label'], ENT_QUOTES, 'UTF-8') ?>" title="<?= htmlspecialchars($filterBadge['label'], ENT_QUOTES, 'UTF-8') ?>">
+                            <?= $filterBadge['svg'] ?>
+                        </button>
+                        <span class="blog-filter-label"><?= htmlspecialchars($filterBadge['label'], ENT_QUOTES, 'UTF-8') ?></span>
+                    </div>
                 <?php endforeach; ?>
             </nav>
         <?php endif; ?>

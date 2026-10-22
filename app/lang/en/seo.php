@@ -6,8 +6,8 @@ return [
     'home.title' => 'MinusVortex — PHP / Laravel software engineering | Legacy, business apps, performance',
     'home.description' => 'MinusVortex takes over, modernizes and stabilises your PHP/Laravel applications: legacy, business apps, performance, ERP and API integrations, agency reinforcement.',
 
-    'portfolio.title' => 'Portfolio — Projects & work | MinusVortex',
-    'portfolio.description' => 'MinusVortex projects and work: sober, fast and maintainable systems, built to last without hidden debt.',
+    'portfolio.title' => 'Our projects | MinusVortex',
+    'portfolio.description' => 'Explore MinusVortex projects in website creation, business applications and web performance optimisation.',
 
     'alignment.universe-health.title' => 'Health Alignment — Less noise, more energy | MinusVortex',
     'alignment.universe-health.description' => 'Health alignment check: spot in a few questions where noise hides — overload, scattering, inherited habits — and the most sober lever to get your energy back.',
@@ -30,8 +30,8 @@ return [
     'alignment.universe-ai.title' => 'AI Alignment — Adopt AI without dependency | MinusVortex',
     'alignment.universe-ai.description' => 'AI alignment check: assess in a few questions where AI adds noise or dependency to your system, and the most sober lever to stay in control.',
 
-    'blog.title' => 'MinusVortex Signals — Software sobriety & technical ownership',
-    'blog.h1' => 'MinusVortex Signals',
+    'blog.title' => 'Our philosophy — Software sobriety & technical ownership | MinusVortex',
+    'blog.h1' => 'Our philosophy',
     'blog.description' => 'Articles on reducing technical chaos: debt, needless complexity, dependencies. Concrete practices for sober, durable systems.',
 
     'payment.title' => 'Payment | MinusVortex',

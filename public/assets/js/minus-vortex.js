@@ -19,7 +19,7 @@
   let lastFrameTime = 0;
 
   function maxLinesCount() {
-    if (w <= 640) return 90;
+    if (w <= 640) return 42;
     if (w <= 1024) return 130;
     return 170;
   }
@@ -93,8 +93,9 @@
       const opacity = this.alpha * fade;
       ctx.strokeStyle = `rgba(255,255,255,${opacity})`;
       ctx.lineWidth = this.lineWidth * fade;
-      ctx.shadowBlur = 8;
-      ctx.shadowColor = `rgba(255,255,255,${Math.min(0.45, opacity + 0.08)})`;
+      const useGlow = w > 640;
+      ctx.shadowBlur = useGlow ? 8 : 0;
+      if (useGlow) ctx.shadowColor = `rgba(255,255,255,${Math.min(0.45, opacity + 0.08)})`;
       ctx.beginPath();
       ctx.moveTo(this.x, this.y);
       ctx.lineTo(this.x - this.vx * this.length, this.y - this.vy * this.length);
@@ -137,8 +138,9 @@
     ctx.clearRect(0, 0, w, h);
     ctx.globalCompositeOperation = 'lighter';
 
-    if (time - lastSpawn > 75 && lines.length < maxLinesCount()) {
-      const batch = 2 + Math.floor(Math.random() * 2);
+    const isMobile = w <= 640;
+    if (time - lastSpawn > (isMobile ? 110 : 75) && lines.length < maxLinesCount()) {
+      const batch = isMobile ? 1 : 2 + Math.floor(Math.random() * 2);
       for (let i = 0; i < batch; i += 1) lines.push(new Line());
       lastSpawn = time;
     }

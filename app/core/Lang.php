@@ -30,6 +30,17 @@ class Lang
         return self::$messages[$file][$item] ?? $key;
     }
 
+    public static function getData(string $key): mixed
+    {
+        [$file, $item] = explode('.', $key, 2);
+
+        if (!isset(self::$messages[$file])) {
+            self::loadFile($file);
+        }
+
+        return self::$messages[$file][$item] ?? null;
+    }
+
     private static function loadFile(string $file): void
     {
 

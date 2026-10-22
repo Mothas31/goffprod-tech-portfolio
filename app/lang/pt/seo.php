@@ -6,8 +6,8 @@ return [
     'home.title' => 'MinusVortex — Engenharia de software PHP / Laravel | Legacy, aplicações, performance',
     'home.description' => 'A MinusVortex retoma, moderniza e estabiliza as suas aplicações PHP/Laravel: legacy, aplicações de negócio, performance, integrações ERP e API, reforço para agências.',
 
-    'portfolio.title' => 'Portfólio — Projetos e trabalhos | MinusVortex',
-    'portfolio.description' => 'Projetos e trabalhos MinusVortex: sistemas sóbrios, rápidos e fáceis de manter, construídos para durar sem dívida oculta.',
+    'portfolio.title' => 'Os nossos projetos | MinusVortex',
+    'portfolio.description' => 'Conheça projetos MinusVortex de criação de sites, aplicações de negócio e desempenho web.',
 
     'alignment.universe-health.title' => 'Alinhamento Saúde — Menos ruído, mais energia | MinusVortex',
     'alignment.universe-health.description' => 'Diagnóstico de alinhamento de saúde: descubra em poucas perguntas onde o ruído se esconde — sobrecarga, dispersão, hábitos herdados — e a alavanca mais sóbria para recuperar a energia.',
@@ -30,8 +30,8 @@ return [
     'alignment.universe-ai.title' => 'Alinhamento IA — Adotar a IA sem dependência | MinusVortex',
     'alignment.universe-ai.description' => 'Diagnóstico de alinhamento de IA: avalie em poucas perguntas onde a IA acrescenta ruído ou dependência ao seu sistema, e a alavanca mais sóbria para manter o controlo.',
 
-    'blog.title' => 'Sinais MinusVortex — Sobriedade de software e controlo técnico',
-    'blog.h1' => 'Sinais MinusVortex',
+    'blog.title' => 'A nossa filosofia — Sobriedade de software e controlo técnico | MinusVortex',
+    'blog.h1' => 'A nossa filosofia',
     'blog.description' => 'Artigos sobre a redução do caos técnico: dívida, complexidade inútil, dependências. Práticas concretas para sistemas sóbrios e duradouros.',
 
     'payment.title' => 'Pagamento | MinusVortex',
