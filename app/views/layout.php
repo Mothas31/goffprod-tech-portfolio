@@ -15,7 +15,7 @@
     $__article = $article ?? null;
     $__hasSeoRoute = $__page !== '404' && array_key_exists(
         $__page,
-        ['home' => 1, 'portfolio' => 1, 'payment' => 1, 'paymentSuccess' => 1, 'paymentCancel' => 1, 'alignment' => 1, 'blog' => 1, 'blogArticle' => 1]
+        ['home' => 1, 'portfolio' => 1, 'performance' => 1, 'sobriety' => 1, 'payment' => 1, 'paymentSuccess' => 1, 'paymentCancel' => 1, 'alignment' => 1, 'blog' => 1, 'blogArticle' => 1]
     );
     $__title = htmlspecialchars($title ?? __('home.title'), ENT_QUOTES, 'UTF-8');
     $__metaDescription = htmlspecialchars($metaDescription ?? __('common.meta_description'), ENT_QUOTES, 'UTF-8');
@@ -70,6 +70,18 @@
         ],
     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) ?></script>
 
+    <?php if ($__page === 'performance'): ?>
+    <script type="application/ld+json"><?= json_encode([
+        '@context' => 'https://schema.org',
+        '@type' => 'Service',
+        'name' => $title ?? '',
+        'description' => $metaDescription ?? '',
+        'url' => Seo::canonicalUrl('performance', Lang::locale()),
+        'inLanguage' => Lang::locale(),
+        'provider' => ['@id' => Seo::baseUrl() . '/#org'],
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) ?></script>
+    <?php endif; ?>
+
     <?php if ($__page === 'alignment' && $__alignmentTheme !== null): ?>
     <script type="application/ld+json"><?= json_encode([
         '@context' => 'https://schema.org',
@@ -102,6 +114,9 @@
 
     <link rel="stylesheet" href="/assets/css/output.css?v=20261013-project-3d-screens">
     <link rel="stylesheet" href="/assets/css/side-nav.css" media="screen and (min-width: 768px)">
+    <?php if (in_array($__page, ['performance', 'sobriety'], true)): ?>
+    <link rel="stylesheet" href="/assets/css/offers.css?v=20261022-offer-prototype">
+    <?php endif; ?>
     <script type="importmap">
     {
       "imports": {

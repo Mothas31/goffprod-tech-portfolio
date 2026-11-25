@@ -13,5 +13,9 @@
                 Continuer vers Stripe
             </button>
         </form>
+        <p class="mt-5 text-sm text-slate-600">
+            En poursuivant, consultez les <a class="underline" href="<?= htmlspecialchars(Seo::pathFor('terms', Lang::locale()), ENT_QUOTES, 'UTF-8') ?>">conditions de vente</a>
+            et la <a class="underline" href="<?= htmlspecialchars(Seo::pathFor('privacy', Lang::locale()), ENT_QUOTES, 'UTF-8') ?>">politique de confidentialité</a>.
+        </p>
     </div>
 </section>

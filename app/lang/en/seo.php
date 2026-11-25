@@ -8,6 +8,10 @@ return [
 
     'portfolio.title' => 'Our projects | MinusVortex',
     'portfolio.description' => 'Explore MinusVortex projects in website creation, business applications and web performance optimisation.',
+    'performance.title' => 'Web performance & PHP reliability | MinusVortex',
+    'performance.description' => 'Measure and improve loading, responsiveness and PHP workloads without chasing an isolated score.',
+    'sobriety.title' => 'Software sobriety — simplify to last | MinusVortex',
+    'sobriety.description' => 'A software development approach that reduces needless complexity and makes applications easier to maintain and evolve.',
 
     'alignment.universe-health.title' => 'Health Alignment — Less noise, more energy | MinusVortex',
     'alignment.universe-health.description' => 'Health alignment check: spot in a few questions where noise hides — overload, scattering, inherited habits — and the most sober lever to get your energy back.',
@@ -37,5 +41,8 @@ return [
     'payment.title' => 'Payment | MinusVortex',
     'payment_success.title' => 'Payment confirmed | MinusVortex',
     'payment_cancel.title' => 'Payment cancelled | MinusVortex',
+    'legal.title' => 'Legal notice | MinusVortex',
+    'privacy.title' => 'Privacy policy | MinusVortex',
+    'terms.title' => 'Terms of sale | MinusVortex',
     'not_found.title' => 'Page not found | MinusVortex',
 ];

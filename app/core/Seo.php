@@ -7,7 +7,7 @@ class Seo
     private const DEFAULT_LANG = 'fr';
 
     /** Pages indexables (hors flux de paiement transactionnel). */
-    private const INDEXABLE_PAGES = ['home', 'portfolio', 'blog'];
+    private const INDEXABLE_PAGES = ['home', 'portfolio', 'performance', 'sobriety', 'blog'];
 
     private static ?array $routes = null;
 
@@ -103,6 +103,8 @@ class Seo
         $lines[] = '';
         $lines[] = '- [' . ($seoFr['home.title'] ?? 'Accueil') . '](' . self::canonicalUrl('home', 'fr') . ')';
         $lines[] = '- [' . ($seoFr['portfolio.title'] ?? 'Portfolio') . '](' . self::canonicalUrl('portfolio', 'fr') . ')';
+        $lines[] = '- [' . ($seoFr['performance.title'] ?? 'Performance') . '](' . self::canonicalUrl('performance', 'fr') . '): ' . ($seoFr['performance.description'] ?? '');
+        $lines[] = '- [' . ($seoFr['sobriety.title'] ?? 'Sobriété logicielle') . '](' . self::canonicalUrl('sobriety', 'fr') . '): ' . ($seoFr['sobriety.description'] ?? '');
 
         foreach (array_keys(self::routes()['alignment']) as $theme) {
             $title = $seoFr['alignment.' . $theme . '.title'] ?? $theme;
@@ -123,6 +125,8 @@ class Seo
         $lines[] = '';
         $lines[] = '- [' . ($seoEn['home.title'] ?? 'Home') . '](' . self::canonicalUrl('home', 'en') . ')';
         $lines[] = '- [' . ($seoEn['portfolio.title'] ?? 'Portfolio') . '](' . self::canonicalUrl('portfolio', 'en') . ')';
+        $lines[] = '- [' . ($seoEn['performance.title'] ?? 'Performance') . '](' . self::canonicalUrl('performance', 'en') . '): ' . ($seoEn['performance.description'] ?? '');
+        $lines[] = '- [' . ($seoEn['sobriety.title'] ?? 'Software sobriety') . '](' . self::canonicalUrl('sobriety', 'en') . '): ' . ($seoEn['sobriety.description'] ?? '');
 
         foreach (array_keys(self::routes()['alignment']) as $theme) {
             $title = $seoEn['alignment.' . $theme . '.title'] ?? $theme;

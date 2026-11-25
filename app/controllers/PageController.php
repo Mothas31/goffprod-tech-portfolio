@@ -21,6 +21,33 @@ class PageController
         ]);
     }
 
+    public function performance(): void
+    {
+        $this->offerPage('performance');
+    }
+
+    public function sobriety(): void
+    {
+        $this->offerPage('sobriety');
+    }
+
+    private function offerPage(string $offerId): void
+    {
+        $offer = Lang::getData('offers.' . $offerId);
+        if (!is_array($offer)) {
+            $this->notFound();
+            return;
+        }
+
+        View::render('pages/offer', [
+            'title' => Lang::get('seo.' . $offerId . '.title'),
+            'metaDescription' => Lang::get('seo.' . $offerId . '.description'),
+            'page' => $offerId,
+            'offerId' => $offerId,
+            'offer' => $offer,
+        ]);
+    }
+
     public function alignment(string $themeId): void
     {
         View::render('pages/alignment', [
@@ -101,6 +128,31 @@ class PageController
         View::render('pages/payment_cancel', [
             'title' => Lang::get('seo.payment_cancel.title'),
             'page' => 'paymentCancel',
+            'noindex' => true,
+        ]);
+    }
+
+    public function legal(): void
+    {
+        $this->informationPage('legal');
+    }
+
+    public function privacy(): void
+    {
+        $this->informationPage('privacy');
+    }
+
+    public function terms(): void
+    {
+        $this->informationPage('terms');
+    }
+
+    private function informationPage(string $page): void
+    {
+        View::render('pages/information', [
+            'title' => Lang::get('seo.' . $page . '.title'),
+            'page' => $page,
+            'informationPage' => $page,
             'noindex' => true,
         ]);
     }

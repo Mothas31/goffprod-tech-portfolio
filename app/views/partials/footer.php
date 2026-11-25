@@ -1,24 +1,26 @@
-<?php
-$sigmaVisionUrl = match (Lang::locale()) {
-    'en', 'pt' => 'https://sigma-vision.com/en/sustainable-digital.html',
-    'es' => 'https://sigma-vision.com/es/digital-sostenible.html',
-    default => 'https://sigma-vision.com/fr/numerique-durable/conception-logicielle.html',
-};
-?>
 <footer id="site-footer" class="relative z-10 bg-black text-center px-6 py-10">
     <div class="max-w-3xl mx-auto border-t border-white/25 pt-8">
         <nav class="mb-4">
-            <a href="<?= htmlspecialchars(Seo::pathFor('blog', Lang::locale()), ENT_QUOTES, 'UTF-8') ?>" class="text-white text-base font-medium hover:text-zinc-300"><?= htmlspecialchars(__('common.blog_cta'), ENT_QUOTES, 'UTF-8') ?> &rarr;</a>
+            <div class="mb-4 flex flex-wrap items-center justify-center gap-2">
+                <a class="text-zinc-300 text-sm hover:text-white" href="<?= htmlspecialchars(Seo::pathFor('performance', Lang::locale()), ENT_QUOTES, 'UTF-8') ?>"><?= htmlspecialchars(__('common.performance_cta'), ENT_QUOTES, 'UTF-8') ?></a>
+                <span class="text-zinc-500" aria-hidden="true">·</span>
+                <a class="text-zinc-300 text-sm hover:text-white" href="<?= htmlspecialchars(Seo::pathFor('sobriety', Lang::locale()), ENT_QUOTES, 'UTF-8') ?>"><?= htmlspecialchars(__('common.sobriety_cta'), ENT_QUOTES, 'UTF-8') ?></a>
+                <span class="text-zinc-500" aria-hidden="true">·</span>
+                <a class="text-zinc-300 text-sm hover:text-white" href="<?= htmlspecialchars(Seo::pathFor('blog', Lang::locale()), ENT_QUOTES, 'UTF-8') ?>"><?= htmlspecialchars(__('common.blog_cta'), ENT_QUOTES, 'UTF-8') ?></a>
+            </div>
+            <div class="flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
+                <a class="text-zinc-400 text-xs hover:text-white" href="<?= htmlspecialchars(Seo::pathFor('legal', Lang::locale()), ENT_QUOTES, 'UTF-8') ?>"><?= htmlspecialchars(__('common.legal_notice'), ENT_QUOTES, 'UTF-8') ?></a>
+                <span class="text-zinc-600" aria-hidden="true">·</span>
+                <a class="text-zinc-400 text-xs hover:text-white" href="<?= htmlspecialchars(Seo::pathFor('privacy', Lang::locale()), ENT_QUOTES, 'UTF-8') ?>"><?= htmlspecialchars(__('common.privacy_policy'), ENT_QUOTES, 'UTF-8') ?></a>
+                <span class="text-zinc-600" aria-hidden="true">·</span>
+                <a class="text-zinc-400 text-xs hover:text-white" href="<?= htmlspecialchars(Seo::pathFor('terms', Lang::locale()), ENT_QUOTES, 'UTF-8') ?>"><?= htmlspecialchars(__('common.terms_of_sale'), ENT_QUOTES, 'UTF-8') ?></a>
+            </div>
         </nav>
-        <p class="text-zinc-500 text-sm mb-2">
-            <?= htmlspecialchars(__('common.network_membership'), ENT_QUOTES, 'UTF-8') ?>
-            <a href="<?= htmlspecialchars($sigmaVisionUrl, ENT_QUOTES, 'UTF-8') ?>" target="_blank" rel="noopener noreferrer" class="text-zinc-300 hover:text-white underline underline-offset-2">SIGMA-VISION</a>.
-        </p>
         <p class="text-zinc-500 text-sm">&copy; <?= date('Y') ?> MinusVortex - <?= __('common.footer_tagline') ?></p>
     </div>
 </footer>
 
-<?php if (!in_array($page ?? '', ['alignment', 'blog', 'blogArticle', 'portfolio'], true)): ?>
+<?php if (!in_array($page ?? '', ['alignment', 'blog', 'blogArticle', 'portfolio', 'performance', 'sobriety'], true)): ?>
 <!-- Rappel flottant du footer (trait + texte) : fade in dans la zone des themes,
      s'efface quand le vrai footer entre dans le viewport et prend sa place. -->
 <a href="<?= htmlspecialchars(Seo::pathFor('blog', Lang::locale()), ENT_QUOTES, 'UTF-8') ?>" class="footer-float-cta is-waiting" data-footer-float-cta>

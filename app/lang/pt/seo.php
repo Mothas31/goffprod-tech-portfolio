@@ -8,6 +8,10 @@ return [
 
     'portfolio.title' => 'Os nossos projetos | MinusVortex',
     'portfolio.description' => 'Conheça projetos MinusVortex de criação de sites, aplicações de negócio e desempenho web.',
+    'performance.title' => 'Desempenho web e fiabilidade PHP | MinusVortex',
+    'performance.description' => 'Medir e melhorar o carregamento, a resposta e os processos PHP da sua aplicação sem perseguir uma pontuação isolada.',
+    'sobriety.title' => 'Sobriedade de software — simplificar para durar | MinusVortex',
+    'sobriety.description' => 'Uma abordagem de desenvolvimento que reduz a complexidade desnecessária e facilita a manutenção e evolução das aplicações.',
 
     'alignment.universe-health.title' => 'Alinhamento Saúde — Menos ruído, mais energia | MinusVortex',
     'alignment.universe-health.description' => 'Diagnóstico de alinhamento de saúde: descubra em poucas perguntas onde o ruído se esconde — sobrecarga, dispersão, hábitos herdados — e a alavanca mais sóbria para recuperar a energia.',
@@ -37,5 +41,8 @@ return [
     'payment.title' => 'Pagamento | MinusVortex',
     'payment_success.title' => 'Pagamento confirmado | MinusVortex',
     'payment_cancel.title' => 'Pagamento cancelado | MinusVortex',
+    'legal.title' => 'Aviso legal | MinusVortex',
+    'privacy.title' => 'Política de privacidade | MinusVortex',
+    'terms.title' => 'Condições gerais de venda | MinusVortex',
     'not_found.title' => 'Página não encontrada | MinusVortex',
 ];

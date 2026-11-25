@@ -8,6 +8,10 @@ return [
 
     'portfolio.title' => 'Nos projets | MinusVortex',
     'portfolio.description' => 'Découvrez des projets MinusVortex : création de sites, applications métier et optimisation de performance web.',
+    'performance.title' => 'Performance web & fiabilité PHP | MinusVortex',
+    'performance.description' => 'Mesurer et améliorer le chargement, la réactivité et les traitements PHP de votre application, sans courir après un score isolé.',
+    'sobriety.title' => 'Sobriété logicielle — simplifier pour durer | MinusVortex',
+    'sobriety.description' => 'Une approche du développement logiciel qui réduit la complexité inutile et rend vos applications plus simples à maintenir et faire évoluer.',
 
     'alignment.universe-health.title' => 'Alignement Santé — Moins de bruit, plus d’énergie | MinusVortex',
     'alignment.universe-health.description' => 'Diagnostic d’alignement santé : repérez en quelques questions où se cache le bruit — surcharge, dispersion, habitudes subies — et le levier le plus sobre pour retrouver de l’énergie.',
@@ -37,5 +41,8 @@ return [
     'payment.title' => 'Paiement | MinusVortex',
     'payment_success.title' => 'Paiement confirmé | MinusVortex',
     'payment_cancel.title' => 'Paiement annulé | MinusVortex',
+    'legal.title' => 'Mentions légales | MinusVortex',
+    'privacy.title' => 'Politique de confidentialité | MinusVortex',
+    'terms.title' => 'Conditions générales de vente | MinusVortex',
     'not_found.title' => 'Page introuvable | MinusVortex',
 ];

@@ -15,7 +15,7 @@
       placeholder: 'Votre projet, votre contexte, vos délais…',
       submit: 'Envoyer',
       sending: 'Envoi…',
-      privacy: 'Votre e-mail sert uniquement à vous répondre.',
+      privacy: 'Votre e-mail sert uniquement à vous répondre. Politique de confidentialité',
       success: 'Merci, c’est bien reçu. Je vous réponds personnellement dès que possible.',
       invalid: 'Vérifiez votre e-mail et écrivez au moins quelques mots.',
       error: `L’envoi a échoué. Réessayez, ou écrivez directement à ${FALLBACK_MAIL}.`
@@ -27,7 +27,7 @@
       placeholder: 'Your project, your context, your timeline…',
       submit: 'Send',
       sending: 'Sending…',
-      privacy: 'Your email is only used to reply to you.',
+      privacy: 'Your email is only used to reply to you. Privacy policy',
       success: 'Thank you, it’s received. I’ll reply to you personally as soon as possible.',
       invalid: 'Check your email and write at least a few words.',
       error: `Sending failed. Try again, or write directly to ${FALLBACK_MAIL}.`
@@ -39,7 +39,7 @@
       placeholder: 'Tu proyecto, tu contexto, tus plazos…',
       submit: 'Enviar',
       sending: 'Enviando…',
-      privacy: 'Tu e-mail solo se usa para responderte.',
+      privacy: 'Tu e-mail solo se usa para responderte. Política de privacidad',
       success: 'Gracias, lo he recibido. Te responderé personalmente lo antes posible.',
       invalid: 'Revisa tu e-mail y escribe al menos unas palabras.',
       error: `El envío ha fallado. Inténtalo de nuevo o escribe directamente a ${FALLBACK_MAIL}.`
@@ -51,7 +51,7 @@
       placeholder: 'O seu projeto, o seu contexto, os seus prazos…',
       submit: 'Enviar',
       sending: 'A enviar…',
-      privacy: 'O seu e-mail serve apenas para lhe responder.',
+      privacy: 'O seu e-mail serve apenas para lhe responder. Política de privacidade',
       success: 'Obrigado, está recebido. Respondo-lhe pessoalmente assim que possível.',
       invalid: 'Verifique o seu e-mail e escreva pelo menos algumas palavras.',
       error: `O envio falhou. Tente novamente ou escreva diretamente para ${FALLBACK_MAIL}.`
@@ -81,7 +81,7 @@
           Website <input type="text" name="website" tabindex="-1" autocomplete="off">
         </label>
         <button type="submit" class="contact-form__submit">${copy.submit}</button>
-        <p class="contact-form__privacy">${copy.privacy}</p>
+        <p class="contact-form__privacy">${copy.privacy.replace(/(Politique de confidentialité|Privacy policy|Política de privacidad|Política de privacidade)/, '<a href="/' + lang + '/' + ({ fr: 'confidentialite.html', en: 'privacy.html', es: 'privacidad.html', pt: 'privacidade.html' }[lang]) + '">$1</a>')}</p>
         <p class="contact-form__status" role="status" aria-live="polite" hidden></p>
       </form>
     `;
