@@ -8,13 +8,6 @@
                 <span class="text-zinc-500" aria-hidden="true">·</span>
                 <a class="text-zinc-300 text-sm hover:text-white" href="<?= htmlspecialchars(Seo::pathFor('blog', Lang::locale()), ENT_QUOTES, 'UTF-8') ?>"><?= htmlspecialchars(__('common.blog_cta'), ENT_QUOTES, 'UTF-8') ?></a>
             </div>
-            <div class="flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
-                <a class="text-zinc-400 text-xs hover:text-white" href="<?= htmlspecialchars(Seo::pathFor('legal', Lang::locale()), ENT_QUOTES, 'UTF-8') ?>"><?= htmlspecialchars(__('common.legal_notice'), ENT_QUOTES, 'UTF-8') ?></a>
-                <span class="text-zinc-600" aria-hidden="true">·</span>
-                <a class="text-zinc-400 text-xs hover:text-white" href="<?= htmlspecialchars(Seo::pathFor('privacy', Lang::locale()), ENT_QUOTES, 'UTF-8') ?>"><?= htmlspecialchars(__('common.privacy_policy'), ENT_QUOTES, 'UTF-8') ?></a>
-                <span class="text-zinc-600" aria-hidden="true">·</span>
-                <a class="text-zinc-400 text-xs hover:text-white" href="<?= htmlspecialchars(Seo::pathFor('terms', Lang::locale()), ENT_QUOTES, 'UTF-8') ?>"><?= htmlspecialchars(__('common.terms_of_sale'), ENT_QUOTES, 'UTF-8') ?></a>
-            </div>
         </nav>
         <p class="text-zinc-500 text-sm">&copy; <?= date('Y') ?> MinusVortex - <?= __('common.footer_tagline') ?></p>
     </div>

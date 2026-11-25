@@ -1085,8 +1085,6 @@
             </div>
           </div>`;
       } else if (outcome === 'waitlist' || outcome === 'book') {
-        const privacyLabels = { fr: 'Politique de confidentialité', en: 'Privacy policy', es: 'Política de privacidad', pt: 'Política de privacidade' };
-        const privacySlugs = { fr: 'confidentialite.html', en: 'privacy.html', es: 'privacidad.html', pt: 'privacidade.html' };
         actionsMarkup = `
           <div class="prequal-widget__waitlist" data-waitlist>
             <h4>${tree.ui.waitlistTitle || ''}</h4>
@@ -1095,7 +1093,6 @@
               <input type="email" name="email" required maxlength="254" placeholder="${tree.ui.waitlistPlaceholder || 'email'}" aria-label="${tree.ui.waitlistPlaceholder || 'email'}" autocomplete="email">
               <button type="submit">${tree.ui.waitlistButton || 'OK'}</button>
             </form>
-            <p class="prequal-widget__waitlist-privacy"><a href="/${locale}/${privacySlugs[locale]}">${privacyLabels[locale]}</a></p>
             <p class="prequal-widget__waitlist-msg" data-waitlist-msg role="status" aria-live="polite" hidden></p>
           </div>`;
       } else {

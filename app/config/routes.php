@@ -51,24 +51,6 @@ return [
             'es' => 'pago-cancelado.html',
             'pt' => 'pagamento-cancelado.html',
         ],
-        'legal' => [
-            'fr' => 'mentions-legales.html',
-            'en' => 'legal-notice.html',
-            'es' => 'aviso-legal.html',
-            'pt' => 'aviso-legal.html',
-        ],
-        'privacy' => [
-            'fr' => 'confidentialite.html',
-            'en' => 'privacy.html',
-            'es' => 'privacidad.html',
-            'pt' => 'privacidade.html',
-        ],
-        'terms' => [
-            'fr' => 'conditions-generales.html',
-            'en' => 'terms.html',
-            'es' => 'condiciones-generales.html',
-            'pt' => 'termos.html',
-        ],
     ],
 
     'alignment' => [
