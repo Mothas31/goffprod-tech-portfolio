@@ -15,6 +15,28 @@ $languages = [
 ];
 
 ?>
+<?php if (in_array($currentPage, ['home', 'portfolio'], true)):
+    $homeStory = Lang::getData('philosophy.content');
+    $homeBase = $currentPage === 'home' ? '' : Seo::pathFor('home', $currentLang);
+    $headerEscape = static fn (string $value): string => htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+?>
+<a class="mv-skip" href="<?= $currentPage === 'home' ? '#intro' : '#case-intro' ?>"><?= $headerEscape($homeStory['nav_skip']) ?></a>
+<header class="mv-header">
+    <a class="mv-wordmark" href="<?= $headerEscape(Seo::pathFor('home', $currentLang)) ?>" aria-label="MinusVortex">
+        <img src="/assets/img/logo.svg" alt="" width="63" height="63" decoding="async">
+        <span>MinusVortex</span>
+    </a>
+    <nav class="mv-header-nav" aria-label="<?= $headerEscape($homeStory['nav_philosophy']) ?>">
+        <a href="<?= $headerEscape($homeBase) ?>#philosophie"><?= $headerEscape($homeStory['nav_philosophy']) ?></a>
+        <a href="<?= $headerEscape($homeBase) ?>#themes"><?= $headerEscape($homeStory['nav_universes']) ?></a>
+        <div class="mv-languages" role="group" aria-label="<?= $headerEscape($homeStory['nav_language']) ?>">
+            <?php foreach ($languages as $langCode => $langData): ?>
+                <a href="<?= $headerEscape(Seo::pathFor($currentPage, $langCode)) ?>" lang="<?= $langCode ?>" hreflang="<?= $langCode ?>" aria-label="<?= $headerEscape($langData['label']) ?>"<?= $currentLang === $langCode ? ' aria-current="page"' : '' ?>><?= strtoupper($langCode) ?></a>
+            <?php endforeach; ?>
+        </div>
+    </nav>
+</header>
+<?php else: ?>
 <header class="w-full bg-white text-white shadow-md fixed top-0 left-0 z-20">
 
 
@@ -54,3 +76,4 @@ $languages = [
 
     </div>
 </header>
+<?php endif; ?>

@@ -58,7 +58,7 @@
         'url' => Seo::baseUrl(),
         'logo' => Seo::baseUrl() . '/assets/img/logo_300.webp',
         'image' => Seo::baseUrl() . '/assets/img/logo_300.webp',
-        'description' => __('common.meta_description'),
+        'description' => $__page === 'home' ? Lang::get('seo.home.description') : __('common.meta_description'),
         'sameAs' => [
             'https://github.com/Mothas31',
         ],
@@ -109,13 +109,20 @@
     <?php endif; ?>
 
     <?php if (($page ?? '') === 'home'): ?>
-    <link rel="preload" as="image" href="/assets/img/logo_63.webp" imagesrcset="/assets/img/logo_63.webp 1x, /assets/img/logo_95.webp 1.5x, /assets/img/logo_126.webp 2x" imagesizes="63px" fetchpriority="high">
+    <link rel="preload" as="image" href="/assets/img/logo.svg" fetchpriority="high">
     <?php endif; ?>
 
+    <?php if (in_array($__page, ['home', 'portfolio'], true)): ?>
+    <link rel="stylesheet" href="/assets/css/home-philosophy.css?v=20261126-clarity">
+    <?php else: ?>
     <link rel="stylesheet" href="/assets/css/output.css?v=20261013-project-3d-screens">
     <link rel="stylesheet" href="/assets/css/side-nav.css" media="screen and (min-width: 768px)">
+    <?php endif; ?>
     <?php if (in_array($__page, ['performance', 'sobriety'], true)): ?>
     <link rel="stylesheet" href="/assets/css/offers.css?v=20261022-offer-prototype">
+    <?php endif; ?>
+    <?php if ($__page === 'portfolio'): ?>
+    <link rel="stylesheet" href="/assets/css/case-studies.css?v=20261125">
     <?php endif; ?>
     <script type="importmap">
     {
@@ -130,7 +137,7 @@
     <script>try{if(sessionStorage.getItem('minusWarp')==='1'){document.documentElement.classList.add('warp-arrive');}}catch(e){}</script>
 
 </head>
-<body class="w-full bg-black">
+<body class="w-full bg-black<?= $__page === 'home' ? ' home-philosophy mv-monochrome' : ($__page === 'portfolio' ? ' mv-case-page mv-monochrome' : '') ?>">
 
 <?php require __DIR__ . '/partials/header.php'; ?>
 

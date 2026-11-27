@@ -1,3 +1,13 @@
+# Historique du carrousel de services
+
+Depuis la refonte locale du 25 novembre 2026, l’accueil présente la philosophie
+puis les sept univers. Le carrousel décrit ci-dessous est conservé dans les
+sources de données et les anciens composants, mais n’est plus chargé par
+`app/views/pages/home.php`. Voir `doc/design-site.md` pour la nouvelle entrée.
+Les parcours de développement et de contact existants restent disponibles.
+
+---
+
 # Home orientée services (29 septembre 2026)
 
 Positionnement : **MinusVortex — ingénierie logicielle PHP / Laravel**. Titres au nom de MinusVortex, textes à la première personne (« je »).

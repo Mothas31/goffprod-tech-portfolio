@@ -3,11 +3,11 @@
 // Titres (<title>) et meta descriptions par page indexable.
 // Clés plates « page.champ » car Lang::get ne découpe que sur le premier point.
 return [
-    'home.title' => 'MinusVortex — Ingénierie logicielle PHP / Laravel | Legacy, applications métier, performance',
-    'home.description' => 'MinusVortex reprend, modernise et fiabilise vos applications PHP/Laravel : legacy, applications métier, performance, intégrations ERP et API, renfort pour agences.',
+    'home.title' => 'MinusVortex — Moins de bruit. Plus de maîtrise.',
+    'home.description' => 'Comprendre ce qui pèse, retirer la complexité inutile et préserver ce qui compte. Une philosophie à explorer dans le business, le logiciel et le quotidien.',
 
-    'portfolio.title' => 'Nos projets | MinusVortex',
-    'portfolio.description' => 'Découvrez des projets MinusVortex : création de sites, applications métier et optimisation de performance web.',
+    'portfolio.title' => 'Résoudre, plutôt qu’ajouter — situations types | MinusVortex',
+    'portfolio.description' => 'Trois situations types pour comprendre la démarche MinusVortex : faire évoluer une application, relier des outils et rendre les données utiles à une décision.',
     'performance.title' => 'Performance web & fiabilité PHP | MinusVortex',
     'performance.description' => 'Mesurer et améliorer le chargement, la réactivité et les traitements PHP de votre application, sans courir après un score isolé.',
     'sobriety.title' => 'Sobriété logicielle — simplifier pour durer | MinusVortex',

@@ -3,11 +3,11 @@
 // <title> e meta descrições por página indexável.
 // Chaves planas «pagina.campo» porque Lang::get só separa no primeiro ponto.
 return [
-    'home.title' => 'MinusVortex — Engenharia de software PHP / Laravel | Legacy, aplicações, performance',
-    'home.description' => 'A MinusVortex retoma, moderniza e estabiliza as suas aplicações PHP/Laravel: legacy, aplicações de negócio, performance, integrações ERP e API, reforço para agências.',
+    'home.title' => 'MinusVortex — Menos ruído. Mais controlo.',
+    'home.description' => 'Compreender o que pesa, retirar a complexidade desnecessária e preservar o que importa. Uma filosofia para explorar nos negócios, no software e no quotidiano.',
 
-    'portfolio.title' => 'Os nossos projetos | MinusVortex',
-    'portfolio.description' => 'Conheça projetos MinusVortex de criação de sites, aplicações de negócio e desempenho web.',
+    'portfolio.title' => 'Resolver, antes de acrescentar — situações típicas | MinusVortex',
+    'portfolio.description' => 'Três situações ilustram a abordagem MinusVortex: fazer evoluir uma aplicação, ligar ferramentas e tornar os dados úteis para uma decisão.',
     'performance.title' => 'Desempenho web e fiabilidade PHP | MinusVortex',
     'performance.description' => 'Medir e melhorar o carregamento, a resposta e os processos PHP da sua aplicação sem perseguir uma pontuação isolada.',
     'sobriety.title' => 'Sobriedade de software — simplificar para durar | MinusVortex',

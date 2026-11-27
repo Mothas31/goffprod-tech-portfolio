@@ -5,6 +5,76 @@
 > quelle boucle, avec quelles preuves, et ce qu'on refuse.
 > Mis à jour : 2026-07-14.
 
+## Évolution locale — 25 novembre 2026
+
+L’accueil revient à la philosophie commune avant de proposer les univers.
+Le premier écran conserve le canvas vortex, le logo central et son animation
+d’origine. Le récit commence en dessous, après le défilement de cette entrée.
+Le carrousel de services PHP/Laravel est remplacé par un récit vertical :
+accumulation → discernement → retrait utile → choix d’un univers.
+
+- Noir et blanc, typographie et géométrie filaire. Une scène Three.js avec
+  perspective accompagne les chapitres au scroll : cadres dans la profondeur,
+  accumulation, sélection, puis rectangle-portail vers les projets.
+  À l’arrivée du rectangle, des particules convergent vers ses bords depuis
+  plusieurs profondeurs. La souris incline ses axes ; le clic accélère
+  l’aspiration pendant la transition. Ces mouvements sont désactivés avec
+  la préférence de mouvement réduit.
+  Le scroll reste natif. Un SVG en perspective sert de repli sans WebGL.
+- Les sept univers renvoient aux routes d’alignement existantes. Leurs
+  prolongements sont distingués : accompagnement, témoignage / livre en
+  préparation, ou exploration. Aucune offre supplémentaire n’est créée.
+  Ils se parcourent un par un dans un défilement horizontal natif avec
+  accrochage : glissement tactile, trackpad, boutons et touches du clavier.
+  Une sélection par noms rend les destinations visibles. Chaque panneau
+  regroupe statut, thème, situation concrète, bénéfice et bouton « Faire le
+  point » avec la mention « Questions guidées ». Le visuel filaire reste un
+  repère compact, y compris sur mobile. Le défilement vertical de la page
+  reste disponible ; les autres panneaux sont inactifs au clavier.
+- Les projets et Signaux restent accessibles à la fin du parcours.
+- Les textes et les métadonnées existent en FR, EN, ES et PT dans
+  `app/lang/{locale}/philosophy.php` et `seo.php`.
+- L’accueil charge `home-philosophy.css` et `home-philosophy.js`, puis le module
+  `home-philosophy-scene.js` et la copie locale existante de Three.js uniquement
+  lorsque le visuel 3D entre effectivement à l’écran, en observant ce visuel
+  plutôt que l’ensemble du récit qui s’étend sur plusieurs écrans. Le canvas
+  d’entrée ne déclenche donc pas le moteur 3D. Le rendu s’arrête hors écran
+  et en onglet masqué.
+  Le canvas d’entrée garde son script `minus-vortex.js` existant ; le header
+  conserve le vrai logo. Les anciens carrousels et scènes ne sont pas chargés.
+- Sans JavaScript, le texte et les liens restent visibles. Avec la préférence
+  de mouvement réduit, la scène conserve une composition fixe.
+
+Les styles du header et du footer sont adaptés uniquement sur l’accueil.
+Les autres pages gardent leur présentation et leurs parcours existants.
+Cette version est locale ; sa présence dans le dépôt ne vaut pas déploiement.
+
+Mesure du 26 novembre 2026, Lighthouse 13.6.0 mobile sur
+`http://127.0.0.1:18086/fr/bienvenue` : performance 86 → 100, temps de blocage
+555 → 0 ms après correction du déclenchement 3D. Les quatre catégories
+atteignent 100 sur cette mesure locale. Vérification navigateur sur mobile
+et tablette : aucun chargement de Three.js à l’entrée, scène WebGL chargée
+au défilement et portail fonctionnel. Les en-têtes de cache du serveur PHP
+de développement restent distincts de ceux du serveur de production ;
+aucun changement de cache ni déploiement n’a été effectué.
+
+### Page de mise en pratique (`/fr/portfolio`)
+
+La grille de réalisations et son effet de cartes superposées sont remplacés
+par trois situations types : faire évoluer une application, relier des outils,
+rendre les données utiles à une décision. Les anciens noms, captures et liens
+de projets ne sont plus affichés. Il ne s’agit pas de cas clients anonymisés :
+les textes sont explicitement des scénarios illustratifs, sans résultat de
+mission revendiqué. De futurs cas réels demanderont les faits, le rôle exact
+et l’attribution des éventuelles collaborations.
+
+Chaque situation distingue problème, contrainte, piste et vérification. Le
+schéma permet de comparer la friction et une piste de résolution. Le contenu
+reste accessible sans JavaScript ; les contrôles sont alors masqués. Les
+quatre langues et les URLs existantes sont conservées. Les textes du portail
+et de la fin de l’accueil renvoient désormais à la démarche, pas à des projets
+réalisés. Le header commun conserve le vrai logo et la navigation localisée.
+
 ---
 
 ## 1. L'intention en une phrase
