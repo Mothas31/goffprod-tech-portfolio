@@ -1,5 +1,6 @@
 <?php
 $cases = Lang::getData('portfolio.cases');
+$development = Lang::locale() === 'fr' ? Lang::getData('professional.development') : null;
 $escape = static fn (string $value): string => htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
 $positions = [[48, 65], [240, 65], [432, 65], [144, 260], [336, 260]];
 $paths = [
@@ -11,16 +12,39 @@ $paths = [
 <div class="mv-cases">
     <header id="case-intro" class="mv-case-hero">
         <p class="mv-kicker"><?= $escape(__('portfolio.eyebrow')) ?></p>
-        <h1><?= $escape(__('portfolio.title')) ?></h1>
+        <h1><?= $escape($development['title'] ?? __('portfolio.title')) ?></h1>
         <div class="mv-case-hero-bottom">
-            <p class="mv-case-lead"><?= $escape(__('portfolio.intro')) ?></p>
+            <p class="mv-case-lead"><?= $escape($development['intro'] ?? __('portfolio.intro')) ?></p>
             <div class="mv-case-intent">
                 <p><?= $escape(__('portfolio.note')) ?></p>
                 <a class="mv-text-link" href="#<?= $escape($cases[0]['id']) ?>"><?= $escape(__('portfolio.jump')) ?></a>
             </div>
         </div>
+        <?php if ($development !== null): ?>
+        <a class="mv-button mv-development-contact" href="mailto:thomas@minusvortex.com?subject=<?= rawurlencode('Décrire mon problème') ?>">Décrire mon problème</a>
+        <?php endif; ?>
     </header>
 
+    <?php if ($development !== null): ?>
+    <section class="mv-development-diagnostic">
+        <p class="mv-kicker">Première intervention · sur devis</p>
+        <h2><?= $escape($development['diagnostic_title']) ?></h2>
+        <p><?= $escape($development['diagnostic_text']) ?></p>
+    </section>
+    <?php endif; ?>
+
+    <?php if ($development !== null): ?>
+    <section class="mv-development-proof">
+        <p class="mv-kicker">Interventions réelles · sans nom de client</p>
+        <h2><?= $escape($development['proof_title']) ?></h2>
+        <div class="mv-development-proof-grid">
+            <?php foreach ($development['proofs'] as $proof): ?>
+                <article><h3><?= $escape($proof['title']) ?></h3><p><?= $escape($proof['text']) ?></p></article>
+            <?php endforeach; ?>
+        </div>
+        <a class="mv-text-link" href="<?= $escape(Seo::pathFor('nodus', 'fr')) ?>">Nodus : découvrir les choix d’un projet personnel en alpha</a>
+    </section>
+    <?php endif; ?>
     <nav class="mv-case-nav" aria-label="<?= $escape(__('portfolio.nav')) ?>">
         <?php foreach ($cases as $index => $case): ?>
             <a href="#<?= $escape($case['id']) ?>"<?= $index === 0 ? ' aria-current="location"' : '' ?>><?= $escape($case['label']) ?></a>
@@ -111,7 +135,7 @@ $paths = [
         <h2><?= $escape(__('portfolio.closing_title')) ?></h2>
         <p><?= $escape(__('portfolio.closing_text')) ?></p>
         <div class="mv-actions">
-            <a class="mv-button" href="mailto:thomasgoffinetfr@gmail.com?subject=<?= rawurlencode(__('portfolio.contact')) ?>"><?= $escape(__('portfolio.contact')) ?></a>
+            <a class="mv-button" href="mailto:thomas@minusvortex.com?subject=<?= rawurlencode(__('portfolio.contact')) ?>"><?= $escape(__('portfolio.contact')) ?></a>
             <a class="mv-text-link" href="<?= $escape(Seo::pathFor('blog', Lang::locale())) ?>"><?= $escape(__('portfolio.signals')) ?></a>
         </div>
         <a class="mv-case-return mv-text-link" href="<?= $escape(Seo::pathFor('home', Lang::locale())) ?>"><?= $escape(__('portfolio.back')) ?></a>

@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 return [
     'pages' => [
+        'ai' => ['fr' => 'ia-sites-simples'],
+        'nodus' => ['fr' => 'nodus'],
         'home' => [
             'fr' => 'bienvenue',
             'en' => 'welcome',

@@ -7,7 +7,7 @@ if ($offerId === 'performance') {
 } elseif ($offerId === 'sobriety') {
     $checkUrl .= '?s=legacy';
 }
-$contactUrl = 'mailto:thomasgoffinetfr@gmail.com?subject=' . rawurlencode('MinusVortex — ' . $offer['eyebrow']);
+$contactUrl = 'mailto:thomas@minusvortex.com?subject=' . rawurlencode('MinusVortex — ' . $offer['eyebrow']);
 ?>
 <article class="offer-page offer-page--<?= htmlspecialchars($offerId, ENT_QUOTES, 'UTF-8') ?>">
     <section class="offer-hero">

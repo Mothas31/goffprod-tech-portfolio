@@ -2,9 +2,9 @@
   const root = document.getElementById('prequal-module-root');
   if (!root || root.dataset.loaded === '1') return;
 
-  const ASSET_VERSION = '20261002-development-memory-3d';
-  // Adresse de contact unique (contact@goffprod.com n'existe pas).
-  const CONTACT_MAIL = 'thomasgoffinetfr@gmail.com';
+  const ASSET_VERSION = '20261128-contact';
+  // Adresse de contact publique MinusVortex.
+  const CONTACT_MAIL = 'thomas@minusvortex.com';
   const locale = (document.documentElement.lang || 'fr').slice(0, 2).toLowerCase();
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const presetThemeId = root.dataset.prequalTheme || '';

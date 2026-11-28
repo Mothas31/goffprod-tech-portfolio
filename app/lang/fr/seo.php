@@ -3,11 +3,11 @@
 // Titres (<title>) et meta descriptions par page indexable.
 // Clés plates « page.champ » car Lang::get ne découpe que sur le premier point.
 return [
-    'home.title' => 'MinusVortex — Moins de bruit. Plus de maîtrise.',
-    'home.description' => 'Comprendre ce qui pèse, retirer la complexité inutile et préserver ce qui compte. Une philosophie à explorer dans le business, le logiciel et le quotidien.',
+    'home.title' => 'Thomas Goffinet — développeur indépendant au Portugal | MinusVortex',
+    'home.description' => 'Thomas Goffinet, développeur indépendant basé au Portugal. Reprise d’applications, intégrations entre outils et sites simples avec l’IA. Contact et devis.',
 
-    'portfolio.title' => 'Résoudre, plutôt qu’ajouter — situations types | MinusVortex',
-    'portfolio.description' => 'Trois situations types pour comprendre la démarche MinusVortex : faire évoluer une application, relier des outils et rendre les données utiles à une décision.',
+    'portfolio.title' => 'Développement et intégrations — Thomas Goffinet | MinusVortex',
+    'portfolio.description' => 'Reprise d’applications et intégrations entre outils : interventions anonymisées, situations types et diagnostic payant avec un plan priorisé, sur devis.',
     'performance.title' => 'Performance web & fiabilité PHP | MinusVortex',
     'performance.description' => 'Mesurer et améliorer le chargement, la réactivité et les traitements PHP de votre application, sans courir après un score isolé.',
     'sobriety.title' => 'Sobriété logicielle — simplifier pour durer | MinusVortex',
@@ -45,4 +45,8 @@ return [
     'privacy.title' => 'Politique de confidentialité | MinusVortex',
     'terms.title' => 'Conditions générales de vente | MinusVortex',
     'not_found.title' => 'Page introuvable | MinusVortex',
+    'ai.title' => 'Sites simples avec l’IA, sur devis | MinusVortex',
+    'ai.description' => 'Création de sites vitrines et accompagnement IA pour artisans et indépendants. Une technologie simple, un périmètre adapté, un devis par projet.',
+    'nodus.title' => 'Nodus — notes, habitudes et objectifs, données locales | MinusVortex',
+    'nodus.description' => 'Le besoin, les contraintes et les choix de Nodus : application de bureau en alpha, fichiers Markdown, index SQLite et IA facultative.',
 ];

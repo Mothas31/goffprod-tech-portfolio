@@ -5,6 +5,36 @@
 > quelle boucle, avec quelles preuves, et ce qu'on refuse.
 > Mis à jour : 2026-07-14.
 
+## Priorité professionnelle — 28 novembre 2026 (local)
+
+Le brief `Brief-site-minusvortex.md`, puis les précisions du propriétaire,
+font évoluer la priorité de l’accueil : identifier Thomas Goffinet,
+développeur indépendant basé au Portugal, montrer les problèmes traités
+et offrir un contact direct. La phrase directrice est « Je pars de votre
+problème, puis je choisis l’outil ». Le canvas, le logo et le récit restent.
+Cette priorité actualise les anciennes règles de discrétion sur le nom
+personnel et de primauté du seul discours philosophique.
+
+Développement est la première porte, IA la deuxième. L’offre IA est une
+page accessible en français, sur devis, destinée aux petits artisans et
+indépendants : sites vitrines simples ou accompagnement. Aucun prix fixe,
+aucun délai et aucune économie chiffrée ne sont promis. Les autres univers
+et leurs pages restent accessibles plus bas. Le contact public devient
+`thomas@minusvortex.com` dans toutes les langues ; aucune configuration
+SMTP ou de boîte mail n’est effectuée dans cette tâche.
+
+La page Développement reste à `/fr/portfolio` : deux interventions réelles
+anonymisées sont distinguées des trois situations types. La première
+intervention proposée est un diagnostic payant avec plan priorisé, sur
+devis. Nodus dispose d’une fiche française fondée uniquement sur le brief,
+sans capture réelle ni dépôt lié, avec son état alpha et les limites du
+mobile et de la synchronisation.
+
+Écriture française d’abord : IA et Nodus sont des routes FR uniquement,
+sans variantes EN/ES/PT ni hreflang fictifs. Le détail des écarts et des
+vérifications est dans `suivis/2026-11-28-positionnement-professionnel.md`.
+Cette version n’est ni poussée ni déployée.
+
 ## Évolution locale — 25 novembre 2026
 
 L’accueil revient à la philosophie commune avant de proposer les univers.

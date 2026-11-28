@@ -21,6 +21,30 @@ class PageController
         ]);
     }
 
+    public function ai(): void
+    {
+        $this->professionalPage('ai');
+    }
+
+    public function nodus(): void
+    {
+        $this->professionalPage('nodus');
+    }
+
+    private function professionalPage(string $page): void
+    {
+        if (Lang::locale() !== 'fr') {
+            $this->notFound();
+            return;
+        }
+        View::render('pages/professional', [
+            'page' => $page,
+            'title' => Lang::get('seo.' . $page . '.title'),
+            'metaDescription' => Lang::get('seo.' . $page . '.description'),
+            'professional' => Lang::getData('professional.' . $page),
+        ]);
+    }
+
     public function performance(): void
     {
         $this->offerPage('performance');

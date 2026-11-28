@@ -1,0 +1,40 @@
+/* French-first business positioning, on top of the existing visual system. */
+.home-professional .mv-canvas-intro #logo-center { align-items: flex-start; padding-top: 13vh; }
+.home-professional .mv-canvas-intro #intro-content { padding-top: 30vh; padding-bottom: 40px; }
+.home-professional .mv-canvas-intro h1 { max-width: 850px; margin-top: 16px; font-size: clamp(32px,4vw,54px); line-height: 1.12; font-weight: 550; letter-spacing: -.045em; text-wrap: balance; }
+.home-professional .mv-canvas-intro #intro-content .mv-professional-identity { max-width: 900px; margin: 0; color: #c4c4bc; font-size: 14px; line-height: 1.7; }
+.home-professional .mv-canvas-intro #intro-content .mv-professional-lead { max-width: 720px; margin-top: 22px; font-size: 18px; line-height: 1.7; color: #deded6; }
+.home-professional .mv-canvas-intro #intro-content .mv-professional-examples { max-width: 740px; margin-top: 16px; font-size: 14px; line-height: 1.75; color: #b4b4ac; }
+.mv-development-contact { margin-top: 26px; }
+.mv-professional-contact { margin-top: 26px; }
+.mv-professional-doors { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px 24px; margin-top: 20px; }
+.mv-professional-doors a { display: inline-flex; align-items: center; min-height: 44px; color: #e5e5dd; font-size: 14px; line-height: 1.6; text-decoration: underline; text-underline-offset: 6px; }
+.home-professional .mv-canvas-intro .scroll-indicator { margin-top: 20px; }
+.mv-development-proof, .mv-development-diagnostic { padding: 55px var(--mv-pad); border-block: 1px solid #ffffff26; }
+.mv-development-proof h2, .mv-development-diagnostic h2 { max-width: 850px; margin-top: 20px; font-size: clamp(28px,3vw,42px); line-height: 1.2; font-weight: 450; letter-spacing: -.035em; }
+.mv-development-proof-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 32px 0; }
+.mv-development-proof-grid h3 { font-size: 22px; line-height: 1.4; font-weight: 450; }
+.mv-development-proof-grid p, .mv-development-diagnostic > p:not(.mv-kicker) { max-width: 720px; margin-top: 18px; color: #bbb; font-size: 16px; line-height: 1.8; }
+.mv-professional-page .mv-case-hero h1 { font-size: clamp(44px,6.5vw,88px); }
+.mv-professional-page-lead { max-width: 760px; margin-top: 32px !important; font-size: 20px; line-height: 1.8; color: #c0c0b7; }
+.mv-professional-page .mv-case-hero > a { margin-top: 26px; }
+.mv-professional-sections { padding: 0 var(--mv-pad); }
+.mv-professional-section { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.3fr); gap: 60px; padding-block: 42px; border-top: 1px solid #ffffff26; }
+.mv-professional-section h2 { font-size: clamp(26px,2.4vw,34px); line-height: 1.25; letter-spacing: -.03em; font-weight: 450; }
+.mv-professional-section p { color: #bababa; font-size: 18px; line-height: 1.8; }
+@media (max-width: 760px) {
+ .home-professional .mv-canvas-intro #logo-center { padding-top: 88px; }
+ .home-professional .logo-vortex-frame { width: 100px; height: 100px; }
+ .home-professional .logo-vortex-svg { width: 74px; height: 74px; }
+ .home-professional .mv-canvas-intro #intro-content { padding: 200px 24px 32px; }
+ .home-professional .mv-canvas-intro h1 { font-size: 32px; margin-top: 14px; }
+ .home-professional .mv-canvas-intro #intro-content .mv-professional-lead { font-size: 16px; margin-top: 18px; }
+ .home-professional .mv-canvas-intro #intro-content .mv-professional-examples { margin-top: 14px; }
+ .mv-professional-doors { gap: 4px 16px; margin-top: 14px; }
+ .mv-development-proof, .mv-development-diagnostic { padding: 40px 24px; }
+ .mv-development-proof-grid { grid-template-columns: 1fr; gap: 28px; }
+ .mv-professional-sections { padding-inline: 24px; }
+ .mv-professional-section { grid-template-columns: 1fr; gap: 20px; padding-block: 32px; }
+ .mv-professional-section p { font-size: 16px; }
+ .mv-professional-page-lead { font-size: 18px; }
+}

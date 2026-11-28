@@ -15,7 +15,7 @@ $languages = [
 ];
 
 ?>
-<?php if (in_array($currentPage, ['home', 'portfolio'], true)):
+<?php if (in_array($currentPage, ['home', 'portfolio', 'ai', 'nodus'], true)):
     $homeStory = Lang::getData('philosophy.content');
     $homeBase = $currentPage === 'home' ? '' : Seo::pathFor('home', $currentLang);
     $headerEscape = static fn (string $value): string => htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
@@ -27,11 +27,18 @@ $languages = [
         <span>MinusVortex</span>
     </a>
     <nav class="mv-header-nav" aria-label="<?= $headerEscape($homeStory['nav_philosophy']) ?>">
+        <?php if ($currentLang === 'fr'): ?>
+        <a href="<?= $headerEscape(Seo::pathFor('portfolio', 'fr')) ?>">Développement</a>
+        <a href="<?= $headerEscape(Seo::pathFor('ai', 'fr')) ?>">IA</a>
+        <?php endif; ?>
         <a href="<?= $headerEscape($homeBase) ?>#philosophie"><?= $headerEscape($homeStory['nav_philosophy']) ?></a>
+        <?php if ($currentLang !== 'fr'): ?>
         <a href="<?= $headerEscape($homeBase) ?>#themes"><?= $headerEscape($homeStory['nav_universes']) ?></a>
+        <?php endif; ?>
         <div class="mv-languages" role="group" aria-label="<?= $headerEscape($homeStory['nav_language']) ?>">
             <?php foreach ($languages as $langCode => $langData): ?>
-                <a href="<?= $headerEscape(Seo::pathFor($currentPage, $langCode)) ?>" lang="<?= $langCode ?>" hreflang="<?= $langCode ?>" aria-label="<?= $headerEscape($langData['label']) ?>"<?= $currentLang === $langCode ? ' aria-current="page"' : '' ?>><?= strtoupper($langCode) ?></a>
+                <?php if (!isset($slugMap[$currentPage][$langCode])) continue; ?>
+                <a href="<?= $headerEscape(Seo::pathFor($currentPage, $langCode)) ?>" lang="<?= $langCode ?>" hreflang="<?= $langCode ?>" aria-label="<?= $headerEscape(strtoupper($langCode) . ' — ' . $langData['label']) ?>"<?= $currentLang === $langCode ? ' aria-current="page"' : '' ?>><?= strtoupper($langCode) ?></a>
             <?php endforeach; ?>
         </div>
     </nav>

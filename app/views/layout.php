@@ -15,7 +15,7 @@
     $__article = $article ?? null;
     $__hasSeoRoute = $__page !== '404' && array_key_exists(
         $__page,
-        ['home' => 1, 'portfolio' => 1, 'performance' => 1, 'sobriety' => 1, 'payment' => 1, 'paymentSuccess' => 1, 'paymentCancel' => 1, 'alignment' => 1, 'blog' => 1, 'blogArticle' => 1]
+        ['home' => 1, 'portfolio' => 1, 'ai' => 1, 'nodus' => 1, 'performance' => 1, 'sobriety' => 1, 'payment' => 1, 'paymentSuccess' => 1, 'paymentCancel' => 1, 'alignment' => 1, 'blog' => 1, 'blogArticle' => 1]
     );
     $__title = htmlspecialchars($title ?? __('home.title'), ENT_QUOTES, 'UTF-8');
     $__metaDescription = htmlspecialchars($metaDescription ?? __('common.meta_description'), ENT_QUOTES, 'UTF-8');
@@ -112,7 +112,7 @@
     <link rel="preload" as="image" href="/assets/img/logo.svg" fetchpriority="high">
     <?php endif; ?>
 
-    <?php if (in_array($__page, ['home', 'portfolio'], true)): ?>
+    <?php if (in_array($__page, ['home', 'portfolio', 'ai', 'nodus'], true)): ?>
     <link rel="stylesheet" href="/assets/css/home-philosophy.css?v=20261126-clarity">
     <?php else: ?>
     <link rel="stylesheet" href="/assets/css/output.css?v=20261013-project-3d-screens">
@@ -121,8 +121,11 @@
     <?php if (in_array($__page, ['performance', 'sobriety'], true)): ?>
     <link rel="stylesheet" href="/assets/css/offers.css?v=20261022-offer-prototype">
     <?php endif; ?>
-    <?php if ($__page === 'portfolio'): ?>
+    <?php if (in_array($__page, ['portfolio', 'ai', 'nodus'], true)): ?>
     <link rel="stylesheet" href="/assets/css/case-studies.css?v=20261125">
+    <?php endif; ?>
+    <?php if (Lang::locale() === 'fr' && in_array($__page, ['home', 'portfolio', 'ai', 'nodus'], true)): ?>
+    <link rel="stylesheet" href="/assets/css/professional.css?v=20261128">
     <?php endif; ?>
     <script type="importmap">
     {
@@ -137,7 +140,7 @@
     <script>try{if(sessionStorage.getItem('minusWarp')==='1'){document.documentElement.classList.add('warp-arrive');}}catch(e){}</script>
 
 </head>
-<body class="w-full bg-black<?= $__page === 'home' ? ' home-philosophy mv-monochrome' : ($__page === 'portfolio' ? ' mv-case-page mv-monochrome' : '') ?>">
+<body class="w-full bg-black<?= $__page === 'home' ? ' home-philosophy mv-monochrome' : (in_array($__page, ['portfolio', 'ai', 'nodus'], true) ? ' mv-case-page mv-monochrome' : '') ?><?= $__page === 'home' && Lang::locale() === 'fr' ? ' home-professional' : '' ?>">
 
 <?php require __DIR__ . '/partials/header.php'; ?>
 

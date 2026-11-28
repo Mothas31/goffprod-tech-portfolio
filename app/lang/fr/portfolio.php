@@ -4,7 +4,7 @@ return [
     'title' => 'Résoudre, plutôt qu’ajouter.',
     'eyebrow' => 'La philosophie en pratique',
     'intro' => 'Un problème se reconnaît dans le quotidien. Une solution se comprend dans les choix qui la rendent possible.',
-    'note' => 'Trois situations types pour explorer la démarche. Des scénarios illustratifs, pas des références clients.',
+    'note' => 'Les trois scénarios suivants sont des situations types. Les interventions réelles sont présentées séparément, sans données internes.',
     'jump' => 'Explorer les situations',
     'back' => 'Revenir à la philosophie',
     'nav' => 'Choisir une situation',

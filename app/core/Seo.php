@@ -7,7 +7,7 @@ class Seo
     private const DEFAULT_LANG = 'fr';
 
     /** Pages indexables (hors flux de paiement transactionnel). */
-    private const INDEXABLE_PAGES = ['home', 'portfolio', 'performance', 'sobriety', 'blog'];
+    private const INDEXABLE_PAGES = ['home', 'portfolio', 'performance', 'sobriety', 'blog', 'ai', 'nodus'];
 
     private static ?array $routes = null;
 
@@ -67,6 +67,9 @@ class Seo
     {
         $urls = [];
         foreach (self::LANGS as $lang) {
+            if ($page !== 'alignment' && $page !== 'blogArticle' && !isset(self::routes()['pages'][$page][$lang])) {
+                continue;
+            }
             $urls[$lang] = self::canonicalUrl($page, $lang, $alignmentTheme, $article);
         }
         return $urls;
@@ -103,6 +106,8 @@ class Seo
         $lines[] = '';
         $lines[] = '- [' . ($seoFr['home.title'] ?? 'Accueil') . '](' . self::canonicalUrl('home', 'fr') . ')';
         $lines[] = '- [' . ($seoFr['portfolio.title'] ?? 'Portfolio') . '](' . self::canonicalUrl('portfolio', 'fr') . ')';
+        $lines[] = '- [' . ($seoFr['ai.title'] ?? 'IA') . '](' . self::canonicalUrl('ai', 'fr') . ')';
+        $lines[] = '- [' . ($seoFr['nodus.title'] ?? 'Nodus') . '](' . self::canonicalUrl('nodus', 'fr') . ')';
         $lines[] = '- [' . ($seoFr['performance.title'] ?? 'Performance') . '](' . self::canonicalUrl('performance', 'fr') . '): ' . ($seoFr['performance.description'] ?? '');
         $lines[] = '- [' . ($seoFr['sobriety.title'] ?? 'Sobriété logicielle') . '](' . self::canonicalUrl('sobriety', 'fr') . '): ' . ($seoFr['sobriety.description'] ?? '');
 
@@ -167,7 +172,7 @@ class Seo
         foreach ($entries as $entry) {
             $alternates = self::alternateUrls($entry['page'], $entry['theme'], $entry['article']);
 
-            foreach (self::LANGS as $lang) {
+            foreach ($alternates as $lang => $url) {
                 $xml->startElement('url');
                 $xml->writeElement('loc', $alternates[$lang]);
 

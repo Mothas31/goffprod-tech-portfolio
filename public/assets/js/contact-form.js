@@ -5,7 +5,7 @@
 (() => {
   if (window.MinusContactForm) return;
 
-  const FALLBACK_MAIL = 'thomasgoffinetfr@gmail.com';
+  const FALLBACK_MAIL = 'thomas@minusvortex.com';
 
   const COPY = {
     fr: {

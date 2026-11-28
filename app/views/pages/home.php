@@ -16,8 +16,13 @@ if (is_readable($inlineLogoPath)) {
 <?php
 $story = Lang::getData('philosophy.content');
 $locale = Lang::locale();
+$professional = $locale === 'fr' ? Lang::getData('professional.home') : null;
 $escape = static fn (string $value): string => htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
 $lines = static fn (array $values): string => implode('<br>', array_map($escape, $values));
+if ($professional !== null) {
+    $priority = ['universe-dev', 'universe-ai'];
+    usort($story['universes'], static fn ($a, $b) => (array_search($a['id'], $priority, true) === false ? 2 : array_search($a['id'], $priority, true)) <=> (array_search($b['id'], $priority, true) === false ? 2 : array_search($b['id'], $priority, true)));
+}
 $universeShapes = [
     'universe-finance' => '<path d="M9 30h30M15 38V22m9 16V10m9 28V17"/>',
     'universe-dev' => '<rect x="10" y="10" width="28" height="28"/><path d="M18 24h12"/>',
@@ -59,17 +64,21 @@ $universeShapes = [
     <!-- Contenu texte : flux normal -->
     <div id="intro-content" class="relative z-10 flex flex-col items-center text-center px-6 pt-[65vh] pb-12">
 
-        <h1 id="mv-brand-title" class="text-2xl sm:text-5xl md:text-6xl font-bold tracking-tight">
-            <?= __('home.title_h1') ?>
-        </h1>
-
-        <p class="text-lg md:text-2xl text-slate-300 mt-6 leading-relaxed max-w-xl">
-            <?= $escape($story['footer']) ?>
-        </p>
-
-        <p class="text-base md:text-lg text-slate-400 mt-4 leading-relaxed max-w-xl">
-            <?= $escape($story['hero_text']) ?>
-        </p>
+        <?php if ($professional !== null): ?>
+            <p class="mv-professional-identity"><?= $escape($professional['identity']) ?></p>
+            <h1 id="mv-brand-title"><?= $escape($professional['title']) ?></h1>
+            <p class="mv-professional-lead"><?= $escape($professional['lead']) ?></p>
+            <p class="mv-professional-examples"><?= $escape($professional['examples']) ?></p>
+            <a class="mv-button mv-professional-contact" href="mailto:thomas@minusvortex.com?subject=<?= rawurlencode($professional['contact']) ?>"><?= $escape($professional['contact']) ?></a>
+            <nav class="mv-professional-doors" aria-label="Les deux interventions principales">
+                <a href="<?= $escape(Seo::pathFor('portfolio', 'fr')) ?>">Développement</a>
+                <a href="<?= $escape(Seo::pathFor('ai', 'fr')) ?>">IA · sites simples et accompagnement</a>
+            </nav>
+        <?php else: ?>
+            <h1 id="mv-brand-title" class="text-2xl sm:text-5xl md:text-6xl font-bold tracking-tight"><?= __('home.title_h1') ?></h1>
+            <p class="text-lg md:text-2xl text-slate-300 mt-6 leading-relaxed max-w-xl"><?= $escape($story['footer']) ?></p>
+            <p class="text-base md:text-lg text-slate-400 mt-4 leading-relaxed max-w-xl"><?= $escape($story['hero_text']) ?></p>
+        <?php endif; ?>
 
         <a href="#philosophie" class="scroll-indicator mt-10" aria-label="<?= $escape($story['hero_cta']) ?>">
             <span class="scroll-indicator__line" aria-hidden="true"></span>
@@ -151,7 +160,10 @@ $universeShapes = [
                 </nav>
             </div>
             <div id="mv-universe-track" class="mv-universe-track" data-universe-track tabindex="0" role="region" aria-label="<?= $escape($story['carousel_label']) ?>">
-                <?php foreach ($story['universes'] as $index => $universe): ?>
+                <?php foreach ($story['universes'] as $index => $universe):
+                    $primary = $locale === 'fr' && in_array($universe['id'], ['universe-dev', 'universe-ai'], true);
+                    $universeUrl = $primary ? Seo::pathFor($universe['id'] === 'universe-dev' ? 'portfolio' : 'ai', 'fr') : Seo::pathFor('alignment', $locale, $universe['id']);
+                    ?>
                     <article class="mv-universe-slide" data-universe-slide data-title="<?= $escape($universe['title']) ?>" aria-labelledby="universe-title-<?= $index ?>">
                         <div class="mv-universe-drawing" aria-hidden="true">
                             <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1"><?= $universeShapes[$universe['id']] ?></svg>
@@ -162,8 +174,8 @@ $universeShapes = [
                             <p class="mv-universe-situation"><?= $escape($universe['situation']) ?></p>
                             <p class="mv-universe-description"><?= $escape($universe['text']) ?></p>
                             <div class="mv-universe-entry">
-                                <a class="mv-button" href="<?= $escape(Seo::pathFor('alignment', $locale, $universe['id'])) ?>"><?= $escape($story['universe_action']) ?></a>
-                                <span><?= $escape($story['universe_format']) ?></span>
+                                <a class="mv-button" href="<?= $escape($universeUrl) ?>"><?= $escape($primary ? 'Découvrir l’intervention' : $story['universe_action']) ?></a>
+                                <span><?= $escape($primary ? 'Sur devis' : $story['universe_format']) ?></span>
                             </div>
                         </div>
                     </article>

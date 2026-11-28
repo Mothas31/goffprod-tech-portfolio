@@ -9,11 +9,12 @@
                 <a class="text-zinc-300 text-sm hover:text-white" href="<?= htmlspecialchars(Seo::pathFor('blog', Lang::locale()), ENT_QUOTES, 'UTF-8') ?>"><?= htmlspecialchars(__('common.blog_cta'), ENT_QUOTES, 'UTF-8') ?></a>
             </div>
         </nav>
-        <p class="text-zinc-500 text-sm">&copy; <?= date('Y') ?> MinusVortex - <?= in_array($page ?? '', ['home', 'portfolio'], true) ? htmlspecialchars((string) Lang::getData('philosophy.content')['footer'], ENT_QUOTES, 'UTF-8') : __('common.footer_tagline') ?></p>
+        <p class="mb-4"><a class="text-zinc-300 text-sm" href="mailto:thomas@minusvortex.com">thomas@minusvortex.com</a></p>
+        <p class="text-zinc-500 text-sm">&copy; <?= date('Y') ?> MinusVortex - <?= in_array($page ?? '', ['home', 'portfolio', 'ai', 'nodus'], true) ? htmlspecialchars((string) Lang::getData('philosophy.content')['footer'], ENT_QUOTES, 'UTF-8') : __('common.footer_tagline') ?></p>
     </div>
 </footer>
 
-<?php if (!in_array($page ?? '', ['home', 'alignment', 'blog', 'blogArticle', 'portfolio', 'performance', 'sobriety'], true)): ?>
+<?php if (!in_array($page ?? '', ['home', 'ai', 'nodus', 'alignment', 'blog', 'blogArticle', 'portfolio', 'performance', 'sobriety'], true)): ?>
 <!-- Rappel flottant du footer (trait + texte) : fade in dans la zone des themes,
      s'efface quand le vrai footer entre dans le viewport et prend sa place. -->
 <a href="<?= htmlspecialchars(Seo::pathFor('blog', Lang::locale()), ENT_QUOTES, 'UTF-8') ?>" class="footer-float-cta is-waiting" data-footer-float-cta>
